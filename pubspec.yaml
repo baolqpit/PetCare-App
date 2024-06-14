@@ -63,6 +63,7 @@ flutter:
   assets:
     - lib/assets/BottomBarImages/
     - lib/assets/UserImages/
+    - lib/assets/SettingImages/
 #    - images/a_dot_ham.jpeg
   fonts:
     - family: Raleway

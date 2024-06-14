@@ -5,12 +5,26 @@ import 'package:petcare_app_management/share/Images/images.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
 
 class ScreenAndMenu {
-    static List<BottomNavigationBarItem> listCustomerIcons =
+  static List<BottomNavigationBarItem> listCustomerIcons =
       <BottomNavigationBarItem>[
     BottomNavigationBarItem(
         label: 'Home',
         icon: SvgPicture.asset(
           Images.home_page_svg,
+          width: 30,
+          height: 30,
+        )),
+    BottomNavigationBarItem(
+        label: 'Map',
+        icon: SvgPicture.asset(
+          Images.map_svg,
+          width: 30,
+          height: 30,
+        )),
+    BottomNavigationBarItem(
+        label: 'Pet Store',
+        icon: SvgPicture.asset(
+          Images.pet_store_svg,
           width: 30,
           height: 30,
         )),
@@ -21,18 +35,18 @@ class ScreenAndMenu {
           width: 30,
           height: 30,
         )),
-    BottomNavigationBarItem(
-        label: 'Pet Store',
-        icon: SvgPicture.asset(
-          Images.pet_store_svg,
-          width: 30,
-          height: 30,
-        ))
   ];
 
   static List<Widget> listCustomerScreens = [
-    Container(child: Apptext(content: 'HomePage'),),
+    Container(
+      child: Apptext(content: 'HomePage'),
+    ),
+    Container(
+      child: Apptext(content: "Map"),
+    ),
+    Container(
+      child: Apptext(content: 'PetStore'),
+    ),
     UserInfoScreen(),
-    Container(child: Apptext(content: 'PetStore'),),
   ];
 }
