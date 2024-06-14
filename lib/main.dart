@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
+import 'package:petcare_app_management/screens/setting_screens/setting_screen.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
 import 'package:petcare_app_management/share/screen_and_menu.dart';
@@ -33,7 +34,7 @@ class _PetCareState extends State<PetCare> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       theme: ThemeData(
         fontFamily: 'Raleway',
         textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Raleway'),
@@ -59,7 +60,7 @@ class _PetCareState extends State<PetCare> {
       )),
       actions: [
         IconButton(
-            onPressed: () {},
+            onPressed: () => Get.to(SettingScreen()),
             icon: const Icon(
               Icons.settings,
               color: AppColor.white,
@@ -75,10 +76,9 @@ class _PetCareState extends State<PetCare> {
 
   _buildAppBottomBar() {
     return Obx(() => BottomNavigationBar(
-          backgroundColor: AppColor.amber[200],
           items: ScreenAndMenu.listCustomerIcons,
           unselectedLabelStyle: const TextStyle(fontSize: Dimens.font_size_min),
-          // showUnselectedLabels: false,
+          showUnselectedLabels: true,
           unselectedItemColor: AppColor.black,
           selectedItemColor: AppColor.primary,
           selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: Dimens.font_size_min),
