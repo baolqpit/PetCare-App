@@ -18,6 +18,13 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   final UserController userController = Get.find();
 
   @override
+  void initState() {
+    fetchData();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
@@ -140,5 +147,10 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> fetchData() async  {
+    await userController.getListUsers();
+    await userController.getUserById(userId: 1);
   }
 }
