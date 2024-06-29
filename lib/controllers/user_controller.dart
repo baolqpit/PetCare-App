@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/api/base_api.dart';
 import 'package:petcare_app_management/api/user_api.dart';
@@ -8,6 +9,8 @@ import 'package:petcare_app_management/model/user_model.dart';
 class UserController extends GetxController {
   RxList<UserModel?> listUsers = RxList<UserModel?>([]);
   Rx<UserModel?> userInfo = Rx<UserModel?>(null);
+  TextEditingController emailController = TextEditingController();
+
 
 
   ///GET USER LIST
