@@ -52,7 +52,7 @@ class _SettingScreenState extends State<SettingScreen> {
         children: <Widget>[
           SvgPicture.asset(imgesURL, width: 30, height: 30,),
           Dimens.width10,
-          Apptext(content: text, color: AppColor.white, fontWeight: FontWeight.bold,)
+          AppText(content: text, color: AppColor.white, fontWeight: FontWeight.bold,)
       ],
       ),
     );

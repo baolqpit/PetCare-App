@@ -1,11 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/screens/app.dart';
 import 'package:petcare_app_management/screens/introduction_screens/sign_up_screen.dart';
-void main() {
-  runApp(const PetCare());
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  try {
+    await Firebase.initializeApp();
+    runApp(const PetCare());
+  } catch (e) {
+    print('Firebase initialization error: $e');
+  }
 }
 
 class PetCare extends StatefulWidget {
@@ -18,7 +27,6 @@ class PetCare extends StatefulWidget {
 class _PetCareState extends State<PetCare> {
   @override
   void initState() {
-    // TODO: implement initState;
     super.initState();
   }
 
@@ -30,11 +38,11 @@ class _PetCareState extends State<PetCare> {
         fontFamily: 'Raleway',
         textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Raleway'),
       ),
-      home: SignUpScreen()
+      home: SignUpScreen(),
     );
   }
 
-  _buildAppBody(){
+  _buildAppBody() {
     return PetCareAppScreen();
   }
 }
@@ -44,7 +52,5 @@ class StoreBinding implements Bindings {
   void dependencies() {
     Get.lazyPut(() => AppController());
     Get.lazyPut(() => UserController());
-    // TODO: implement dependencies
   }
-
 }

@@ -69,25 +69,25 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
       children: <Widget>[
         ListTile(
           leading: Icon(Icons.person),
-          title: Apptext(
+          title: AppText(
             content: 'Quan bong',
           ),
         ),
         ListTile(
           leading: Icon(Icons.phone),
-          title: Apptext(
+          title: AppText(
             content: '0397371792',
           ),
         ),
         ListTile(
           leading: Icon(Icons.email),
-          title: Apptext(
+          title: AppText(
             content: 'quynhnguyen03@gmail.com',
           ),
         ),
         ListTile(
           leading: Icon(Icons.location_city),
-          title: Apptext(
+          title: AppText(
             content: 'Quan 7',
           ),
         )
@@ -106,7 +106,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
           width: 50,
           height: 50,
         ),
-        title: Apptext(
+        title: AppText(
           content: 'Your Pets',
           color: AppColor.white,
           fontWeight: FontWeight.bold,
@@ -133,7 +133,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
           width: 50,
           height: 50,
         ),
-        title: Apptext(
+        title: AppText(
           content: 'Activities History',
           color: AppColor.white,
           fontWeight: FontWeight.bold,

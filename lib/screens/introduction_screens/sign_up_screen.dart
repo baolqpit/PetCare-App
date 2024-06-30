@@ -18,6 +18,14 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final UserController userController = Get.find();
   final AppController appController = Get.find();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    appController.showSuffixConfirmPassWord.value = false;
+    appController.showSuffixPassWord.value = false;
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +41,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         onPressed: () => Get.back(),
       ),
       title: Center(
-        child: Apptext(
+        child: AppText(
           content: 'Return to sign in',
         ),
       ),
@@ -41,39 +49,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   _buildSignUpContent() {
-    return Obx(() => Container(
-          padding: EdgeInsets.symmetric(
-              vertical: Dimens.padding_vertical,
-              horizontal: Dimens.padding_horizontal),
-          child: Column(
-            children: <Widget>[
-              _buildTextFieldInfo(
-                  label: 'Email',
-                  hintText: 'email@gmail.com',
-                  controller: userController.emailController,
-                  showSuffix: false),
-              Dimens.height15,
-              _buildTextFieldInfo(
-                  label: 'Password',
-                  hintText: 'Enter New Password',
-                  controller: userController.emailController,
-                  showSuffix: true,
-                  suffixController: appController.showSuffixPassWord),
-              Dimens.height15,
-              _buildTextFieldInfo(
-                  label: 'Confirm password',
-                  hintText: 'Enter confirm password',
-                  controller: userController.emailController,
-                  showSuffix: true,
-                  suffixController:
-                      appController.showSuffixConfirmPassWord),
-              Dimens.height15,
-              _buildAcceptLicense(),
-              Dimens.height20,
-              _buildSignUpButton()
-            ],
+    return Obx(() => SingleChildScrollView(
+      child: Container(
+            padding: EdgeInsets.symmetric(
+                vertical: Dimens.padding_vertical,
+                horizontal: Dimens.padding_horizontal),
+            child: Column(
+              children: <Widget>[
+                _buildTextFieldInfo(
+                    label: 'Email',
+                    hintText: 'email@gmail.com',
+                    controller: userController.emailController,
+                    showSuffix: false),
+                Dimens.height15,
+                _buildTextFieldInfo(
+                    label: 'Password',
+                    hintText: 'Enter New Password',
+                    controller: userController.passwordController,
+                    showSuffix: true,
+                    suffixController: appController.showSuffixPassWord),
+                Dimens.height15,
+                _buildTextFieldInfo(
+                    label: 'Confirm password',
+                    hintText: 'Enter confirm password',
+                    controller: userController.confirmPasswordController,
+                    showSuffix: true,
+                    suffixController:
+                        appController.showSuffixConfirmPassWord),
+                Dimens.height15,
+                _buildAcceptLicense(),
+                Dimens.height20,
+                _buildSignUpButton()
+              ],
+            ),
           ),
-        ));
+    ));
   }
 
   _buildTextFieldInfo(
@@ -85,15 +95,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Apptext(
+        AppText(
           content: label,
           fontWeight: FontWeight.bold,
         ),
         Dimens.height5,
         TextField(
-          onChanged: (value) {
-            controller.text = value;
-          },
+          obscureText: suffixController != null ? !suffixController.value : false,
           controller: controller,
           decoration: InputDecoration(
             suffixIcon: showSuffix
@@ -127,23 +135,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 appController.isAcceptLicense.value = value;
               }
             }),
-        Apptext(content: 'I Agree With The Terms And The Conditions')
+        Expanded(child: AppText(content: 'I Agree With The Terms And The Conditions'))
       ],
     );
   }
 
   _buildSignUpButton() {
     return ElevatedButton(
-      onPressed: () {},
-      child: Apptext(
+      onPressed: () {
+        appController.signUpButtonOnPress(context: context);
+      },
+      child: AppText(
         content: 'Sign Up',
         fontWeight: FontWeight.bold,
-        textSize: Dimens.font_size_max,
+        textSize: Dimens.font_size_title,
         color: AppColor.white,
       ),
       style: ElevatedButton.styleFrom(
           backgroundColor: AppColor.primary,
-          padding: EdgeInsets.all(Dimens.padding_20)),
+          padding: EdgeInsets.all(Dimens.padding_horizontal)),
     );
   }
 }

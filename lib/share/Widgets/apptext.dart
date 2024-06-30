@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:petcare_app_management/main.dart';
 
-class Apptext extends StatelessWidget{
+class AppText extends StatelessWidget{
   String? content;
   double? textSize;
   Color? color;
@@ -10,7 +10,7 @@ class Apptext extends StatelessWidget{
   FontStyle? fontStyle;
 
 
-  Apptext({super.key, required this.content, this.textSize, this.color, this.fontWeight, this.fontStyle });
+  AppText({super.key, required this.content, this.textSize, this.color, this.fontWeight, this.fontStyle });
 
   @override
   Widget build(BuildContext context) {

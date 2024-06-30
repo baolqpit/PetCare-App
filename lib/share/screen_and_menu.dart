@@ -39,13 +39,13 @@ class ScreenAndMenu {
 
   static List<Widget> listCustomerScreens = [
     Container(
-      child: Apptext(content: 'HomePage'),
+      child: AppText(content: 'HomePage'),
     ),
     Container(
-      child: Apptext(content: "Map"),
+      child: AppText(content: "Map"),
     ),
     Container(
-      child: Apptext(content: 'PetStore'),
+      child: AppText(content: 'PetStore'),
     ),
     UserInfoScreen(),
   ];

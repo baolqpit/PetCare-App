@@ -32,7 +32,7 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
       backgroundColor: AppColor.primary[300],
       leading: IconButton(icon: Icon(Icons.menu), onPressed: (){}, color: AppColor.white,),
       title: Center(
-          child: Apptext(
+          child: AppText(
             content: "",
             textSize: Dimens.font_size_title,
             fontWeight: FontWeight.bold,

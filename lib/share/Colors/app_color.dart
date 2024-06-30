@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppColor {
     static const primary = Colors.teal;
+    static const red = Colors.red;
     static const white = Colors.white;
     static const amber = Colors.amber;
     static const grey = Colors.grey;
