@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
+import 'package:petcare_app_management/helper/auth_helper.dart';
 import 'package:petcare_app_management/share/Widgets/dialog.dart';
 
 class AppController extends GetxController {
@@ -36,7 +37,7 @@ class AppController extends GetxController {
   }
 
   ///SIGN UP BUTTON ACTION
-  signUpButtonOnPress({required BuildContext context}) {
+  signUpButtonOnPress({required BuildContext context}) async {
     // Field is empty
     if (signUpFieldIsEmpty()) {
       return showAppWarningDialog(
@@ -51,6 +52,7 @@ class AppController extends GetxController {
                 'The password you entered does not match, please check again!');
       } else {
         if (isAcceptLicense.value) {
+          await AuthHelper().signInWithEmail(email: userController.emailController.text, password: userController.passwordController.text);
         }
         // Check the license
         else {

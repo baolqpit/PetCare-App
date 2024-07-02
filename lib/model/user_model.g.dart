@@ -9,13 +9,19 @@ part of 'user_model.dart';
 _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
     _$UserModelImpl(
       userId: (json['userId'] as num?)?.toInt(),
-      userName: json['userName'] as String?,
+      firstName: json['firstName'] as String?,
+      lastName: json['lastName'] as String?,
       email: json['email'] as String?,
+      address: json['address'] as String?,
+      phone: json['phone'] as String?,
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
     <String, dynamic>{
       'userId': instance.userId,
-      'userName': instance.userName,
+      'firstName': instance.firstName,
+      'lastName': instance.lastName,
       'email': instance.email,
+      'address': instance.address,
+      'phone': instance.phone,
     };

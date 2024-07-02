@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
+import 'package:petcare_app_management/helper/auth_helper.dart';
 import 'package:petcare_app_management/screens/app.dart';
 import 'package:petcare_app_management/screens/introduction_screens/sign_up_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   try {
     await Firebase.initializeApp();
     runApp(const PetCare());
@@ -38,7 +38,13 @@ class _PetCareState extends State<PetCare> {
         fontFamily: 'Raleway',
         textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Raleway'),
       ),
-      home: SignUpScreen(),
+      home: StreamBuilder(stream: AuthHelper().authStateChanges, builder: (context, snapshot){
+        if (snapshot.hasData){
+          return _buildAppBody();
+        } else {
+          return SignUpScreen();
+        }
+      }),
     );
   }
 
