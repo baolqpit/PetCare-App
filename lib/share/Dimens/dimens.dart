@@ -18,6 +18,7 @@ class Dimens {
   static const height12 = SizedBox(height: 12.0,);
   static const height15 = SizedBox(height: 15.0,);
   static const height20 = SizedBox(height: 20.0,);
+  static const height_OTP = 64.0;
 
   //   Height Size Design
   static const width5 = SizedBox(width:  5.0,) ;
@@ -25,11 +26,18 @@ class Dimens {
   static const width12 = SizedBox(width:  12.0,);
   static const width15 = SizedBox(width:  15.0,);
   static const width20 = SizedBox(width:  20.0,);
+  static const width_OTP = 68.0;
 
 // Circular Size Design
   static const circular5 = 5.0 ;
   static const circular10 = 10.0 ;
   static const circular12 = 12.0 ;
   static const circular50 = 50.0 ;
+
+//   Size values
+  static const sizeValue5 = 5.0;
+  static const sizeValue10 = 10.0;
+  static const sizeValue15 = 15.0;
+  static const sizeValue20 = 20.0;
 
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/auth_helper.dart';
+import 'package:petcare_app_management/screens/introduction_screens/otp_authentication.dart';
 import 'package:petcare_app_management/share/Widgets/dialog.dart';
 
 class AppController extends GetxController {
@@ -30,7 +31,7 @@ class AppController extends GetxController {
   signUpFieldIsEmpty() {
     if (userController.emailController.text.isEmpty ||
         userController.confirmPasswordController.text.isEmpty ||
-        userController.passwordController.text.isEmpty) {
+        userController.passwordController.text.isEmpty || userController.phoneController.text.isEmpty) {
       return true;
     }
     return false;
@@ -52,7 +53,7 @@ class AppController extends GetxController {
                 'The password you entered does not match, please check again!');
       } else {
         if (isAcceptLicense.value) {
-          await AuthHelper().signInWithEmail(email: userController.emailController.text, password: userController.passwordController.text);
+          Get.to(() => OtpAuthentication());
         }
         // Check the license
         else {

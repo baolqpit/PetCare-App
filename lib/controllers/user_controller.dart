@@ -10,6 +10,7 @@ class UserController extends GetxController {
   RxList<UserModel?> listUsers = RxList<UserModel?>([]);
   Rx<UserModel?> userInfo = Rx<UserModel?>(null);
   TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
 

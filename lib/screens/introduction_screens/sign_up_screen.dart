@@ -63,6 +63,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     showSuffix: false),
                 Dimens.height15,
                 _buildTextFieldInfo(
+                    label: 'Phone',
+                    hintText: '09xxxxxxxx',
+                    controller: userController.phoneController,
+                    showSuffix: false),
+                Dimens.height15,
+                _buildTextFieldInfo(
                     label: 'Password',
                     hintText: 'Enter New Password',
                     controller: userController.passwordController,
