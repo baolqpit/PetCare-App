@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/auth_helper.dart';
-import 'package:petcare_app_management/screens/introduction_screens/otp_authentication.dart';
+import 'package:petcare_app_management/screens/app.dart';
+import 'package:petcare_app_management/screens/introduction_screens/otp_authentication_screen.dart';
 import 'package:petcare_app_management/share/Widgets/dialog.dart';
 
 class AppController extends GetxController {
@@ -12,7 +14,7 @@ class AppController extends GetxController {
   Rx<bool> isAcceptLicense = Rx<bool>(false);
   Rx<bool> showSuffixPassWord = Rx<bool>(false);
   Rx<bool> showSuffixConfirmPassWord = Rx<bool>(false);
-
+  Rx<bool> rememberAccount = Rx<bool>(true);
   ///GET APP BAR TITLE
   getAppBarTitle() {
     switch (currentAppPageIndex.value) {
@@ -35,6 +37,28 @@ class AppController extends GetxController {
       return true;
     }
     return false;
+  }
+
+  ///CHECK SIGN IN FIELD IS EMPTY
+  signInFieldIsEmpty() {
+    if (userController.emailController.text.isEmpty || userController.passwordController.text.isEmpty){
+      return true;
+    }
+    return false;
+  }
+
+  ///SIGN IN BUTTON ACTION
+  signInButtonAction({required BuildContext context}) async {
+    if (signInFieldIsEmpty()){
+      return showAppWarningDialog(context: context, content: 'Please fill in all the form!');
+    } else {
+      try {
+        await AuthHelper().signInWithEmail(email: userController.emailController.text, password: userController.passwordController.text);
+        Get.to(() => PetCareAppScreen());
+      } catch (e) {
+        print('Sign in error ${e}');
+      }
+    }
   }
 
   ///SIGN UP BUTTON ACTION

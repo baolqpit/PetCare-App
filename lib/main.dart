@@ -4,7 +4,10 @@ import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/auth_helper.dart';
+import 'package:petcare_app_management/helper/initial_binding.dart';
 import 'package:petcare_app_management/screens/app.dart';
+import 'package:petcare_app_management/screens/introduction_screens/introduction_screen.dart';
+import 'package:petcare_app_management/screens/introduction_screens/sign_in_screen.dart';
 import 'package:petcare_app_management/screens/introduction_screens/sign_up_screen.dart';
 
 Future<void> main() async {
@@ -33,7 +36,7 @@ class _PetCareState extends State<PetCare> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialBinding: StoreBinding(),
+      initialBinding: InitialBinding(),
       theme: ThemeData(
         fontFamily: 'Raleway',
         textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Raleway'),
@@ -42,7 +45,7 @@ class _PetCareState extends State<PetCare> {
         if (snapshot.hasData){
           return _buildAppBody();
         } else {
-          return SignUpScreen();
+          return IntroductionScreen();
         }
       }),
     );
@@ -50,13 +53,5 @@ class _PetCareState extends State<PetCare> {
 
   _buildAppBody() {
     return PetCareAppScreen();
-  }
-}
-
-class StoreBinding implements Bindings {
-  @override
-  void dependencies() {
-    Get.lazyPut(() => AppController());
-    Get.lazyPut(() => UserController());
   }
 }

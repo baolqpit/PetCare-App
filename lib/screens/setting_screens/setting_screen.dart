@@ -5,6 +5,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:petcare_app_management/helper/auth_helper.dart';
 import 'package:petcare_app_management/main.dart';
 import 'package:petcare_app_management/screens/introduction_screens/introduction_screen.dart';
+import 'package:petcare_app_management/screens/introduction_screens/sign_in_screen.dart';
 import 'package:petcare_app_management/screens/introduction_screens/sign_up_screen.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';

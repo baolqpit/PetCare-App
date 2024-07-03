@@ -40,10 +40,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         icon: Icon(Icons.arrow_back),
         onPressed: () => Get.back(),
       ),
-      title: Center(
-        child: AppText(
-          content: 'Return to sign in',
-        ),
+      title: AppText(
+        content: 'Return',
       ),
     );
   }

@@ -22,8 +22,8 @@ class AuthHelper {
   // SIGN IN WITH GOOGLE
   Future<void> signInWithEmail(
       {required String email, required String password}) async {
-    await firebaseAuth.signInWithEmailAndPassword(
-        email: email, password: password);
+      await firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
   }
 
   // SIGN OUT
