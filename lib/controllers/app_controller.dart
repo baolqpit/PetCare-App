@@ -7,6 +7,7 @@ import 'package:petcare_app_management/helper/auth_helper.dart';
 import 'package:petcare_app_management/screens/app.dart';
 import 'package:petcare_app_management/screens/introduction_screens/otp_authentication_screen.dart';
 import 'package:petcare_app_management/share/Widgets/dialog.dart';
+import 'package:petcare_app_management/share/format/format.dart';
 
 class AppController extends GetxController {
   final UserController userController = Get.find();
@@ -15,6 +16,7 @@ class AppController extends GetxController {
   Rx<bool> showSuffixPassWord = Rx<bool>(false);
   Rx<bool> showSuffixConfirmPassWord = Rx<bool>(false);
   Rx<bool> rememberAccount = Rx<bool>(true);
+
   ///GET APP BAR TITLE
   getAppBarTitle() {
     switch (currentAppPageIndex.value) {
@@ -33,7 +35,8 @@ class AppController extends GetxController {
   signUpFieldIsEmpty() {
     if (userController.emailController.text.isEmpty ||
         userController.confirmPasswordController.text.isEmpty ||
-        userController.passwordController.text.isEmpty || userController.phoneController.text.isEmpty) {
+        userController.passwordController.text.isEmpty ||
+        userController.phoneController.text.isEmpty) {
       return true;
     }
     return false;
@@ -41,7 +44,8 @@ class AppController extends GetxController {
 
   ///CHECK SIGN IN FIELD IS EMPTY
   signInFieldIsEmpty() {
-    if (userController.emailController.text.isEmpty || userController.passwordController.text.isEmpty){
+    if (userController.emailController.text.isEmpty ||
+        userController.passwordController.text.isEmpty) {
       return true;
     }
     return false;
@@ -49,11 +53,14 @@ class AppController extends GetxController {
 
   ///SIGN IN BUTTON ACTION
   signInButtonAction({required BuildContext context}) async {
-    if (signInFieldIsEmpty()){
-      return showAppWarningDialog(context: context, content: 'Please fill in all the form!');
+    if (signInFieldIsEmpty()) {
+      return showAppWarningDialog(
+          context: context, content: 'Please fill in all the form!');
     } else {
       try {
-        await AuthHelper().signInWithEmail(email: userController.emailController.text, password: userController.passwordController.text);
+        await AuthHelper().signInWithEmail(
+            email: userController.emailController.text,
+            password: userController.passwordController.text);
         Get.to(() => PetCareAppScreen());
       } catch (e) {
         print('Sign in error ${e}');
@@ -77,7 +84,15 @@ class AppController extends GetxController {
                 'The password you entered does not match, please check again!');
       } else {
         if (isAcceptLicense.value) {
-          Get.to(() => OtpAuthentication());
+          try {
+            await AuthHelper().signUpWithEmail(
+                email: userController.emailController.text,
+                password: userController.passwordController.text,
+                phoneNumber: formatPhoneToE164(
+                    phoneNumber: userController.phoneController.text));
+          } catch (e) {
+            print("Sign Up Failed ${e}");
+          }
         }
         // Check the license
         else {

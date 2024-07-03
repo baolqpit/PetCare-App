@@ -1,14 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
+import 'package:petcare_app_management/helper/auth_helper.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
 
 import '../../share/Colors/app_color.dart';
 
 class OtpAuthentication extends StatefulWidget {
-  const OtpAuthentication({super.key});
+  const OtpAuthentication({super.key, required this.verifycationId});
+  final String verifycationId;
 
   @override
   State<OtpAuthentication> createState() => _OtpAuthenticationState();
@@ -16,6 +19,10 @@ class OtpAuthentication extends StatefulWidget {
 
 class _OtpAuthenticationState extends State<OtpAuthentication> {
   final UserController userController = Get.find();
+  TextEditingController otp_1_number = TextEditingController();
+  TextEditingController otp_2_number = TextEditingController();
+  TextEditingController otp_3_number = TextEditingController();
+  TextEditingController otp_4_number = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +37,8 @@ class _OtpAuthenticationState extends State<OtpAuthentication> {
         icon: Icon(Icons.arrow_back),
         onPressed: () => Get.back(),
       ),
-      title: Center(
-        child: AppText(
-          content: 'Return to sign up',
-        ),
+      title: AppText(
+        content: 'Return',
       ),
     );
   }
@@ -85,19 +90,20 @@ class _OtpAuthenticationState extends State<OtpAuthentication> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        _buildOTPInputField(),
-        _buildOTPInputField(),
-        _buildOTPInputField(),
-        _buildOTPInputField(),
+        _buildOTPInputField(otpController: otp_1_number),
+        _buildOTPInputField(otpController: otp_2_number),
+        _buildOTPInputField(otpController: otp_3_number),
+        _buildOTPInputField(otpController: otp_4_number),
       ],
     );
   }
 
-  _buildOTPInputField() {
+  _buildOTPInputField({required TextEditingController otpController}) {
     return SizedBox(
       width: Dimens.width_OTP,
       height: Dimens.height_OTP,
       child: TextField(
+        controller: otpController,
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.all(
@@ -132,7 +138,17 @@ class _OtpAuthenticationState extends State<OtpAuthentication> {
 
   _buildOTPSendButton() {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () async {
+        String smsCode = otp_1_number.text + otp_2_number.text + otp_3_number.text + otp_4_number.text;
+        final credential = PhoneAuthProvider.credential(
+            verificationId: widget.verifycationId, smsCode: smsCode);
+        try {
+          await AuthHelper().firebaseAuth.signInWithCredential(credential);
+        } catch(e){
+          print("Verify failed ${e}");
+        }
+
+      },
       child: AppText(
         content: 'Verify',
         color: AppColor.white,
