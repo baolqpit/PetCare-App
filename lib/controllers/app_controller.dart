@@ -120,13 +120,12 @@ class AppController extends GetxController {
 
   ///VERIFY OTP
   verifyOTP({required String otp}) async {
-    print(otp);
     try {
       await EmailOTP.verifyOTP(otp: otp);
       await AuthHelper().signUpWithEmail(email: userController.emailController.text, password: userController.passwordController.text, phoneNumber: userController.phoneController.text);
       Get.to(() => PetCareAppScreen());
     } catch (e){
-
+      print("Error verify: ${e}");
     }
   }
 }

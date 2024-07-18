@@ -1,3 +1,4 @@
+import 'package:email_otp/email_otp.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -24,6 +25,18 @@ class _OtpAuthenticationState extends State<OtpAuthentication> {
   TextEditingController otp_2_number = TextEditingController();
   TextEditingController otp_3_number = TextEditingController();
   TextEditingController otp_4_number = TextEditingController();
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    userController.phoneController.clear();
+    userController.confirmPasswordController.clear();
+    otp_1_number.clear();
+    otp_2_number.clear();
+    otp_3_number.clear();
+    otp_4_number.clear();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -132,7 +145,9 @@ class _OtpAuthenticationState extends State<OtpAuthentication> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         AppText(content: 'Did not receive OTP?'),
-        ElevatedButton(onPressed: () {}, child: AppText(content: 'Get OTP'))
+        ElevatedButton(onPressed: () {
+
+        }, child: AppText(content: 'Get OTP'))
       ],
     );
   }

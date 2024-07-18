@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/helper/auth_helper.dart';
 import 'package:petcare_app_management/main.dart';
 import 'package:petcare_app_management/screens/introduction_screens/introduction_screen.dart';
@@ -21,7 +22,7 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
-
+final AppController appController = Get.find();
   @override
   void initState() {
     // TODO: implement initState
@@ -47,6 +48,7 @@ class _SettingScreenState extends State<SettingScreen> {
           Dimens.height15,
           _buildSettingRow(text: 'Sign Out', imgesURL: Images.language_change_svg, onTapFunction: () async {
             await AuthHelper().signOut();
+            appController.currentAppPageIndex.value = 0;
             Get.offAll(() => IntroductionScreen());
           }),
         ],

@@ -22,8 +22,6 @@ class _SignInState extends State<SignIn> {
   @override
   void dispose() {
     // TODO: implement dispose
-    userController.emailController.clear();
-    userController.passwordController.clear();
     super.dispose();
   }
 
