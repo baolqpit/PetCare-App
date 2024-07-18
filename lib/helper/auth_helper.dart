@@ -9,26 +9,13 @@ class AuthHelper {
 
   Stream<User?> get authStateChanges => firebaseAuth.authStateChanges();
 
-  // SIGN UP WITH GOOGLE
+  /// SIGN UP WITH GOOGLE
   Future<void> signUpWithEmail(
       {required String email,
       required String password,
       required String phoneNumber}) async {
-    // await firebaseAuth.createUserWithEmailAndPassword(
-    //     email: email, password: password);
-    await firebaseAuth.verifyPhoneNumber(
-      phoneNumber: phoneNumber,
-      verificationCompleted: (phoneAuthCredential) {},
-      verificationFailed: (error) {
-        print(error);
-      },
-      codeSent: (verificationId, forceResendingToken) {
-        Get.to(() => OtpAuthentication(verifycationId: verificationId));
-      },
-      codeAutoRetrievalTimeout: (verificationId) {
-        print("Auth receive Timeout");
-      },
-    );
+    await firebaseAuth.createUserWithEmailAndPassword(
+        email: email, password: password);
   }
 
   // SIGN IN WITH GOOGLE

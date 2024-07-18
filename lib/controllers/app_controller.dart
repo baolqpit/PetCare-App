@@ -1,3 +1,4 @@
+import 'package:email_otp/email_otp.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -16,6 +17,7 @@ class AppController extends GetxController {
   Rx<bool> showSuffixPassWord = Rx<bool>(false);
   Rx<bool> showSuffixConfirmPassWord = Rx<bool>(false);
   Rx<bool> rememberAccount = Rx<bool>(true);
+
 
   ///GET APP BAR TITLE
   getAppBarTitle() {
@@ -85,11 +87,8 @@ class AppController extends GetxController {
       } else {
         if (isAcceptLicense.value) {
           try {
-            await AuthHelper().signUpWithEmail(
-                email: userController.emailController.text,
-                password: userController.passwordController.text,
-                phoneNumber: formatPhoneToE164(
-                    phoneNumber: userController.phoneController.text));
+            await sendOTPToEmail();
+            Get.to(() => OtpAuthentication());
           } catch (e) {
             print("Sign Up Failed ${e}");
           }
@@ -100,6 +99,34 @@ class AppController extends GetxController {
               context: context, content: 'Please accept the license!');
         }
       }
+    }
+  }
+
+  ///OTP SEND TO EMAIL
+  sendOTPToEmail() async{
+    EmailOTP.config(
+      appName: 'PetCare',
+      otpType: OTPType.numeric,
+      emailTheme: EmailTheme.v4,
+      appEmail: 'baolqp.it@gmail.com',
+      otpLength: 4
+    );
+    try {
+      await EmailOTP.sendOTP(email: userController.emailController.text);
+    } catch (e){
+      print(e);
+    }
+  }
+
+  ///VERIFY OTP
+  verifyOTP({required String otp}) async {
+    print(otp);
+    try {
+      await EmailOTP.verifyOTP(otp: otp);
+      await AuthHelper().signUpWithEmail(email: userController.emailController.text, password: userController.passwordController.text, phoneNumber: userController.phoneController.text);
+      Get.to(() => PetCareAppScreen());
+    } catch (e){
+
     }
   }
 }

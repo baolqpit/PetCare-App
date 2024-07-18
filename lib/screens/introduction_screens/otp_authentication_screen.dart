@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/auth_helper.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
@@ -10,8 +11,7 @@ import 'package:petcare_app_management/share/Widgets/apptext.dart';
 import '../../share/Colors/app_color.dart';
 
 class OtpAuthentication extends StatefulWidget {
-  const OtpAuthentication({super.key, required this.verifycationId});
-  final String verifycationId;
+  const OtpAuthentication({super.key});
 
   @override
   State<OtpAuthentication> createState() => _OtpAuthenticationState();
@@ -19,6 +19,7 @@ class OtpAuthentication extends StatefulWidget {
 
 class _OtpAuthenticationState extends State<OtpAuthentication> {
   final UserController userController = Get.find();
+  final AppController appController = Get.find();
   TextEditingController otp_1_number = TextEditingController();
   TextEditingController otp_2_number = TextEditingController();
   TextEditingController otp_3_number = TextEditingController();
@@ -139,15 +140,7 @@ class _OtpAuthenticationState extends State<OtpAuthentication> {
   _buildOTPSendButton() {
     return ElevatedButton(
       onPressed: () async {
-        String smsCode = otp_1_number.text + otp_2_number.text + otp_3_number.text + otp_4_number.text;
-        final credential = PhoneAuthProvider.credential(
-            verificationId: widget.verifycationId, smsCode: smsCode);
-        try {
-          await AuthHelper().firebaseAuth.signInWithCredential(credential);
-        } catch(e){
-          print("Verify failed ${e}");
-        }
-
+        appController.verifyOTP(otp: otp_1_number.text + otp_2_number.text + otp_3_number.text + otp_4_number.text);
       },
       child: AppText(
         content: 'Verify',
