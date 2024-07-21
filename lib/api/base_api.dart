@@ -2,16 +2,19 @@ import 'package:dio/dio.dart';
 
 class BaseApi {
   final Dio _dio = Dio();
-  final _baseUrl = "https://localhost:44319/api/";
+  final _baseUrl = "http://10.0.2.2:5000/api/";
 
   ///GET APP DATA FOR ALL THE API
-  getPetCareAppDataFromAPI({required String url, Map<String, dynamic>? queryParameters}) async {
+  getPetCareAppDataFromAPI(
+      {required String url, Map<String, dynamic>? queryParameters}) async {
     try {
-      Response<dynamic> response =
-      await _dio.get(_baseUrl + url, queryParameters: queryParameters?? null);
+      print(_baseUrl + url);
+      Response<dynamic> response = await _dio.get(_baseUrl + url,
+          queryParameters: queryParameters ?? null,
+          options: Options(contentType: 'application/json'));
       return response.data;
-    } on DioException catch (e){
-      if (e.response != null){
+    } on DioException catch (e) {
+      if (e.response != null) {
         // The request was made and the server responded with a status code
         // that falls out of the range of 2xx and is also not 304.
         print('Dio error!');
