@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/auth_helper.dart';
+import 'package:petcare_app_management/helper/shared_preferences_helper.dart';
 import 'package:petcare_app_management/screens/app.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
@@ -131,6 +132,7 @@ class _SignInState extends State<SignIn> {
     return ElevatedButton(
       onPressed: () async {
         await appController.signInButtonAction(context: context);
+        await SharedPreferencesHelper().saveUserAccount();
       },
       child: AppText(
         content: 'Sign In',

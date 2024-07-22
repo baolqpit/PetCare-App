@@ -35,7 +35,7 @@ class BaseApi {
     try {
       print(_baseUrl + url);
       Response<dynamic> response = await _dio.post(_baseUrl + url,
-          queryParameters: data ?? null,
+          data: data ?? null,
           options: Options(contentType: 'application/json'));
       return response.data;
     } on DioException catch (e) {

@@ -1,3 +1,4 @@
+import 'package:email_otp/email_otp.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -18,6 +19,18 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   final UserController userController = Get.find();
   final AppController appController = Get.find();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    EmailOTP.config(
+        appName: 'PetCare',
+        otpType: OTPType.numeric,
+        emailTheme: EmailTheme.v4,
+        appEmail: 'baolqp.it@gmail.com',
+        otpLength: 4);
+    super.initState();
+  }
 
   @override
   void dispose() {
@@ -82,7 +95,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 _buildTextFieldInfo(
                     label: 'City',
                     hintText: 'HCM',
-                    controller: userController.phoneController,
+                    controller: userController.cityController,
                     showSuffix: false),
                 Dimens.height15,
                 _buildTextFieldInfo(

@@ -65,34 +65,34 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   }
 
   _buildUserInfo() {
-    return Column(
+    return Obx(() => Column(
       children: <Widget>[
         ListTile(
           leading: Icon(Icons.person),
           title: AppText(
-            content: 'Quan bong',
+            content: userController.userInfo.value!.firstName! + " " + userController.userInfo.value!.lastName!,
           ),
         ),
         ListTile(
           leading: Icon(Icons.phone),
           title: AppText(
-            content: '0397371792',
+            content: userController.userInfo.value!.phone,
           ),
         ),
         ListTile(
           leading: Icon(Icons.email),
           title: AppText(
-            content: 'quynhnguyen03@gmail.com',
+            content: userController.userInfo.value!.email,
           ),
         ),
         ListTile(
           leading: Icon(Icons.location_city),
           title: AppText(
-            content: 'Quan 7',
+            content: userController.userInfo.value!.address,
           ),
         )
       ],
-    );
+    ));
   }
 
   _buildPersonalPetSession() {
@@ -150,6 +150,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   }
 
   Future<void> fetchData() async  {
-
+    print(userController.emailController.text);
+    await userController.getUserByEmail(email: userController.emailController.text);
   }
 }

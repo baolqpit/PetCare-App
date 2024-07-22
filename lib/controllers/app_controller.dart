@@ -9,9 +9,11 @@ import 'package:petcare_app_management/screens/app.dart';
 import 'package:petcare_app_management/screens/introduction_screens/otp_authentication_screen.dart';
 import 'package:petcare_app_management/share/Widgets/dialog.dart';
 import 'package:petcare_app_management/share/format/format.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppController extends GetxController {
   final UserController userController = Get.find();
+  Rx<bool> isLoading = Rx<bool>(false);
   Rx<int> currentAppPageIndex = Rx<int>(0);
   Rx<bool> isAcceptLicense = Rx<bool>(false);
   Rx<bool> showSuffixPassWord = Rx<bool>(false);
@@ -88,12 +90,22 @@ class AppController extends GetxController {
                 'The password you entered does not match, please check again!');
       } else {
         if (isAcceptLicense.value) {
-          try {
-            await sendOTPToEmail();
-            Get.to(() => OtpAuthentication());
-          } catch (e) {
-            print("Sign Up Failed ${e}");
+          var response = await userController.createNewUser();
+          if (response != null){
+            await AuthHelper().signUpWithEmail(
+                email: userController.emailController.text,
+                password: userController.passwordController.text,
+                phoneNumber: userController.phoneController.text);
+            Get.to(() => PetCareAppScreen());
+          } else {
+            showSnackBar(context: context, content: 'SIGN UP FAILED!');
           }
+          // try {
+          //   await EmailOTP.sendOTP(email: userController.emailController.text);
+          //   Get.to(() => OtpAuthentication());
+          // } catch (e) {
+          //   showSnackBar(context: context, content: e.toString());
+          // }
         }
         // Check the license
         else {
@@ -101,21 +113,6 @@ class AppController extends GetxController {
               context: context, content: 'Please accept the license!');
         }
       }
-    }
-  }
-
-  ///OTP SEND TO EMAIL
-  sendOTPToEmail() async {
-    EmailOTP.config(
-        appName: 'PetCare',
-        otpType: OTPType.numeric,
-        emailTheme: EmailTheme.v4,
-        appEmail: 'baolqp.it@gmail.com',
-        otpLength: 4);
-    try {
-      await EmailOTP.sendOTP(email: userController.emailController.text);
-    } catch (e) {
-      print(e);
     }
   }
 
@@ -132,4 +129,6 @@ class AppController extends GetxController {
       print("Error verify: ${e}");
     }
   }
+
+
 }

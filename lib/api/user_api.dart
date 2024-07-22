@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:petcare_app_management/api/base_api.dart';
 import 'package:petcare_app_management/model/user_account_model/user_account_model.dart';
 import 'package:petcare_app_management/model/user_detail_model/user_detail_model.dart';

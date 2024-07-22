@@ -32,7 +32,8 @@ class UserController extends GetxController {
         "city": cityController.text
       }
     };
-    await UserApi().createNewUser(data: data);
+    var response = await UserApi().createNewUser(data: data);
+    return response;
   }
 
   // GET USER DETAIL BY EMAIL
