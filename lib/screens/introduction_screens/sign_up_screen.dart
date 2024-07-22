@@ -26,6 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     appController.showSuffixPassWord.value = false;
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,12 +49,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   _buildSignUpContent() {
     return Obx(() => SingleChildScrollView(
-      child: Container(
+          child: Container(
             padding: EdgeInsets.symmetric(
                 vertical: Dimens.padding_vertical,
                 horizontal: Dimens.padding_horizontal),
             child: Column(
               children: <Widget>[
+                _buildTextFieldInfo(
+                    label: 'First Name',
+                    hintText: 'First Name',
+                    controller: userController.firstNameController,
+                    showSuffix: false),
+                Dimens.height15,
+                _buildTextFieldInfo(
+                    label: 'Last Name',
+                    hintText: 'Last Name',
+                    controller: userController.lastNameController,
+                    showSuffix: false),
+                Dimens.height15,
                 _buildTextFieldInfo(
                     label: 'Email',
                     hintText: 'email@gmail.com',
@@ -63,6 +76,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 _buildTextFieldInfo(
                     label: 'Phone',
                     hintText: '09xxxxxxxx',
+                    controller: userController.phoneController,
+                    showSuffix: false),
+                Dimens.height15,
+                _buildTextFieldInfo(
+                    label: 'City',
+                    hintText: 'HCM',
                     controller: userController.phoneController,
                     showSuffix: false),
                 Dimens.height15,
@@ -78,8 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     hintText: 'Enter confirm password',
                     controller: userController.confirmPasswordController,
                     showSuffix: true,
-                    suffixController:
-                        appController.showSuffixConfirmPassWord),
+                    suffixController: appController.showSuffixConfirmPassWord),
                 Dimens.height15,
                 _buildAcceptLicense(),
                 Dimens.height20,
@@ -87,7 +105,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ],
             ),
           ),
-    ));
+        ));
   }
 
   _buildTextFieldInfo(
@@ -105,7 +123,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         Dimens.height5,
         TextField(
-          obscureText: suffixController != null ? !suffixController.value : false,
+          obscureText:
+              suffixController != null ? !suffixController.value : false,
           controller: controller,
           decoration: InputDecoration(
             suffixIcon: showSuffix
@@ -115,7 +134,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         suffixController.value = !suffixController.value;
                       }
                     },
-                    icon: suffixController!.value ?  Icon(Icons.visibility,) : Icon(Icons.visibility_off,color: AppColor.grey))
+                    icon: suffixController!.value
+                        ? Icon(
+                            Icons.visibility,
+                          )
+                        : Icon(Icons.visibility_off, color: AppColor.grey))
                 : null,
             hintText: hintText,
             border: OutlineInputBorder(
@@ -139,7 +162,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 appController.isAcceptLicense.value = value;
               }
             }),
-        Expanded(child: AppText(content: 'I Agree With The Terms And The Conditions'))
+        Expanded(
+            child:
+                AppText(content: 'I Agree With The Terms And The Conditions'))
       ],
     );
   }

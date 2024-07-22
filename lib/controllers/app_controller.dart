@@ -18,7 +18,6 @@ class AppController extends GetxController {
   Rx<bool> showSuffixConfirmPassWord = Rx<bool>(false);
   Rx<bool> rememberAccount = Rx<bool>(true);
 
-
   ///GET APP BAR TITLE
   getAppBarTitle() {
     switch (currentAppPageIndex.value) {
@@ -36,6 +35,9 @@ class AppController extends GetxController {
   ///CHECK THE SIGN UP FIELD IS EMPTY
   signUpFieldIsEmpty() {
     if (userController.emailController.text.isEmpty ||
+        userController.firstNameController.text.isEmpty ||
+        userController.lastNameController.text.isEmpty ||
+        userController.cityController.text.isEmpty ||
         userController.confirmPasswordController.text.isEmpty ||
         userController.passwordController.text.isEmpty ||
         userController.phoneController.text.isEmpty) {
@@ -103,17 +105,16 @@ class AppController extends GetxController {
   }
 
   ///OTP SEND TO EMAIL
-  sendOTPToEmail() async{
+  sendOTPToEmail() async {
     EmailOTP.config(
-      appName: 'PetCare',
-      otpType: OTPType.numeric,
-      emailTheme: EmailTheme.v4,
-      appEmail: 'baolqp.it@gmail.com',
-      otpLength: 4
-    );
+        appName: 'PetCare',
+        otpType: OTPType.numeric,
+        emailTheme: EmailTheme.v4,
+        appEmail: 'baolqp.it@gmail.com',
+        otpLength: 4);
     try {
       await EmailOTP.sendOTP(email: userController.emailController.text);
-    } catch (e){
+    } catch (e) {
       print(e);
     }
   }
@@ -122,9 +123,12 @@ class AppController extends GetxController {
   verifyOTP({required String otp}) async {
     try {
       await EmailOTP.verifyOTP(otp: otp);
-      await AuthHelper().signUpWithEmail(email: userController.emailController.text, password: userController.passwordController.text, phoneNumber: userController.phoneController.text);
+      await AuthHelper().signUpWithEmail(
+          email: userController.emailController.text,
+          password: userController.passwordController.text,
+          phoneNumber: userController.phoneController.text);
       Get.to(() => PetCareAppScreen());
-    } catch (e){
+    } catch (e) {
       print("Error verify: ${e}");
     }
   }

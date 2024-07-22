@@ -1,22 +1,23 @@
 import 'package:petcare_app_management/api/base_api.dart';
+import 'package:petcare_app_management/model/user_account_model/user_account_model.dart';
+import 'package:petcare_app_management/model/user_detail_model/user_detail_model.dart';
 
 class UserApi extends BaseApi{
   UserApi() : super();
+  final GET_USER_BY_EMAIL = 'User/GetUserDetailByEmail';
 
-  final GET_LIST_USER = 'UserEntities/GetListUsers';
-  final GET_USER_BY_ID = 'UserEntities/GetUserById/';
-
-
-  ///GET LIST USERS
-  getListUser(){
-    return BaseApi().getPetCareAppDataFromAPI(url: GET_LIST_USER);
+  final CREATE_NEW_USER = 'User/CreateUser';
+  
+  ///CREATE NEW USER
+  createNewUser({required Map<String, dynamic> data}){
+    return BaseApi().postPetCareAppDataFromAPI(url: CREATE_NEW_USER, data: data);
   }
 
   ///GET USER BY ID
-  getUserById({required int userId}){
+  getUserByEmail({required String email}){
     var param = {
-      'userId': userId
+      'email': email
     };
-    return BaseApi().getPetCareAppDataFromAPI(url: GET_USER_BY_ID, queryParameters: param);
+    return BaseApi().getPetCareAppDataFromAPI(url: GET_USER_BY_EMAIL, queryParameters: param);
   }
 }

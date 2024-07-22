@@ -150,7 +150,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   }
 
   Future<void> fetchData() async  {
-    await userController.getListUsers();
-    await userController.getUserById(userId: 1);
+
   }
 }

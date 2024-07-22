@@ -30,6 +30,9 @@ class _OtpAuthenticationState extends State<OtpAuthentication> {
   void dispose() {
     // TODO: implement dispose
     userController.phoneController.clear();
+    userController.firstNameController.clear();
+    userController.lastNameController.clear();
+    userController.cityController.clear();
     userController.confirmPasswordController.clear();
     otp_1_number.clear();
     otp_2_number.clear();
@@ -156,6 +159,7 @@ class _OtpAuthenticationState extends State<OtpAuthentication> {
     return ElevatedButton(
       onPressed: () async {
         appController.verifyOTP(otp: otp_1_number.text + otp_2_number.text + otp_3_number.text + otp_4_number.text);
+        userController.createNewUser();
       },
       child: AppText(
         content: 'Verify',
