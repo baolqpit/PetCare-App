@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
-import 'package:petcare_app_management/screens/introduction_screens/otp_authentication_screen.dart';
+import 'package:petcare_app_management/screens/introduction_screens/auth_screens/otp_authentication_screen.dart';
 
 class AuthHelper {
   final FirebaseAuth firebaseAuth = FirebaseAuth.instance;

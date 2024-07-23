@@ -9,7 +9,7 @@ import 'package:petcare_app_management/helper/auth_helper.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
 
-import '../../share/Colors/app_color.dart';
+import '../../../share/Colors/app_color.dart';
 
 class OtpAuthentication extends StatefulWidget {
   const OtpAuthentication({super.key});

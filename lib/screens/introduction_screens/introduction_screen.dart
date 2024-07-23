@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
-import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
-import 'package:petcare_app_management/screens/introduction_screens/sign_in_screen.dart';
-import 'package:petcare_app_management/screens/introduction_screens/sign_up_screen.dart';
+import 'package:petcare_app_management/screens/introduction_screens/auth_screens/sign_in_screen.dart';
+import 'package:petcare_app_management/screens/introduction_screens/auth_screens/sign_up_screen.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
