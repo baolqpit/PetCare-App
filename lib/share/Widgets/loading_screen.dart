@@ -1,9 +1,12 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
-import 'package:petcare_app_management/share/Colors/app_color.dart';
+import 'package:petcare_app_management/share/Widgets/apptext.dart';
+import 'package:petcare_app_management/share/Widgets/dialog.dart';
 
+import '../Colors/app_color.dart';
 import '../Images/images.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -22,10 +25,6 @@ class _LoadingScreenState extends State<LoadingScreen> {
         child: Container(
             color: AppColor.white,
             child: Center(
-                child: LottieBuilder.asset(
-              Images.loading_lottie,
-              width: 250,
-              height: 250,
-            )))));
+                child: LottieBuilder.asset(Images.loading_lottie,width: 200, height: 200, )))));
   }
 }

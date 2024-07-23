@@ -55,7 +55,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         Dimens.height10,
         _buildPersonalPetSession(),
         Dimens.height10,
-        _buildPersonalActivitiesHistory()
+        _buildPersonalActivitiesHistory(),
       ],
     );
   }
