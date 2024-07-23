@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:petcare_app_management/screens/homepage_screens/homepage_screen.dart';
 import 'package:petcare_app_management/screens/user_screen/user_info_screen.dart';
 import 'package:petcare_app_management/share/Images/images.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
@@ -38,9 +39,7 @@ class ScreenAndMenu {
   ];
 
   static List<Widget> listCustomerScreens = [
-    Container(
-      child: AppText(content: 'HomePage'),
-    ),
+    HomepageScreen(),
     Container(
       child: AppText(content: "Map"),
     ),

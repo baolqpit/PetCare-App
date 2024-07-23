@@ -2,13 +2,13 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:petcare_app_management/api/base_api.dart';
-import 'package:petcare_app_management/api/user_api.dart';
+import 'package:petcare_app_management/api/base_api/base_api.dart';
+import 'package:petcare_app_management/api/app_api/user_api.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/model/user_detail_model/user_detail_model.dart';
 
 class UserController extends GetxController {
-  late AppController appController = Get.find();
+  final AppController appController = Get.find();
   Rx<UserDetailModel?> userInfo = Rx<UserDetailModel?>(null);
   TextEditingController emailController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();

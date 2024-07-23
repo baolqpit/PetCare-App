@@ -13,7 +13,7 @@ import 'package:petcare_app_management/share/format/format.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AppController extends GetxController {
-  final UserController userController = Get.find();
+  late UserController userController = Get.find();
   Rx<bool> isLoading = Rx<bool>(false);
   Rx<int> currentAppPageIndex = Rx<int>(0);
   Rx<bool> isAcceptLicense = Rx<bool>(false);

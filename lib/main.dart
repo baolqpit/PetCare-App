@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/helper/auth_helper.dart';
 import 'package:petcare_app_management/helper/initial_binding.dart';
 import 'package:petcare_app_management/screens/app.dart';

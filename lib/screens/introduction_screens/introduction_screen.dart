@@ -16,8 +16,6 @@ class IntroductionScreen extends StatefulWidget {
 }
 
 class _IntroductionScreenState extends State<IntroductionScreen> {
-  final UserController userController = Get.put(UserController());
-  final AppController appController = Get.put(AppController());
 
   @override
   Widget build(BuildContext context) {

@@ -8,9 +8,10 @@ class AppText extends StatelessWidget{
   Color? color;
   FontWeight? fontWeight;
   FontStyle? fontStyle;
+  int? maxLine;
 
 
-  AppText({super.key, required this.content, this.textSize, this.color, this.fontWeight, this.fontStyle });
+  AppText({super.key, required this.content, this.textSize, this.color, this.fontWeight, this.fontStyle, this.maxLine });
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +20,10 @@ class AppText extends StatelessWidget{
       fontSize: textSize ?? 16,
       color: color ?? Colors.black,
       fontWeight: fontWeight ?? FontWeight.normal
-    ),);
+    ),
+      overflow: TextOverflow.ellipsis,
+      maxLines: maxLine ?? maxLine,
+    );
     // TODO: implement build
     throw UnimplementedError();
   }
