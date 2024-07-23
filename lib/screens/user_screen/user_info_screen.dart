@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Images/images.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
+import 'package:petcare_app_management/share/Widgets/loading_screen.dart';
 
 class UserInfoScreen extends StatefulWidget {
   const UserInfoScreen({super.key});
@@ -15,6 +17,7 @@ class UserInfoScreen extends StatefulWidget {
 }
 
 class _UserInfoScreenState extends State<UserInfoScreen> {
+  final AppController appController = Get.find();
   final UserController userController = Get.find();
 
   @override
@@ -25,15 +28,24 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    userController.userInfo.value = null;
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        padding: const EdgeInsets.symmetric(
-            vertical: Dimens.padding_vertical,
-            horizontal: Dimens.padding_horizontal),
-        child: _buildPersonalContent(),
-      ),
-    );
+    return Obx(() => userController.userInfo.value == null
+        ? LoadingScreen()
+        : SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.symmetric(
+                  vertical: Dimens.padding_vertical,
+                  horizontal: Dimens.padding_horizontal),
+              child: _buildPersonalContent(),
+            ),
+          ));
   }
 
   _buildPersonalContent() {
@@ -65,12 +77,14 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   }
 
   _buildUserInfo() {
-    return Obx(() => Column(
+    return Column(
       children: <Widget>[
         ListTile(
           leading: Icon(Icons.person),
           title: AppText(
-            content: userController.userInfo.value!.firstName! + " " + userController.userInfo.value!.lastName!,
+            content: userController.userInfo.value!.firstName! +
+                " " +
+                userController.userInfo.value!.lastName!,
           ),
         ),
         ListTile(
@@ -92,7 +106,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
           ),
         )
       ],
-    ));
+    );
   }
 
   _buildPersonalPetSession() {
@@ -149,8 +163,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
     );
   }
 
-  Future<void> fetchData() async  {
-    print(userController.emailController.text);
-    await userController.getUserByEmail(email: userController.emailController.text);
+  Future<void> fetchData() async {
+    await userController.getUserByEmail(
+        email: userController.emailController.text);
   }
 }

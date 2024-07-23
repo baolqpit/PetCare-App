@@ -8,6 +8,7 @@ import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/model/user_detail_model/user_detail_model.dart';
 
 class UserController extends GetxController {
+  late AppController appController = Get.find();
   Rx<UserDetailModel?> userInfo = Rx<UserDetailModel?>(null);
   TextEditingController emailController = TextEditingController();
   TextEditingController firstNameController = TextEditingController();
@@ -19,6 +20,7 @@ class UserController extends GetxController {
 
   // CREATE NEW USER
   createNewUser() async {
+    appController.isLoading.value = true;
     var data = {
       "userAccount": {
         "email": emailController.text,
@@ -33,13 +35,15 @@ class UserController extends GetxController {
       }
     };
     var response = await UserApi().createNewUser(data: data);
+    appController.isLoading.value = false;
     return response;
   }
 
   // GET USER DETAIL BY EMAIL
   getUserByEmail({required String email}) async {
+    appController.isLoading.value = true;
     var response = await UserApi().getUserByEmail(email: email);
     userInfo.value = UserDetailModel.fromJson(response);
-    print(userInfo.toString());
+    appController.isLoading.value = false;
   }
 }

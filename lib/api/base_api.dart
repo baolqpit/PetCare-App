@@ -8,7 +8,7 @@ class BaseApi {
   getPetCareAppDataFromAPI(
       {required String url, Map<String, dynamic>? queryParameters}) async {
     try {
-      print(_baseUrl + url);
+      // print(_baseUrl + url);
       Response<dynamic> response = await _dio.get(_baseUrl + url,
           queryParameters: queryParameters ?? null,
           options: Options(contentType: 'application/json'));
@@ -33,7 +33,7 @@ class BaseApi {
   postPetCareAppDataFromAPI(
       {required String url, Map<String, dynamic>? data}) async {
     try {
-      print(_baseUrl + url);
+      // print(_baseUrl + url);
       Response<dynamic> response = await _dio.post(_baseUrl + url,
           data: data ?? null,
           options: Options(contentType: 'application/json'));
