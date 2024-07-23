@@ -8,6 +8,8 @@ class Images {
   static const String activities_history_svg = 'lib/assets/UserImages/time-management (1).svg';
   static const String language_change_svg = 'lib/assets/SettingImages/languages.svg';
   static const String app_logo_jpg = 'lib/assets/AppLogo/app_logo.jpg';
+  static const String app_lottie = 'lib/assets/Lotties/app_lotties.json';
+  static const String loading_lottie = 'lib/assets/Lotties/loading_lottie.json';
 
 
 }

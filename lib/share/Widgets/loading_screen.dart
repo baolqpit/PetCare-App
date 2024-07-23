@@ -1,7 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
+
+import '../Images/images.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -19,6 +22,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
         child: Container(
             color: AppColor.white,
             child: Center(
-                child: Image.asset("lib/assets/AppLogo/app_logo.jpg", width: 100, height: 100, )))));
+                child: LottieBuilder.asset(
+              Images.loading_lottie,
+              width: 250,
+              height: 250,
+            )))));
   }
 }

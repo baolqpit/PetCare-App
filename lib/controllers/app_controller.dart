@@ -6,7 +6,8 @@ import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/auth_helper.dart';
 import 'package:petcare_app_management/screens/app.dart';
-import 'package:petcare_app_management/screens/introduction_screens/otp_authentication_screen.dart';
+import 'package:petcare_app_management/screens/introduction_screens/auth_screens/otp_authentication_screen.dart';
+import 'package:petcare_app_management/screens/introduction_screens/splash_screen.dart';
 import 'package:petcare_app_management/share/Widgets/dialog.dart';
 import 'package:petcare_app_management/share/format/format.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -67,7 +68,7 @@ class AppController extends GetxController {
         await AuthHelper().signInWithEmail(
             email: userController.emailController.text,
             password: userController.passwordController.text);
-        Get.to(() => PetCareAppScreen());
+        Get.to(() => SplashScreen());
       } catch (e) {
         print('Sign in error ${e}');
       }
@@ -96,7 +97,7 @@ class AppController extends GetxController {
                 email: userController.emailController.text,
                 password: userController.passwordController.text,
                 phoneNumber: userController.phoneController.text);
-            Get.to(() => PetCareAppScreen());
+            Get.to(() => SplashScreen());
           } else {
             showSnackBar(context: context, content: 'SIGN UP FAILED!');
           }
