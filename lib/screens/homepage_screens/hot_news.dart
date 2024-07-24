@@ -49,9 +49,15 @@ class _HotNewsState extends State<HotNews> {
                       color: AppColor.grey,
                     ),
                     Dimens.width5,
-                    const Icon(
-                      Icons.arrow_forward_sharp,
-                      color: AppColor.grey,
+                    Container(
+                      padding: EdgeInsets.all(Dimens.sizeValue5),
+                      decoration: BoxDecoration(
+                          color: AppColor.primary,
+                          borderRadius: BorderRadius.circular(50.0)),
+                      child: const Icon(
+                        Icons.arrow_forward_sharp,
+                        color: AppColor.white,
+                      ),
                     ),
                   ],
                 ),

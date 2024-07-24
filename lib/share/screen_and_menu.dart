@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:petcare_app_management/screens/homepage_screens/homepage_screen.dart';
+import 'package:petcare_app_management/screens/pet_store_screens/pet_store_screen.dart';
 import 'package:petcare_app_management/screens/user_screen/user_info_screen.dart';
 import 'package:petcare_app_management/share/Images/images.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
@@ -43,9 +44,7 @@ class ScreenAndMenu {
     Container(
       child: AppText(content: "Map"),
     ),
-    Container(
-      child: AppText(content: 'PetStore'),
-    ),
+    PetStoreScreen(),
     UserInfoScreen(),
   ];
 }
