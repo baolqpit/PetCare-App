@@ -56,9 +56,9 @@ class _HotNewsFullListState extends State<HotNewsFullList> {
       padding: const EdgeInsets.all(Dimens.padding_vertical),
       decoration: BoxDecoration(boxShadow: [
         BoxShadow(
-          color: AppColor.black.withOpacity(0.2),
+          color: AppColor.black.withOpacity(0.3),
           spreadRadius: 2,
-          blurRadius: 5,
+          blurRadius: 4,
           offset: const Offset(3, 3),
         ),
       ]),

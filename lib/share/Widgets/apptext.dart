@@ -21,7 +21,7 @@ class AppText extends StatelessWidget{
       color: color ?? Colors.black,
       fontWeight: fontWeight ?? FontWeight.normal
     ),
-      overflow: TextOverflow.ellipsis,
+      overflow: maxLine != null ? TextOverflow.ellipsis : TextOverflow.visible,
       maxLines: maxLine ?? maxLine,
     );
     // TODO: implement build
