@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:petcare_app_management/controllers/news_controller.dart';
+import 'package:petcare_app_management/screens/homepage_screens/hot_news_full_list.dart';
 import 'package:petcare_app_management/screens/homepage_screens/news_details.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
@@ -24,15 +25,38 @@ class _HotNewsState extends State<HotNews> {
 
   @override
   Widget build(BuildContext context) {
-     return Expanded(
+    return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppText(
-            content: 'Hot',
-            textSize: Dimens.font_size_title,
-            fontWeight: FontWeight.bold,
-            color: AppColor.grey,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              AppText(
+                content: 'Hot',
+                textSize: Dimens.font_size_title,
+                fontWeight: FontWeight.bold,
+                color: AppColor.grey,
+              ),
+              GestureDetector(
+                onTap: () => Get.to(() => const HotNewsFullList()),
+                child: Row(
+                  children: [
+                    AppText(
+                      content: 'See more',
+                      textSize: Dimens.font_size_title,
+                      fontWeight: FontWeight.bold,
+                      color: AppColor.grey,
+                    ),
+                    Dimens.width5,
+                    const Icon(
+                      Icons.arrow_forward_sharp,
+                      color: AppColor.grey,
+                    ),
+                  ],
+                ),
+              )
+            ],
           ),
           Dimens.height5,
           _buildHotNewsList()
@@ -65,8 +89,7 @@ class _HotNewsState extends State<HotNews> {
           height: 350,
           decoration: BoxDecoration(boxShadow: [
             BoxShadow(
-              color:
-              AppColor.black.withOpacity(0.2),
+              color: AppColor.black.withOpacity(0.2),
               spreadRadius: 2,
               blurRadius: 5,
               offset: const Offset(3, 3),
