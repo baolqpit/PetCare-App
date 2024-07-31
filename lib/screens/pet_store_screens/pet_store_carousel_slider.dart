@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:petcare_app_management/constants/Constants.dart';
 import 'package:petcare_app_management/controllers/pet_store_controller.dart';
 
+import '../../share/Dimens/dimens.dart';
+
 class PetStoreCarouselSlider extends StatefulWidget {
   const PetStoreCarouselSlider({super.key});
 
@@ -49,16 +51,15 @@ class _PetStoreCarouselSliderState extends State<PetStoreCarouselSlider> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: Constants.LIST_CAROUSEL_URL.map((url) {
-            int index = Constants.LIST_CAROUSEL_URL.indexOf(url);
             return Container(
               width: 8.0,
               height: 8.0,
-              margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+              margin: const EdgeInsets.symmetric(vertical: Dimens.padding_horizontal, horizontal: Dimens.sizeValue2),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: petStoreController.currentCarousel.value == index
-                    ? Color.fromRGBO(0, 0, 0, 0.9)
-                    : Color.fromRGBO(0, 0, 0, 0.4),
+                color: petStoreController.currentCarousel.value == Constants.LIST_CAROUSEL_URL.indexOf(url)
+                    ? const Color.fromRGBO(0, 0, 0, 0.9)
+                    : const Color.fromRGBO(0, 0, 0, 0.4),
               ),
             );
           }).toList(),
