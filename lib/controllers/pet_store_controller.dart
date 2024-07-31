@@ -6,7 +6,7 @@ import 'package:petcare_app_management/model/pet_store_model/shop_model/shop_mod
 
 class PetStoreController extends GetxController {
   final AppController appController = Get.find();
-  Rx<int> currentCarousel = Rx<int>(1);
+  Rx<int> currentCarousel = Rx<int>(0);
   RxList<ProductModel?> productList = RxList<ProductModel?>([]);
   Rx<ShopModel?> shop = Rx<ShopModel?>(null);
   RxList<ProductModel?> productListInShop = RxList<ProductModel?>([]);

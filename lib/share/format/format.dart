@@ -9,3 +9,8 @@ formatPhoneToE164({required String phoneNumber}){
 formatStringToDateTime({required String datetime}){
   return DateFormat('dd/MM/yyyy HH:mm').format(DateTime.parse(datetime));
 }
+
+//Format number to vnd
+formatNumberToVND({required int number}){
+  return NumberFormat.decimalPattern('vi').format(number);
+}
