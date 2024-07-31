@@ -10,6 +10,12 @@ class Images {
   static const String app_logo_jpg = 'lib/assets/AppLogo/app_logo.jpg';
   static const String app_lottie = 'lib/assets/Lotties/app_lotties.json';
   static const String loading_lottie = 'lib/assets/Lotties/loading_lottie.json';
+  static const String sale_svg = 'lib/assets/PetStoreImages/flash_sale.svg';
+  static const String food_svg = 'lib/assets/PetStoreImages/pet_food.svg';
+  static const String injection_svg = 'lib/assets/PetStoreImages/pet_injection.svg';
+  static const String services_svg = 'lib/assets/PetStoreImages/pet_services.svg';
+  static const String supplies_svg = 'lib/assets/PetStoreImages/pet_supplies.svg';
+
 
 
 }

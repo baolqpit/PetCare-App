@@ -8,6 +8,8 @@ class AppColor {
     static const grey = Colors.grey;
     static const black = Colors.black;
     static const orange = Colors.deepOrange;
+    static const purple = Colors.purpleAccent;
+    static const green = Colors.lightGreen;
 
     static List<Color> purpleGradient = [
         Color(0xFF663399), // Deep purple (start color)

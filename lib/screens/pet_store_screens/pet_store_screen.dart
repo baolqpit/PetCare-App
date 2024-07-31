@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/screens/pet_store_screens/list_buttons_function.dart';
+import 'package:petcare_app_management/screens/pet_store_screens/pet_store_carousel_slider.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 
@@ -16,10 +17,11 @@ class _PetStoreScreenState extends State<PetStoreScreen> {
   Widget build(BuildContext context) {
     return Container(
       width: Get.width,
-      padding: EdgeInsets.symmetric(vertical: Dimens.padding_vertical, horizontal: Dimens.padding_horizontal),
-      child: Column(
+      padding: const EdgeInsets.symmetric(vertical: Dimens.padding_vertical, horizontal: Dimens.padding_horizontal),
+      child: const Column(
         children: <Widget>[
           ListButtonsFunction(),
+          PetStoreCarouselSlider(),
         ],
       ),
     );
