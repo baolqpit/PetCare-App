@@ -24,6 +24,6 @@ class SplashScreen extends StatelessWidget {
         )
       ],
 
-    ), nextScreen: PetCareAppScreen(), splashIconSize: 400,backgroundColor: AppColor.primary,);
+    ), nextScreen: IntroductionScreen(), splashIconSize: 400,backgroundColor: AppColor.primary,);
   }
 }

@@ -9,10 +9,10 @@ class InitialBinding implements Bindings {
   @override
   void dependencies() {
     print('Initial Controller');
-    Get.lazyPut<AppController>(() => AppController());
-    Get.lazyPut<UserController>(() => UserController());
-    Get.lazyPut<NewsController>(() => NewsController());
-    Get.lazyPut<PetStoreController>(() => PetStoreController());
+    Get.put<AppController>(AppController());
+    Get.put<UserController>(UserController());
+    Get.put<NewsController>(NewsController());
+    Get.put<PetStoreController>(PetStoreController());
     // TODO: implement dependencies
   }
 

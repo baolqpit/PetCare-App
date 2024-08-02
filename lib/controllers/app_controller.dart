@@ -68,7 +68,7 @@ class AppController extends GetxController {
         await AuthHelper().signInWithEmail(
             email: userController.emailController.text,
             password: userController.passwordController.text);
-        Get.to(() => SplashScreen());
+        Get.to(() => PetCareAppScreen());
       } catch (e) {
         print('Sign in error ${e}');
       }
@@ -91,16 +91,24 @@ class AppController extends GetxController {
                 'The password you entered does not match, please check again!');
       } else {
         if (isAcceptLicense.value) {
-          var response = await userController.createNewUser();
-          if (response != null){
             await AuthHelper().signUpWithEmail(
+                context: context,
                 email: userController.emailController.text,
                 password: userController.passwordController.text,
-                phoneNumber: userController.phoneController.text);
-            Get.to(() => SplashScreen());
-          } else {
-            showSnackBar(context: context, content: 'SIGN UP FAILED!');
-          }
+                phoneNumber: userController.phoneController.text).then((result) async {
+                  if (result){
+                    await userController.createNewUser().then((res){
+                      if(res != null){
+                        Get.to(() => SplashScreen());
+                      } else {
+                        showSnackBar(context: context, content: res.printError());
+                      }
+                    });
+                  } else {
+                    showSnackBar(context: context, content: "Sign Up Failed!");
+                  }
+            });
+
           // try {
           //   await EmailOTP.sendOTP(email: userController.emailController.text);
           //   Get.to(() => OtpAuthentication());
@@ -118,18 +126,16 @@ class AppController extends GetxController {
   }
 
   ///VERIFY OTP
-  verifyOTP({required String otp}) async {
-    try {
-      await EmailOTP.verifyOTP(otp: otp);
-      await AuthHelper().signUpWithEmail(
-          email: userController.emailController.text,
-          password: userController.passwordController.text,
-          phoneNumber: userController.phoneController.text);
-      Get.to(() => PetCareAppScreen());
-    } catch (e) {
-      print("Error verify: ${e}");
-    }
-  }
-
-
+  // verifyOTP({required String otp}) async {
+  //   try {
+  //     await EmailOTP.verifyOTP(otp: otp);
+  //     await AuthHelper().signUpWithEmail(
+  //         email: userController.emailController.text,
+  //         password: userController.passwordController.text,
+  //         phoneNumber: userController.phoneController.text, context: null);
+  //     Get.to(() => PetCareAppScreen());
+  //   } catch (e) {
+  //     print("Error verify: ${e}");
+  //   }
+  // }
 }

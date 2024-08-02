@@ -22,7 +22,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   @override
   void initState() {
-    fetchData();
     // TODO: implement initState
     super.initState();
   }
@@ -161,10 +160,5 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         ),
       ),
     );
-  }
-
-  Future<void> fetchData() async {
-    await userController.getUserByEmail(
-        email: userController.emailController.text);
   }
 }

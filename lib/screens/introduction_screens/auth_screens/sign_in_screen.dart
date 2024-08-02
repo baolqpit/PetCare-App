@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
@@ -17,8 +18,8 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-  final UserController userController = Get.find();
-  final AppController appController = Get.find();
+  final AppController appController = Get.find<AppController>();
+  final UserController userController = Get.find<UserController>();
 
   @override
   void dispose() {

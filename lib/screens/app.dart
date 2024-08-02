@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
+import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/shared_preferences_helper.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
@@ -18,10 +19,11 @@ class PetCareAppScreen extends StatefulWidget {
 
 class _PetCareAppScreenState extends State<PetCareAppScreen> {
   final AppController appController = Get.find();
+  final UserController userController = Get.find();
+
   @override
   void initState() {
     // TODO: implement initState
-    SharedPreferencesHelper().getUserAccount();
     super.initState();
   }
 
@@ -47,7 +49,7 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
           )),
       actions: [
         IconButton(
-            onPressed: () => Get.to(SettingScreen()),
+            onPressed: () => Get.to(() => SettingScreen()),
             icon: const Icon(
               Icons.settings,
               color: AppColor.white,
