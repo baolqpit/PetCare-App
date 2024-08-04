@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:petcare_app_management/controllers/main_controller.dart';
+import 'package:petcare_app_management/controllers/news_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/auth_helper.dart';
 import 'package:petcare_app_management/screens/app.dart';
@@ -97,9 +99,10 @@ class AppController extends GetxController {
                 password: userController.passwordController.text,
                 phoneNumber: userController.phoneController.text).then((result) async {
                   if (result){
-                    await userController.createNewUser().then((res){
+                    await userController.createNewUser().then((res) async{
                       if(res != null){
-                        Get.to(() => SplashScreen());
+                        await userController.getUserByEmail(email: userController.emailController.text);
+                        Get.to(() => PetCareAppScreen());
                       } else {
                         showSnackBar(context: context, content: res.printError());
                       }

@@ -9,6 +9,7 @@ import 'package:petcare_app_management/screens/homepage_screens/news_details.dar
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
+import 'package:petcare_app_management/share/Widgets/loading_screen.dart';
 import 'package:petcare_app_management/share/format/format.dart';
 
 import '../../model/news_model/news_model.dart';
@@ -25,50 +26,55 @@ class _HotNewsState extends State<HotNews> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              AppText(
-                content: 'Hot',
-                textSize: Dimens.font_size_title,
-                fontWeight: FontWeight.bold,
-                color: AppColor.grey,
-              ),
-              GestureDetector(
-                onTap: () => Get.to(() => const HotNewsFullList()),
-                child: Row(
+    return Obx(() => newsController.listNews.isEmpty
+        ? Expanded(
+            child: Center(
+            child: LoadingScreen(),
+          ))
+        : Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     AppText(
-                      content: 'See more',
+                      content: 'Hot',
                       textSize: Dimens.font_size_title,
                       fontWeight: FontWeight.bold,
                       color: AppColor.grey,
                     ),
-                    Dimens.width5,
-                    Container(
-                      padding: EdgeInsets.all(Dimens.sizeValue5),
-                      decoration: BoxDecoration(
-                          color: AppColor.primary,
-                          borderRadius: BorderRadius.circular(50.0)),
-                      child: const Icon(
-                        Icons.arrow_forward_sharp,
-                        color: AppColor.white,
+                    GestureDetector(
+                      onTap: () => Get.to(() => const HotNewsFullList()),
+                      child: Row(
+                        children: [
+                          AppText(
+                            content: 'See more',
+                            textSize: Dimens.font_size_title,
+                            fontWeight: FontWeight.bold,
+                            color: AppColor.grey,
+                          ),
+                          Dimens.width5,
+                          Container(
+                            padding: EdgeInsets.all(Dimens.sizeValue5),
+                            decoration: BoxDecoration(
+                                color: AppColor.primary,
+                                borderRadius: BorderRadius.circular(50.0)),
+                            child: const Icon(
+                              Icons.arrow_forward_sharp,
+                              color: AppColor.white,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
+                    )
                   ],
                 ),
-              )
-            ],
-          ),
-          Dimens.height5,
-          _buildHotNewsList()
-        ],
-      ),
-    );
+                Dimens.height5,
+                _buildHotNewsList()
+              ],
+            ),
+          ));
   }
 
   _buildHotNewsList() {

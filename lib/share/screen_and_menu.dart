@@ -9,19 +9,6 @@ import 'package:petcare_app_management/share/Images/images.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
 
 class ScreenAndMenu {
-  final UserController userController = Get.find();
-  RxList<Widget> screens = RxList<Widget>([]);
-
-  ScreenAndMenu(){
-    if (userController.userInfo.value!.userRoleId == 1){
-      screens.value = listCustomerScreens;
-    } else if (userController.userInfo.value!.userRoleId == 0){
-      screens.value = listAdminScreens;
-    } else {
-      screens.value = listShopScreens;
-    }
-  }
-
   static List<BottomNavigationBarItem> listCustomerIcons =
       <BottomNavigationBarItem>[
     BottomNavigationBarItem(
@@ -54,7 +41,7 @@ class ScreenAndMenu {
         )),
   ];
 
-  static List<Widget> listCustomerScreens = [
+   static List<Widget> listCustomerScreens = [
     HomepageScreen(),
     Container(
       child: AppText(content: "Map"),
@@ -63,8 +50,12 @@ class ScreenAndMenu {
     UserInfoScreen(),
   ];
 
-  static List<Widget> listAdminScreens = [];
+  static List<Widget> listAdminScreens = [
+    HomepageScreen(),
+    PetStoreScreen()
+  ];
 
-  static List<Widget> listShopScreens = [];
-
+  static List<Widget> listShopScreens = [
+    UserInfoScreen()
+  ];
 }
