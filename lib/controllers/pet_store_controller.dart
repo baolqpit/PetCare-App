@@ -30,4 +30,15 @@ class PetStoreController extends GetxController {
         .toList();
     appController.isLoading.value = false;
   }
+
+  ///CREATE SHOP
+  createNewShop() async {
+    appController.isLoading.value = true;
+    Map<String, dynamic> data = {
+
+    };
+    await PetStoreApi().createNewShop(data: data);
+    appController.isLoading.value = false;
+  }
+
 }

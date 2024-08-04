@@ -36,7 +36,7 @@ class _PetStoreScreenState extends State<PetStoreScreen> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => appController.isLoading.value &&
-            petStoreController.productList.value != null
+            petStoreController.productList != null
         ? LoadingScreen()
         : SingleChildScrollView(
           child: Container(
