@@ -158,7 +158,7 @@ class _OtpAuthenticationState extends State<OtpAuthentication> {
   _buildOTPSendButton() {
     return ElevatedButton(
       onPressed: () async {
-        appController.verifyOTP(otp: otp_1_number.text + otp_2_number.text + otp_3_number.text + otp_4_number.text);
+        // appController.verifyOTP(otp: otp_1_number.text + otp_2_number.text + otp_3_number.text + otp_4_number.text);
         userController.createNewUser();
       },
       child: AppText(

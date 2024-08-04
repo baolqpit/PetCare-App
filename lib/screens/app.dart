@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
+import 'package:petcare_app_management/controllers/main_controller.dart';
+import 'package:petcare_app_management/controllers/news_controller.dart';
+import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/shared_preferences_helper.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
+import 'package:petcare_app_management/share/Functions/functions.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
+import 'package:petcare_app_management/share/Widgets/loading_screen.dart';
 import 'package:petcare_app_management/share/screen_and_menu.dart';
 
 import 'setting_screens/setting_screen.dart';
@@ -17,12 +22,22 @@ class PetCareAppScreen extends StatefulWidget {
 }
 
 class _PetCareAppScreenState extends State<PetCareAppScreen> {
+  final UserController userController = Get.find();
+  final MainController mainController = Get.find();
   final AppController appController = Get.find();
+  final NewsController newsController = Get.find();
+
   @override
   void initState() {
     // TODO: implement initState
-    SharedPreferencesHelper().getUserAccount();
+    onWidgetBuildDone(() async {
+      await SharedPreferencesHelper().getUserAccount();
+      await userController.getUserByEmail(email: userController.emailController.text);
+      mainController.initialSetUp();
+      await newsController.getNews();
+    });
     super.initState();
+
   }
 
   @override
@@ -47,7 +62,7 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
           )),
       actions: [
         IconButton(
-            onPressed: () => Get.to(SettingScreen()),
+            onPressed: () => Get.to(() => SettingScreen()),
             icon: const Icon(
               Icons.settings,
               color: AppColor.white,
@@ -57,8 +72,8 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
   }
 
   _buildAppBodyStructure() {
-    return Obx(() => ScreenAndMenu.listCustomerScreens
-        .elementAt(appController.currentAppPageIndex.value));
+    return Obx(() => ScreenAndMenu.listCustomerScreens.
+        elementAt(appController.currentAppPageIndex.value));
   }
 
   _buildAppBottomBar() {
@@ -74,5 +89,10 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
         appController.currentAppPageIndex.value = index;
       },
     ));
+  }
+
+  Future<void> fetchData() async {
+    await SharedPreferencesHelper().getUserAccount();
+    await userController.getUserByEmail(email: userController.emailController.text);
   }
 }

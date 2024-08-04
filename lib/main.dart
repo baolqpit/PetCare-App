@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
+import 'package:petcare_app_management/controllers/main_controller.dart';
+import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/auth_helper.dart';
 import 'package:petcare_app_management/helper/initial_binding.dart';
 import 'package:petcare_app_management/screens/app.dart';
@@ -26,6 +28,7 @@ class PetCare extends StatefulWidget {
 }
 
 class _PetCareState extends State<PetCare> {
+  final AppController appController = Get.put<AppController>(AppController());
   @override
   void initState() {
     super.initState();
@@ -39,17 +42,10 @@ class _PetCareState extends State<PetCare> {
         fontFamily: 'Raleway',
         textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Raleway'),
       ),
-      home: StreamBuilder(stream: AuthHelper().authStateChanges, builder: (context, snapshot){
-        if (snapshot.hasData){
-          return _buildAppBody();
-        } else {
-          return IntroductionScreen();
-        }
+      home:
+      StreamBuilder(stream: AuthHelper().authStateChanges, builder: (context, snapshot){
+        return SplashScreen(snapshot: snapshot,);
       }),
     );
-  }
-
-  _buildAppBody() {
-    return SplashScreen();
   }
 }

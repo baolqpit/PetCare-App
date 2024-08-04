@@ -17,8 +17,8 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  final UserController userController = Get.find();
   final AppController appController = Get.find();
+  final UserController userController = Get.find();
 
   @override
   void initState() {

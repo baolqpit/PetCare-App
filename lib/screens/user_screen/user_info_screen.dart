@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
+import 'package:petcare_app_management/helper/shared_preferences_helper.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Images/images.dart';
@@ -22,7 +23,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   @override
   void initState() {
-    fetchData();
     // TODO: implement initState
     super.initState();
   }
@@ -30,7 +30,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   @override
   void dispose() {
     // TODO: implement dispose
-    userController.userInfo.value = null;
     super.dispose();
   }
 
@@ -161,10 +160,5 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         ),
       ),
     );
-  }
-
-  Future<void> fetchData() async {
-    await userController.getUserByEmail(
-        email: userController.emailController.text);
   }
 }
