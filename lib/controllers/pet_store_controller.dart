@@ -8,6 +8,7 @@ class PetStoreController extends GetxController {
   final AppController appController = Get.find();
   Rx<int> currentCarousel = Rx<int>(0);
   RxList<ProductModel?> productList = RxList<ProductModel?>([]);
+  RxList<ShopModel> listShops = RxList<ShopModel>([]);
   Rx<ShopModel?> shop = Rx<ShopModel?>(null);
   RxList<ProductModel?> productListInShop = RxList<ProductModel?>([]);
 
@@ -32,13 +33,41 @@ class PetStoreController extends GetxController {
   }
 
   ///CREATE SHOP
-  createNewShop() async {
+  createNewShop({required ShopModel shopModel}) async {
     appController.isLoading.value = true;
     Map<String, dynamic> data = {
-
+      'shopName': shopModel.shopName,
+      'shopImgURL': shopModel.shopImgURL,
+      'city': shopModel.city,
+      'phone': shopModel.phone,
+      'shopMail': shopModel.shopMail,
+      'shopServices': shopModel.shopServices
     };
     await PetStoreApi().createNewShop(data: data);
     appController.isLoading.value = false;
   }
 
+  ///GET SHOPS
+  getShops() async{
+    appController.isLoading.value = true;
+    var response = await PetStoreApi().getListShop();
+    listShops.value = response.map<ShopModel>((json) => ShopModel.fromJson(json)).toList();
+    print(listShops);
+    appController.isLoading.value = false;
+  }
+
+  ///REGIST SHOP SERVICES
+  registShopServices({required bool spaService, required bool injectionService, required sittingService}){
+    List<int> services = [];
+    if (spaService) {
+      services.add(1);
+    }
+    if (injectionService) {
+      services.add(2);
+    }
+    if (sittingService){
+      services.add(3);
+    }
+    return services;
+  }
 }

@@ -12,6 +12,7 @@ class Dimens {
   static const padding_vertical = 10.0;
   static const padding_horizontal = 12.0;
   static const padding_8 = 8.0;
+  static const padding_5 = 5.0;
   static const padding_20 = 20.0;
 //   Height Size Design
   static const height5 = SizedBox(height: 5.0,) ;

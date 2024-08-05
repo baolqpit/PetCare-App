@@ -29,7 +29,7 @@ class _ListButtonsFunctionState extends State<ListButtonsFunction> {
           _buildButtonComponent(
               imgURL: Images.pet_store_svg,
               buttonName: 'Shops',
-              function: () => Get.to(ShopScreen()),
+              function: () => Get.to(() => ShopScreen()),
               textColor: AppColor.white,
               containerColor: AppColor.blue),
           _buildButtonComponent(
