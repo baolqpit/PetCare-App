@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/constants/Constants.dart';
+import 'package:petcare_app_management/screens/pet_store_screens/shops/shop_screen.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Images/images.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
@@ -25,6 +26,12 @@ class _ListButtonsFunctionState extends State<ListButtonsFunction> {
         spacing: Dimens.sizeValue10,
         direction: Axis.horizontal,
         children: <Widget>[
+          _buildButtonComponent(
+              imgURL: Images.pet_store_svg,
+              buttonName: 'Shops',
+              function: () => Get.to(() => ShopScreen()),
+              textColor: AppColor.white,
+              containerColor: AppColor.blue),
           _buildButtonComponent(
               imgURL: Images.sale_svg,
               buttonName: 'Sale',
@@ -56,9 +63,10 @@ class _ListButtonsFunctionState extends State<ListButtonsFunction> {
       required String buttonName,
       Color? svgColor,
       Color? textColor,
-      Color? containerColor}) {
+      Color? containerColor,
+      Function()? function}) {
     return GestureDetector(
-      onTap: () {},
+      onTap: function,
       child: Container(
         width: 120,
         padding: EdgeInsets.all(Dimens.padding_8),

@@ -10,6 +10,9 @@ class AppColor {
     static const orange = Colors.deepOrange;
     static const purple = Colors.purpleAccent;
     static const green = Colors.lightGreen;
+    static const blue = Colors.blueAccent;
+    static const submitColor = Colors.greenAccent;
+    static const cancelColor = Colors.redAccent;
 
     static List<Color> purpleGradient = [
         Color(0xFF663399), // Deep purple (start color)
