@@ -7,7 +7,6 @@ import 'package:petcare_app_management/screens/pet_store_screens/shops/create_sh
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Functions/functions.dart';
-import 'package:petcare_app_management/share/Widgets/apptext.dart';
 import 'package:petcare_app_management/share/Widgets/custom_app_bar.dart';
 import 'package:petcare_app_management/share/Widgets/loading_screen.dart';
 
@@ -43,7 +42,7 @@ class _ShopScreenState extends State<ShopScreen> {
       appBar: CustomAppBar(title: 'Shops', showReturnButton: true),
       body: Obx(() =>
           petStoreController.listShops.isEmpty && appController.isLoading.value
-              ? LoadingScreen()
+              ? const LoadingScreen()
               : Padding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: Dimens.padding_horizontal,
@@ -55,7 +54,7 @@ class _ShopScreenState extends State<ShopScreen> {
                         child: _buildAddShopButton(),
                       ),
                       Dimens.height10,
-                      Expanded(
+                      const Expanded(
                           child: SingleChildScrollView(child: BuildListShops()))
                     ],
                   ),
@@ -69,11 +68,11 @@ class _ShopScreenState extends State<ShopScreen> {
           showDialog(
               context: context,
               builder: (context) {
-                return CreateShopDialog();
+                return const CreateShopDialog();
               });
         },
         style: ElevatedButton.styleFrom(backgroundColor: AppColor.green),
-        child: Icon(
+        child: const Icon(
           Icons.add,
           color: AppColor.white,
         ));

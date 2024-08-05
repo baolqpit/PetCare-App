@@ -13,6 +13,8 @@ class AppColor {
     static const blue = Colors.blueAccent;
     static const submitColor = Colors.greenAccent;
     static const cancelColor = Colors.redAccent;
+    static const colorShop = Color.fromARGB(255, 227, 2, 73);
+    // #55EAAD
 
     static List<Color> purpleGradient = [
         Color(0xFF663399), // Deep purple (start color)

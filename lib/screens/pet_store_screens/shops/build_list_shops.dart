@@ -1,8 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/pet_store_controller.dart';
 import 'package:petcare_app_management/model/pet_store_model/shop_model/shop_model.dart';
+import 'package:petcare_app_management/screens/pet_store_screens/shops/shop_detail.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
@@ -21,7 +21,7 @@ class _BuildListShopsState extends State<BuildListShops> {
     return Column(
       children: petStoreController.listShops
           .map((shop) => Padding(
-                padding: EdgeInsets.only(bottom: Dimens.padding_horizontal),
+                padding: const EdgeInsets.only(bottom: Dimens.padding_horizontal),
                 child: Stack(
                   children: <Widget>[
                     _buildShopBoxShadow(),
@@ -50,43 +50,46 @@ class _BuildListShopsState extends State<BuildListShops> {
   }
 
   _buildShopComponent({required ShopModel shop}) {
-    return Container(
-      padding: EdgeInsets.symmetric(
-          horizontal: Dimens.padding_8, vertical: Dimens.padding_5),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(Dimens.circular12),
-        color: AppColor.white,
-        border: Border.fromBorderSide(BorderSide(color: AppColor.grey)),
-      ),
-      child: Column(
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: shop.shopServices!
-                .map((service) => Padding(
-                      padding: const EdgeInsets.only(left: Dimens.padding_5),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: AppColor.purple,
-                            borderRadius:
-                                BorderRadius.circular(Dimens.circular12)),
-                        padding: EdgeInsets.all(Dimens.padding_5),
-                        child: AppText(
-                          content: getServiceName(service: service),
-                          color: AppColor.white,
+    return GestureDetector(
+      onTap: () => Get.to(() => ShopDetail(shopModel: shop,)),
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+            horizontal: Dimens.padding_8, vertical: Dimens.padding_5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(Dimens.circular12),
+          color: AppColor.white,
+          border: const Border.fromBorderSide(BorderSide(color: AppColor.grey)),
+        ),
+        child: Column(
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: shop.shopServices!
+                  .map((service) => Padding(
+                        padding: const EdgeInsets.only(left: Dimens.padding_5),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: AppColor.purple,
+                              borderRadius:
+                                  BorderRadius.circular(Dimens.circular12)),
+                          padding: const EdgeInsets.all(Dimens.padding_5),
+                          child: AppText(
+                            content: getServiceName(service: service),
+                            color: AppColor.white,
+                          ),
                         ),
-                      ),
-                    ))
-                .toList(),
-          ),
-          Row(
-            children: <Widget>[
-              _buildShopAvatar(),
-              Dimens.width10,
-              Expanded(child: _buildShopInfo(shop: shop))
-            ],
-          )
-        ],
+                      ))
+                  .toList(),
+            ),
+            Row(
+              children: <Widget>[
+                _buildShopAvatar(),
+                Dimens.width10,
+                Expanded(child: _buildShopInfo(shop: shop))
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
@@ -149,11 +152,11 @@ class _BuildListShopsState extends State<BuildListShops> {
   
   _buildShopNumberElement({required ShopModel shop}){
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimens.circular12), bottomRight: Radius.circular(Dimens.circular12)),
         border: Border.fromBorderSide(BorderSide(color: AppColor.grey))
       ),
-      padding: EdgeInsets.all(Dimens.padding_5),
+      padding: const EdgeInsets.all(Dimens.padding_5),
       child: AppText(content: '${petStoreController.listShops.indexOf(shop) + 1}', color: AppColor.orange, fontWeight: FontWeight.bold,),
     );
   }
