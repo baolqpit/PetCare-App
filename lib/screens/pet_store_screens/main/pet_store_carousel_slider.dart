@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:petcare_app_management/constants/Constants.dart';
 import 'package:petcare_app_management/controllers/pet_store_controller.dart';
 
-import '../../share/Dimens/dimens.dart';
+import '../../../share/Dimens/dimens.dart';
 
 class PetStoreCarouselSlider extends StatefulWidget {
   const PetStoreCarouselSlider({super.key});

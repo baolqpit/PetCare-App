@@ -7,7 +7,7 @@ import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Images/images.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
 
-import '../../share/Dimens/dimens.dart';
+import '../../../share/Dimens/dimens.dart';
 
 class ListButtonsFunction extends StatefulWidget {
   const ListButtonsFunction({super.key});

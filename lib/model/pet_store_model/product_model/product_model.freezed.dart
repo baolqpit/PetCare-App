@@ -30,6 +30,10 @@ mixin _$ProductModel {
   int? get quantity => throw _privateConstructorUsedError;
   @JsonKey(name: 'price')
   int? get price => throw _privateConstructorUsedError;
+  @JsonKey(name: 'productTypeId')
+  int? get productTypeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'productTypeName')
+  int? get productTypeName => throw _privateConstructorUsedError;
   @JsonKey(name: 'productImgURL')
   String? get productImgURL => throw _privateConstructorUsedError;
 
@@ -51,6 +55,8 @@ abstract class $ProductModelCopyWith<$Res> {
       @JsonKey(name: 'shopId') int? shopId,
       @JsonKey(name: 'quantity') int? quantity,
       @JsonKey(name: 'price') int? price,
+      @JsonKey(name: 'productTypeId') int? productTypeId,
+      @JsonKey(name: 'productTypeName') int? productTypeName,
       @JsonKey(name: 'productImgURL') String? productImgURL});
 }
 
@@ -72,6 +78,8 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
     Object? shopId = freezed,
     Object? quantity = freezed,
     Object? price = freezed,
+    Object? productTypeId = freezed,
+    Object? productTypeName = freezed,
     Object? productImgURL = freezed,
   }) {
     return _then(_value.copyWith(
@@ -95,6 +103,14 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int?,
+      productTypeId: freezed == productTypeId
+          ? _value.productTypeId
+          : productTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productTypeName: freezed == productTypeName
+          ? _value.productTypeName
+          : productTypeName // ignore: cast_nullable_to_non_nullable
+              as int?,
       productImgURL: freezed == productImgURL
           ? _value.productImgURL
           : productImgURL // ignore: cast_nullable_to_non_nullable
@@ -117,6 +133,8 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       @JsonKey(name: 'shopId') int? shopId,
       @JsonKey(name: 'quantity') int? quantity,
       @JsonKey(name: 'price') int? price,
+      @JsonKey(name: 'productTypeId') int? productTypeId,
+      @JsonKey(name: 'productTypeName') int? productTypeName,
       @JsonKey(name: 'productImgURL') String? productImgURL});
 }
 
@@ -136,6 +154,8 @@ class __$$ProductModelImplCopyWithImpl<$Res>
     Object? shopId = freezed,
     Object? quantity = freezed,
     Object? price = freezed,
+    Object? productTypeId = freezed,
+    Object? productTypeName = freezed,
     Object? productImgURL = freezed,
   }) {
     return _then(_$ProductModelImpl(
@@ -159,6 +179,14 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int?,
+      productTypeId: freezed == productTypeId
+          ? _value.productTypeId
+          : productTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      productTypeName: freezed == productTypeName
+          ? _value.productTypeName
+          : productTypeName // ignore: cast_nullable_to_non_nullable
+              as int?,
       productImgURL: freezed == productImgURL
           ? _value.productImgURL
           : productImgURL // ignore: cast_nullable_to_non_nullable
@@ -177,6 +205,8 @@ class _$ProductModelImpl implements _ProductModel {
       @JsonKey(name: 'shopId') this.shopId,
       @JsonKey(name: 'quantity') this.quantity,
       @JsonKey(name: 'price') this.price,
+      @JsonKey(name: 'productTypeId') this.productTypeId,
+      @JsonKey(name: 'productTypeName') this.productTypeName,
       @JsonKey(name: 'productImgURL') this.productImgURL});
 
   factory _$ProductModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -198,12 +228,18 @@ class _$ProductModelImpl implements _ProductModel {
   @JsonKey(name: 'price')
   final int? price;
   @override
+  @JsonKey(name: 'productTypeId')
+  final int? productTypeId;
+  @override
+  @JsonKey(name: 'productTypeName')
+  final int? productTypeName;
+  @override
   @JsonKey(name: 'productImgURL')
   final String? productImgURL;
 
   @override
   String toString() {
-    return 'ProductModel(productId: $productId, productName: $productName, shopId: $shopId, quantity: $quantity, price: $price, productImgURL: $productImgURL)';
+    return 'ProductModel(productId: $productId, productName: $productName, shopId: $shopId, quantity: $quantity, price: $price, productTypeId: $productTypeId, productTypeName: $productTypeName, productImgURL: $productImgURL)';
   }
 
   @override
@@ -219,6 +255,10 @@ class _$ProductModelImpl implements _ProductModel {
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
             (identical(other.price, price) || other.price == price) &&
+            (identical(other.productTypeId, productTypeId) ||
+                other.productTypeId == productTypeId) &&
+            (identical(other.productTypeName, productTypeName) ||
+                other.productTypeName == productTypeName) &&
             (identical(other.productImgURL, productImgURL) ||
                 other.productImgURL == productImgURL));
   }
@@ -226,7 +266,7 @@ class _$ProductModelImpl implements _ProductModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, productId, productName, shopId,
-      quantity, price, productImgURL);
+      quantity, price, productTypeId, productTypeName, productImgURL);
 
   @JsonKey(ignore: true)
   @override
@@ -249,6 +289,8 @@ abstract class _ProductModel implements ProductModel {
           @JsonKey(name: 'shopId') final int? shopId,
           @JsonKey(name: 'quantity') final int? quantity,
           @JsonKey(name: 'price') final int? price,
+          @JsonKey(name: 'productTypeId') final int? productTypeId,
+          @JsonKey(name: 'productTypeName') final int? productTypeName,
           @JsonKey(name: 'productImgURL') final String? productImgURL}) =
       _$ProductModelImpl;
 
@@ -270,6 +312,12 @@ abstract class _ProductModel implements ProductModel {
   @override
   @JsonKey(name: 'price')
   int? get price;
+  @override
+  @JsonKey(name: 'productTypeId')
+  int? get productTypeId;
+  @override
+  @JsonKey(name: 'productTypeName')
+  int? get productTypeName;
   @override
   @JsonKey(name: 'productImgURL')
   String? get productImgURL;

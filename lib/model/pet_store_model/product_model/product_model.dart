@@ -12,6 +12,8 @@ class ProductModel with _$ProductModel {
     @JsonKey(name: 'shopId') int? shopId,
     @JsonKey(name: 'quantity') int? quantity,
     @JsonKey(name: 'price') int? price,
+    @JsonKey(name: 'productTypeId') int? productTypeId,
+    @JsonKey(name: 'productTypeName') int? productTypeName,
     @JsonKey(name: 'productImgURL') String? productImgURL,
   }) = _ProductModel;
 

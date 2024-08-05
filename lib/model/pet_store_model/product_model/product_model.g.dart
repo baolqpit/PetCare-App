@@ -13,6 +13,8 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
       shopId: (json['shopId'] as num?)?.toInt(),
       quantity: (json['quantity'] as num?)?.toInt(),
       price: (json['price'] as num?)?.toInt(),
+      productTypeId: (json['productTypeId'] as num?)?.toInt(),
+      productTypeName: (json['productTypeName'] as num?)?.toInt(),
       productImgURL: json['productImgURL'] as String?,
     );
 
@@ -23,5 +25,7 @@ Map<String, dynamic> _$$ProductModelImplToJson(_$ProductModelImpl instance) =>
       'shopId': instance.shopId,
       'quantity': instance.quantity,
       'price': instance.price,
+      'productTypeId': instance.productTypeId,
+      'productTypeName': instance.productTypeName,
       'productImgURL': instance.productImgURL,
     };
