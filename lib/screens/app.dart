@@ -51,7 +51,7 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
 
   _buildAppBar() {
     return AppBar(
-      backgroundColor: AppColor.primary[300],
+      backgroundColor: AppColor.primary,
       leading: IconButton(icon: Icon(Icons.menu), onPressed: (){}, color: AppColor.white,),
       title: Center(
           child: AppText(

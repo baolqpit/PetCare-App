@@ -51,8 +51,6 @@ class _CreateShopDialogState extends State<CreateShopDialog> {
             phone: userController.userInfo.value!.phone,
             city: userController.userInfo.value!.address,
             shopServices: services);
-        print("Services: ${services}");
-        print("Shop Model: ${shopModel}");
         await petStoreController.createNewShop(shopModel: shopModel);
         Get.back();
       },

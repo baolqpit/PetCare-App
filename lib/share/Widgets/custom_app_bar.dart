@@ -20,7 +20,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: AppColor.primary[300],
+        color: AppColor.primary,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(borderRadius),
           bottomRight: Radius.circular(borderRadius),
@@ -34,7 +34,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             showReturnButton
                 ? IconButton(
               onPressed: () => Get.back(),
-              icon: Icon(Icons.arrow_back, color: AppColor.white),
+              icon: Icon(Icons.arrow_back, color: AppColor.textAppBarColor),
             )
                 : SizedBox(),
             Expanded(
@@ -42,7 +42,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 child: AppText(
                   content: title ?? "",
                   fontWeight: FontWeight.bold,
-                  color: AppColor.white,
+                  color: AppColor.textAppBarColor,
                   textSize: Dimens.font_size_title,
                 ),
               ),

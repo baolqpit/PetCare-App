@@ -14,7 +14,7 @@ _$ProductModelImpl _$$ProductModelImplFromJson(Map<String, dynamic> json) =>
       quantity: (json['quantity'] as num?)?.toInt(),
       price: (json['price'] as num?)?.toInt(),
       productTypeId: (json['productTypeId'] as num?)?.toInt(),
-      productTypeName: (json['productTypeName'] as num?)?.toInt(),
+      productTypeName: json['productTypeName'] as String?,
       productImgURL: json['productImgURL'] as String?,
     );
 
