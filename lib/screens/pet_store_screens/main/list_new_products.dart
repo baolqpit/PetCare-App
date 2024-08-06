@@ -18,24 +18,22 @@ class _ListNewProductsState extends State<ListNewProducts> {
   final PetStoreController petStoreController = Get.find();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          AppText(
-            content: 'New Products',
-            fontWeight: FontWeight.bold,
-            textSize: Dimens.font_size_title,
-          ),
-          _buildProductsList()
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        AppText(
+          content: 'New Products',
+          fontWeight: FontWeight.bold,
+          textSize: Dimens.font_size_title,
+        ),
+        _buildProductsList()
+      ],
     );
   }
 
   _buildProductsList() {
-    return Wrap(
-      alignment: WrapAlignment.center,
+    return Obx(() => Wrap(
+      alignment: WrapAlignment.start,
       crossAxisAlignment: WrapCrossAlignment.center,
       runSpacing: Dimens.sizeValue10,
       spacing: Dimens.sizeValue10,
@@ -43,11 +41,11 @@ class _ListNewProductsState extends State<ListNewProducts> {
       children: petStoreController.productList
           .map((product) => Container(
         width: (Get.width / 2.03) - (Dimens.sizeValue10 * 1.5),
-                decoration: _buildProductBoxDecoration(),
-                child: _buildProductComponent(product: product!),
-              ))
+        decoration: _buildProductBoxDecoration(),
+        child: _buildProductComponent(product: product!),
+      ))
           .toList(),
-    );
+    ));
   }
 
   _buildProductBoxDecoration() {
@@ -63,7 +61,7 @@ class _ListNewProductsState extends State<ListNewProducts> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Image.network(product.productImgURL!),
+        Image.network(product.productImgURL == "" ? 'https://th.bing.com/th/id/OIP.aKS59jaAmUbl1aOpLh13XQHaHa?rs=1&pid=ImgDetMain' : product.productImgURL!),
         Container(
           padding: EdgeInsets.all(Dimens.sizeValue5),
           child: Column(

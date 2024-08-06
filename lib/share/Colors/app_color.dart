@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
-    static const primary = Colors.teal;
+    // static const primary = Colors.teal;
     static const red = Colors.red;
     static const white = Colors.white;
     static const amber = Colors.amber;
@@ -13,7 +13,12 @@ class AppColor {
     static const blue = Colors.blueAccent;
     static const submitColor = Colors.greenAccent;
     static const cancelColor = Colors.redAccent;
-    static const colorShop = Color.fromARGB(255, 227, 2, 73);
+    static const primary = Color.fromARGB(255, 235, 165, 189);
+    static const textAppBarColor = Color.fromARGB(255, 255, 255, 255);
+    static const colorContainerPink = Color.fromARGB(255, 254, 193, 216);
+    static const colorBorderContainer = Color.fromARGB(255, 147, 100, 85);
+    static const colorContainerCyan = Color.fromARGB(255, 139, 186, 196);
+    static const colorTextCyan = Color.fromARGB(255, 46, 118, 153);
     // #55EAAD
 
     static List<Color> purpleGradient = [

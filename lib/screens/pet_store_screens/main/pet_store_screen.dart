@@ -7,6 +7,7 @@ import 'package:petcare_app_management/screens/pet_store_screens/main/list_new_p
 import 'package:petcare_app_management/screens/pet_store_screens/main/pet_store_carousel_slider.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
+import 'package:petcare_app_management/share/Functions/functions.dart';
 import 'package:petcare_app_management/share/Widgets/loading_screen.dart';
 
 class PetStoreScreen extends StatefulWidget {
@@ -22,7 +23,7 @@ class _PetStoreScreenState extends State<PetStoreScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    fetchData();
+    onWidgetBuildDone(() async => await petStoreController.getListProducts());
     super.initState();
   }
 
@@ -30,6 +31,7 @@ class _PetStoreScreenState extends State<PetStoreScreen> {
   void dispose() {
     // TODO: implement dispose
     petStoreController.currentCarousel.value = 0;
+    petStoreController.productList.clear();
     super.dispose();
   }
 
@@ -54,9 +56,5 @@ class _PetStoreScreenState extends State<PetStoreScreen> {
               ),
             ),
         ));
-  }
-
-  Future<void> fetchData() async {
-    await petStoreController.getListProducts();
   }
 }

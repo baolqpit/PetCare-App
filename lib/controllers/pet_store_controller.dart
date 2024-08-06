@@ -22,6 +22,22 @@ class PetStoreController extends GetxController {
     appController.isLoading.value = false;
   }
 
+  ///CREATE NEW PRODUCT
+  createNewProduct({required ProductModel productModel, required int shopId}) async {
+    appController.isLoading.value = true;
+    Map<String, dynamic> data = {
+      'productName': productModel.productName,
+      'shopId': shopId,
+      'quantity': productModel.quantity,
+      'price': productModel.price,
+      'productTypeId': productModel.productTypeId,
+      'productTypeName': productModel.productTypeName,
+      'productImgURL': productModel.productImgURL
+    };
+    await PetStoreApi().createNewProduct(data: data);
+    appController.isLoading.value = false;
+  }
+
   ///GET LIST PRODUCTS IN SHOP
   getListProductsInShop({required int shopId}) async {
     appController.isLoading.value = true;

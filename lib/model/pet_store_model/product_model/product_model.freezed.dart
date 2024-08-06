@@ -33,7 +33,7 @@ mixin _$ProductModel {
   @JsonKey(name: 'productTypeId')
   int? get productTypeId => throw _privateConstructorUsedError;
   @JsonKey(name: 'productTypeName')
-  int? get productTypeName => throw _privateConstructorUsedError;
+  String? get productTypeName => throw _privateConstructorUsedError;
   @JsonKey(name: 'productImgURL')
   String? get productImgURL => throw _privateConstructorUsedError;
 
@@ -56,7 +56,7 @@ abstract class $ProductModelCopyWith<$Res> {
       @JsonKey(name: 'quantity') int? quantity,
       @JsonKey(name: 'price') int? price,
       @JsonKey(name: 'productTypeId') int? productTypeId,
-      @JsonKey(name: 'productTypeName') int? productTypeName,
+      @JsonKey(name: 'productTypeName') String? productTypeName,
       @JsonKey(name: 'productImgURL') String? productImgURL});
 }
 
@@ -110,7 +110,7 @@ class _$ProductModelCopyWithImpl<$Res, $Val extends ProductModel>
       productTypeName: freezed == productTypeName
           ? _value.productTypeName
           : productTypeName // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       productImgURL: freezed == productImgURL
           ? _value.productImgURL
           : productImgURL // ignore: cast_nullable_to_non_nullable
@@ -134,7 +134,7 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       @JsonKey(name: 'quantity') int? quantity,
       @JsonKey(name: 'price') int? price,
       @JsonKey(name: 'productTypeId') int? productTypeId,
-      @JsonKey(name: 'productTypeName') int? productTypeName,
+      @JsonKey(name: 'productTypeName') String? productTypeName,
       @JsonKey(name: 'productImgURL') String? productImgURL});
 }
 
@@ -186,7 +186,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
       productTypeName: freezed == productTypeName
           ? _value.productTypeName
           : productTypeName // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       productImgURL: freezed == productImgURL
           ? _value.productImgURL
           : productImgURL // ignore: cast_nullable_to_non_nullable
@@ -232,7 +232,7 @@ class _$ProductModelImpl implements _ProductModel {
   final int? productTypeId;
   @override
   @JsonKey(name: 'productTypeName')
-  final int? productTypeName;
+  final String? productTypeName;
   @override
   @JsonKey(name: 'productImgURL')
   final String? productImgURL;
@@ -290,7 +290,7 @@ abstract class _ProductModel implements ProductModel {
           @JsonKey(name: 'quantity') final int? quantity,
           @JsonKey(name: 'price') final int? price,
           @JsonKey(name: 'productTypeId') final int? productTypeId,
-          @JsonKey(name: 'productTypeName') final int? productTypeName,
+          @JsonKey(name: 'productTypeName') final String? productTypeName,
           @JsonKey(name: 'productImgURL') final String? productImgURL}) =
       _$ProductModelImpl;
 
@@ -317,7 +317,7 @@ abstract class _ProductModel implements ProductModel {
   int? get productTypeId;
   @override
   @JsonKey(name: 'productTypeName')
-  int? get productTypeName;
+  String? get productTypeName;
   @override
   @JsonKey(name: 'productImgURL')
   String? get productImgURL;

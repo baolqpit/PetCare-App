@@ -58,7 +58,7 @@ class _BuildListShopsState extends State<BuildListShops> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Dimens.circular12),
           color: AppColor.white,
-          border: const Border.fromBorderSide(BorderSide(color: AppColor.grey)),
+          border: const Border.fromBorderSide(BorderSide(color: AppColor.colorBorderContainer, width: 2.0)),
         ),
         child: Column(
           children: <Widget>[
@@ -69,7 +69,7 @@ class _BuildListShopsState extends State<BuildListShops> {
                         padding: const EdgeInsets.only(left: Dimens.padding_5),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: AppColor.purple,
+                              color: AppColor.colorContainerCyan,
                               borderRadius:
                                   BorderRadius.circular(Dimens.circular12)),
                           padding: const EdgeInsets.all(Dimens.padding_5),
@@ -143,9 +143,9 @@ class _BuildListShopsState extends State<BuildListShops> {
   _buildContactRow({required String? value, required IconData iconData}) {
     return Row(
       children: <Widget>[
-        Icon(iconData),
+        Icon(iconData, color: AppColor.colorBorderContainer,),
         Dimens.width5,
-        AppText(content: value ?? "N/A")
+        AppText(content: value ?? "N/A", color: AppColor.colorBorderContainer,)
       ],
     );
   }
@@ -154,10 +154,10 @@ class _BuildListShopsState extends State<BuildListShops> {
     return Container(
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimens.circular12), bottomRight: Radius.circular(Dimens.circular12)),
-        border: Border.fromBorderSide(BorderSide(color: AppColor.grey))
+        border: Border.fromBorderSide(BorderSide(color: AppColor.colorBorderContainer, width: 2.0))
       ),
       padding: const EdgeInsets.all(Dimens.padding_5),
-      child: AppText(content: '${petStoreController.listShops.indexOf(shop) + 1}', color: AppColor.orange, fontWeight: FontWeight.bold,),
+      child: AppText(content: '${petStoreController.listShops.indexOf(shop) + 1}', color: AppColor.colorBorderContainer, fontWeight: FontWeight.bold,),
     );
   }
 }
