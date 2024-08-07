@@ -18,21 +18,16 @@ class CreateNewProduct extends StatefulWidget {
 
 class _CreateNewProductState extends State<CreateNewProduct> {
   final PetStoreController petStoreController = Get.find();
-  final TextEditingController productNameController = TextEditingController();
-  final TextEditingController productURLController = TextEditingController();
-  final TextEditingController productPriceController = TextEditingController();
-  final TextEditingController productQuantityController =
+   TextEditingController productNameController = TextEditingController();
+   TextEditingController productURLController = TextEditingController();
+   TextEditingController productPriceController = TextEditingController();
+   TextEditingController productQuantityController =
       TextEditingController();
   Rx<int> productTypeId = Rx<int>(1);
 
   @override
   void dispose() {
     // TODO: implement dispose
-    productNameController.clear();
-    productURLController.clear();
-    productPriceController.clear();
-    productQuantityController.clear();
-    productTypeId.value = 1;
     super.dispose();
   }
   @override
@@ -65,7 +60,17 @@ class _CreateNewProductState extends State<CreateNewProduct> {
     await petStoreController.createNewProduct(
         productModel: productModel, shopId: widget.shopModel.shopId!);
     await petStoreController.getListProducts();
+    await petStoreController.getListProductsInShop(shopId: widget.shopModel.shopId!);
+    resetValue();
     Get.back();
+  }
+
+  resetValue(){
+    productNameController.clear();
+    productURLController.clear();
+    productPriceController.clear();
+    productQuantityController.clear();
+    productTypeId.value = 1;
   }
 
   _buildCreateProduct() {
