@@ -41,7 +41,7 @@ class _BuildShopListProductState extends State<BuildShopListProduct> {
   Widget build(BuildContext context) {
     return Obx(() => petStoreController.productListInShop.isEmpty &&
             appController.isLoading.value
-        ? LoadingScreen()
+        ? const LoadingScreen()
         : Wrap(
             alignment: WrapAlignment.start,
             crossAxisAlignment: WrapCrossAlignment.center,
@@ -91,35 +91,32 @@ class _BuildShopListProductState extends State<BuildShopListProduct> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Image.network(product.productImgURL == ""
-              ? 'https://th.bing.com/th/id/OIP.aKS59jaAmUbl1aOpLh13XQHaHa?rs=1&pid=ImgDetMain'
-              : product.productImgURL!, height: 150, fit: BoxFit.cover,),
-          AppText(content: product.productName, maxLine: 1,),
+          Image.network(
+            product.productImgURL == ""
+                ? 'https://th.bing.com/th/id/OIP.aKS59jaAmUbl1aOpLh13XQHaHa?rs=1&pid=ImgDetMain'
+                : product.productImgURL!,
+            height: 150,
+            fit: BoxFit.cover,
+          ),
+          AppText(
+            content: product.productName,
+            maxLine: 1,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              AppText(content: "đ"+ formatNumberToVND(number: product.price!), color: AppColor.orange,),
-              AppText(content: 'Quantity: ${product.quantity}', textSize: Dimens.sizeValue10, fontWeight: FontWeight.bold,)
+              AppText(
+                content: "đ" + formatNumberToVND(number: product.price!),
+                color: AppColor.orange,
+              ),
+              AppText(
+                content: 'Quantity: ${product.quantity}',
+                textSize: Dimens.sizeValue10,
+                fontWeight: FontWeight.bold,
+              )
             ],
           )
         ],
-      ),
-    );
-  }
-
-  _buildProductNumberElement({required ProductModel product}) {
-    return Container(
-      decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(Dimens.circular12),
-              bottomRight: Radius.circular(Dimens.circular12)),
-          border: Border.fromBorderSide(
-              BorderSide(color: AppColor.colorBorderContainer, width: 2.0))),
-      padding: const EdgeInsets.all(Dimens.padding_5),
-      child: AppText(
-        content: '${petStoreController.listShops.indexOf(product) + 1}',
-        color: AppColor.colorBorderContainer,
-        fontWeight: FontWeight.bold,
       ),
     );
   }
