@@ -14,3 +14,7 @@ formatStringToDateTime({required String datetime}){
 formatNumberToVND({required int number}){
   return NumberFormat.decimalPattern('vi').format(number);
 }
+
+formatToBirthday({required String datetime}){
+  return DateFormat('dd/MM/yyyy').format(DateTime.parse(datetime));
+}

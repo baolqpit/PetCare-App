@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/main_controller.dart';
 import 'package:petcare_app_management/controllers/news_controller.dart';
+import 'package:petcare_app_management/controllers/pet_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/shared_preferences_helper.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
@@ -26,6 +27,7 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
   final MainController mainController = Get.find();
   final AppController appController = Get.find();
   final NewsController newsController = Get.find();
+  final PetController petController = Get.find();
 
   @override
   void initState() {
@@ -33,8 +35,9 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
     onWidgetBuildDone(() async {
       await SharedPreferencesHelper().getUserAccount();
       await userController.getUserByEmail(email: userController.emailController.text);
-      mainController.initialSetUp();
+      await petController.getListPets(userId: userController.userInfo.value!.userId!);
       await newsController.getNews();
+      mainController.initialSetUp();
     });
     super.initState();
 

@@ -11,7 +11,7 @@ class BaseApi {
       {required String url, Map<String, dynamic>? queryParameters}) async {
     try {
       // print(_baseUrl + url);
-      await Future.delayed(Duration(milliseconds: 1500));
+      // await Future.delayed(Duration(milliseconds: 1500));
       Response<dynamic> response = await _dio.get(_baseUrl + url,
           queryParameters: queryParameters ?? null,
           options: Options(contentType: 'application/json'));
@@ -37,7 +37,7 @@ class BaseApi {
       {required String url, Map<String, dynamic>? data}) async {
     try {
       // print(_baseUrl + url);
-      await Future.delayed(Duration(milliseconds: 1500));
+      // await Future.delayed(Duration(milliseconds: 1500));
       Response<dynamic> response = await _dio.post(_baseUrl + url,
           data: data ?? null,
           options: Options(contentType: 'application/json'));
