@@ -8,7 +8,7 @@ class OutsideApi {
   getDataFromNewsAPI(
       {required String url, Map<String, dynamic>? queryParameters}) async {
     try {
-      await Future.delayed(Duration(milliseconds: 1500));
+      // await Future.delayed(Duration(milliseconds: 1500));
       Response<dynamic> response = await _dio.get(_newsURL + url,
           queryParameters: queryParameters ?? null,
           options: Options(contentType: 'application/json'));
@@ -33,7 +33,7 @@ class OutsideApi {
   postDataFromNewsAPI(
       {required String url, Map<String, dynamic>? data}) async {
     try {
-      await Future.delayed(Duration(milliseconds: 1500));
+      // await Future.delayed(Duration(milliseconds: 1500));
       Response<dynamic> response = await _dio.post(_newsURL + url,
           data: data ?? null,
           options: Options(contentType: 'application/json'));

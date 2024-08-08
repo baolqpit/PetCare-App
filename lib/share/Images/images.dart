@@ -15,7 +15,9 @@ class Images {
   static const String injection_svg = 'lib/assets/PetStoreImages/pet_injection.svg';
   static const String services_svg = 'lib/assets/PetStoreImages/pet_services.svg';
   static const String supplies_svg = 'lib/assets/PetStoreImages/pet_supplies.svg';
-
+  static const String no_data_found_jpeg = 'lib/assets/AppLogo/no_data_found.jpg';
+  static const String no_pet_found_jpeg = 'lib/assets/AppLogo/no_pet_found.jpg';
+  static const String birthday_cake = 'lib/assets/UserImages/birthday-cake.svg';
 
 
 }
