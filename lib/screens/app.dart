@@ -35,7 +35,6 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
     onWidgetBuildDone(() async {
       await SharedPreferencesHelper().getUserAccount();
       await userController.getUserByEmail(email: userController.emailController.text);
-      await petController.getListPets(userId: userController.userInfo.value!.userId!);
       await newsController.getNews();
       mainController.initialSetUp();
     });
@@ -55,15 +54,8 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
   _buildAppBar() {
     return AppBar(
       backgroundColor: AppColor.primary,
-      leading: IconButton(icon: Icon(Icons.menu), onPressed: (){}, color: AppColor.white,),
-      title: Center(
-          child: AppText(
-            content: "",
-            textSize: Dimens.font_size_title,
-            fontWeight: FontWeight.bold,
-            color: AppColor.white,
-          )),
       actions: [
+        IconButton(onPressed: (){}, icon: Icon(Icons.notifications, color: AppColor.white,)),
         IconButton(
             onPressed: () => Get.to(() => SettingScreen()),
             icon: const Icon(

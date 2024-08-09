@@ -18,6 +18,9 @@ class Images {
   static const String no_data_found_jpeg = 'lib/assets/AppLogo/no_data_found.jpg';
   static const String no_pet_found_jpeg = 'lib/assets/AppLogo/no_pet_found.jpg';
   static const String birthday_cake = 'lib/assets/UserImages/birthday-cake.svg';
+  static const String messenger_icon = 'lib/assets/BottomBarImages/messenger-logo-bottom.svg';
+  static const String pet_icon = 'lib/assets/BottomBarImages/pet-logo-bottom.svg';
+  static const String location_svg = 'lib/assets/AppLogo/location-svg.svg';
 
 
 }

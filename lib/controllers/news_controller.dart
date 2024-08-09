@@ -11,7 +11,7 @@ class NewsController extends GetxController {
   getNews() async {
     appController.isLoading.value = true;
     var response = await NewsApi().getNews();
-    listNews.value = response['articles'].map<NewsModel>((json) => NewsModel.fromJson(json)).toList();
+    listNews.value = response.map<NewsModel>((json) => NewsModel.fromJson(json)).toList();
     appController.isLoading.value = false;
   }
 }
