@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,16 +5,12 @@ import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/news_controller.dart';
 import 'package:petcare_app_management/controllers/pet_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
-import 'package:petcare_app_management/model/news_model/news_model.dart';
-import 'package:petcare_app_management/screens/homepage_screens/hot_news.dart';
-import 'package:petcare_app_management/screens/homepage_screens/news_details.dart';
-import 'package:petcare_app_management/screens/pet_screens/user_pets_container.dart';
+import 'package:petcare_app_management/screens/homepage_screens/list_pet_to_adopt.dart';
+import 'package:petcare_app_management/screens/homepage_screens/pet_type_list.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Functions/functions.dart';
-import 'package:petcare_app_management/share/Widgets/apptext.dart';
 import 'package:petcare_app_management/share/Widgets/loading_screen.dart';
-import 'package:petcare_app_management/share/format/format.dart';
 
 class HomepageScreen extends StatefulWidget {
   const HomepageScreen({super.key});
@@ -29,13 +24,13 @@ class _HomepageScreenState extends State<HomepageScreen> {
   final AppController appController = Get.find();
   final NewsController newsController = Get.find();
   final PetController petController = Get.find();
+  ScrollController scrollController = ScrollController();
 
   @override
   void initState() {
     // TODO: implement initState
     onWidgetBuildDone(() async {
       await newsController.getNews();
-      await petController.getListPets(userId: userController.userInfo.value!.userId!);
     });
     super.initState();
   }
@@ -45,6 +40,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
     // TODO: implement dispose
     newsController.listNews.clear();
     petController.listPets.clear();
+    scrollController.dispose();
     super.dispose();
   }
 
@@ -58,10 +54,59 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 vertical: Dimens.padding_vertical),
             child: Column(
               children: <Widget>[
+                _buildSearchBar(),
+                Dimens.height20,
+                const PetTypeList(),
+                Dimens.height20,
+                Expanded(
+                    child: SingleChildScrollView( controller: scrollController,scrollDirection: Axis.vertical, child: ListPetToAdopt()))
                 // HotNews()
-                UserPetsContainer()
+                // UserPetsContainer()
               ],
             ),
           ));
+  }
+
+  _buildBoxShadow() {
+    return Positioned.fill(
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(Dimens.circular12),
+            boxShadow: [
+              BoxShadow(
+                color: AppColor.black.withOpacity(0.2),
+                spreadRadius: 2,
+                blurRadius: 5,
+                offset: const Offset(3, 3),
+              ),
+            ]),
+      ),
+    );
+  }
+
+  _buildSearchBar() {
+    return Stack(
+      children: <Widget>[
+        _buildBoxShadow(),
+        Container(
+          padding: const EdgeInsets.only(left: Dimens.padding_5),
+          decoration: BoxDecoration(
+              color: AppColor.white,
+              borderRadius: BorderRadius.circular(Dimens.sizeValue10)),
+          child: const TextField(
+            style: TextStyle(color: AppColor.grey),
+            decoration: InputDecoration(
+                border: InputBorder.none,
+                hintStyle: TextStyle(
+                    color: AppColor.grey, fontWeight: FontWeight.bold),
+                hintText: 'Search ...',
+                icon: Icon(
+                  Icons.search,
+                  color: AppColor.black,
+                )),
+          ),
+        )
+      ],
+    );
   }
 }

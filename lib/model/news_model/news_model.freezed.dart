@@ -20,20 +20,28 @@ NewsModel _$NewsModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$NewsModel {
-  @JsonKey(name: 'author')
-  String? get author => throw _privateConstructorUsedError;
-  @JsonKey(name: 'title')
-  String? get title => throw _privateConstructorUsedError;
-  @JsonKey(name: 'description')
-  String? get description => throw _privateConstructorUsedError;
-  @JsonKey(name: 'url')
-  String? get url => throw _privateConstructorUsedError;
-  @JsonKey(name: 'urlToImage')
-  String? get urlToImage => throw _privateConstructorUsedError;
-  @JsonKey(name: 'publishedAt')
-  String? get publishedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'content')
-  String? get content => throw _privateConstructorUsedError;
+  @JsonKey(name: 'newsId')
+  int? get newsId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'newsTitle')
+  String? get newsTitle => throw _privateConstructorUsedError;
+  @JsonKey(name: 'newsURL')
+  String? get newsURL => throw _privateConstructorUsedError;
+  @JsonKey(name: 'newsTypeName')
+  String? get newsTypeName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'newsTypeId')
+  int? get newsTypeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'publicDate')
+  String? get publicDate => throw _privateConstructorUsedError;
+  @JsonKey(name: 'publicByShopId')
+  int? get publicByShopId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'newsData')
+  String? get newsData => throw _privateConstructorUsedError;
+  @JsonKey(name: 'location')
+  String? get location => throw _privateConstructorUsedError;
+  @JsonKey(name: 'abandonAnimalTypeId')
+  int? get abandonAnimalTypeId => throw _privateConstructorUsedError;
+  @JsonKey(name: 'abandonAnimalTypeName')
+  String? get abandonAnimalTypeName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -47,13 +55,17 @@ abstract class $NewsModelCopyWith<$Res> {
       _$NewsModelCopyWithImpl<$Res, NewsModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'author') String? author,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'url') String? url,
-      @JsonKey(name: 'urlToImage') String? urlToImage,
-      @JsonKey(name: 'publishedAt') String? publishedAt,
-      @JsonKey(name: 'content') String? content});
+      {@JsonKey(name: 'newsId') int? newsId,
+      @JsonKey(name: 'newsTitle') String? newsTitle,
+      @JsonKey(name: 'newsURL') String? newsURL,
+      @JsonKey(name: 'newsTypeName') String? newsTypeName,
+      @JsonKey(name: 'newsTypeId') int? newsTypeId,
+      @JsonKey(name: 'publicDate') String? publicDate,
+      @JsonKey(name: 'publicByShopId') int? publicByShopId,
+      @JsonKey(name: 'newsData') String? newsData,
+      @JsonKey(name: 'location') String? location,
+      @JsonKey(name: 'abandonAnimalTypeId') int? abandonAnimalTypeId,
+      @JsonKey(name: 'abandonAnimalTypeName') String? abandonAnimalTypeName});
 }
 
 /// @nodoc
@@ -69,42 +81,62 @@ class _$NewsModelCopyWithImpl<$Res, $Val extends NewsModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? author = freezed,
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? url = freezed,
-    Object? urlToImage = freezed,
-    Object? publishedAt = freezed,
-    Object? content = freezed,
+    Object? newsId = freezed,
+    Object? newsTitle = freezed,
+    Object? newsURL = freezed,
+    Object? newsTypeName = freezed,
+    Object? newsTypeId = freezed,
+    Object? publicDate = freezed,
+    Object? publicByShopId = freezed,
+    Object? newsData = freezed,
+    Object? location = freezed,
+    Object? abandonAnimalTypeId = freezed,
+    Object? abandonAnimalTypeName = freezed,
   }) {
     return _then(_value.copyWith(
-      author: freezed == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
+      newsId: freezed == newsId
+          ? _value.newsId
+          : newsId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      newsTitle: freezed == newsTitle
+          ? _value.newsTitle
+          : newsTitle // ignore: cast_nullable_to_non_nullable
               as String?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      newsURL: freezed == newsURL
+          ? _value.newsURL
+          : newsURL // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
+      newsTypeName: freezed == newsTypeName
+          ? _value.newsTypeName
+          : newsTypeName // ignore: cast_nullable_to_non_nullable
               as String?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      newsTypeId: freezed == newsTypeId
+          ? _value.newsTypeId
+          : newsTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      publicDate: freezed == publicDate
+          ? _value.publicDate
+          : publicDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      urlToImage: freezed == urlToImage
-          ? _value.urlToImage
-          : urlToImage // ignore: cast_nullable_to_non_nullable
+      publicByShopId: freezed == publicByShopId
+          ? _value.publicByShopId
+          : publicByShopId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      newsData: freezed == newsData
+          ? _value.newsData
+          : newsData // ignore: cast_nullable_to_non_nullable
               as String?,
-      publishedAt: freezed == publishedAt
-          ? _value.publishedAt
-          : publishedAt // ignore: cast_nullable_to_non_nullable
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
               as String?,
-      content: freezed == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
+      abandonAnimalTypeId: freezed == abandonAnimalTypeId
+          ? _value.abandonAnimalTypeId
+          : abandonAnimalTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      abandonAnimalTypeName: freezed == abandonAnimalTypeName
+          ? _value.abandonAnimalTypeName
+          : abandonAnimalTypeName // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -119,13 +151,17 @@ abstract class _$$NewsModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'author') String? author,
-      @JsonKey(name: 'title') String? title,
-      @JsonKey(name: 'description') String? description,
-      @JsonKey(name: 'url') String? url,
-      @JsonKey(name: 'urlToImage') String? urlToImage,
-      @JsonKey(name: 'publishedAt') String? publishedAt,
-      @JsonKey(name: 'content') String? content});
+      {@JsonKey(name: 'newsId') int? newsId,
+      @JsonKey(name: 'newsTitle') String? newsTitle,
+      @JsonKey(name: 'newsURL') String? newsURL,
+      @JsonKey(name: 'newsTypeName') String? newsTypeName,
+      @JsonKey(name: 'newsTypeId') int? newsTypeId,
+      @JsonKey(name: 'publicDate') String? publicDate,
+      @JsonKey(name: 'publicByShopId') int? publicByShopId,
+      @JsonKey(name: 'newsData') String? newsData,
+      @JsonKey(name: 'location') String? location,
+      @JsonKey(name: 'abandonAnimalTypeId') int? abandonAnimalTypeId,
+      @JsonKey(name: 'abandonAnimalTypeName') String? abandonAnimalTypeName});
 }
 
 /// @nodoc
@@ -139,42 +175,62 @@ class __$$NewsModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? author = freezed,
-    Object? title = freezed,
-    Object? description = freezed,
-    Object? url = freezed,
-    Object? urlToImage = freezed,
-    Object? publishedAt = freezed,
-    Object? content = freezed,
+    Object? newsId = freezed,
+    Object? newsTitle = freezed,
+    Object? newsURL = freezed,
+    Object? newsTypeName = freezed,
+    Object? newsTypeId = freezed,
+    Object? publicDate = freezed,
+    Object? publicByShopId = freezed,
+    Object? newsData = freezed,
+    Object? location = freezed,
+    Object? abandonAnimalTypeId = freezed,
+    Object? abandonAnimalTypeName = freezed,
   }) {
     return _then(_$NewsModelImpl(
-      author: freezed == author
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
+      newsId: freezed == newsId
+          ? _value.newsId
+          : newsId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      newsTitle: freezed == newsTitle
+          ? _value.newsTitle
+          : newsTitle // ignore: cast_nullable_to_non_nullable
               as String?,
-      title: freezed == title
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
+      newsURL: freezed == newsURL
+          ? _value.newsURL
+          : newsURL // ignore: cast_nullable_to_non_nullable
               as String?,
-      description: freezed == description
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
+      newsTypeName: freezed == newsTypeName
+          ? _value.newsTypeName
+          : newsTypeName // ignore: cast_nullable_to_non_nullable
               as String?,
-      url: freezed == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
+      newsTypeId: freezed == newsTypeId
+          ? _value.newsTypeId
+          : newsTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      publicDate: freezed == publicDate
+          ? _value.publicDate
+          : publicDate // ignore: cast_nullable_to_non_nullable
               as String?,
-      urlToImage: freezed == urlToImage
-          ? _value.urlToImage
-          : urlToImage // ignore: cast_nullable_to_non_nullable
+      publicByShopId: freezed == publicByShopId
+          ? _value.publicByShopId
+          : publicByShopId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      newsData: freezed == newsData
+          ? _value.newsData
+          : newsData // ignore: cast_nullable_to_non_nullable
               as String?,
-      publishedAt: freezed == publishedAt
-          ? _value.publishedAt
-          : publishedAt // ignore: cast_nullable_to_non_nullable
+      location: freezed == location
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
               as String?,
-      content: freezed == content
-          ? _value.content
-          : content // ignore: cast_nullable_to_non_nullable
+      abandonAnimalTypeId: freezed == abandonAnimalTypeId
+          ? _value.abandonAnimalTypeId
+          : abandonAnimalTypeId // ignore: cast_nullable_to_non_nullable
+              as int?,
+      abandonAnimalTypeName: freezed == abandonAnimalTypeName
+          ? _value.abandonAnimalTypeName
+          : abandonAnimalTypeName // ignore: cast_nullable_to_non_nullable
               as String?,
     ));
   }
@@ -185,42 +241,58 @@ class __$$NewsModelImplCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
 class _$NewsModelImpl implements _NewsModel {
   const _$NewsModelImpl(
-      {@JsonKey(name: 'author') this.author,
-      @JsonKey(name: 'title') this.title,
-      @JsonKey(name: 'description') this.description,
-      @JsonKey(name: 'url') this.url,
-      @JsonKey(name: 'urlToImage') this.urlToImage,
-      @JsonKey(name: 'publishedAt') this.publishedAt,
-      @JsonKey(name: 'content') this.content});
+      {@JsonKey(name: 'newsId') this.newsId,
+      @JsonKey(name: 'newsTitle') this.newsTitle,
+      @JsonKey(name: 'newsURL') this.newsURL,
+      @JsonKey(name: 'newsTypeName') this.newsTypeName,
+      @JsonKey(name: 'newsTypeId') this.newsTypeId,
+      @JsonKey(name: 'publicDate') this.publicDate,
+      @JsonKey(name: 'publicByShopId') this.publicByShopId,
+      @JsonKey(name: 'newsData') this.newsData,
+      @JsonKey(name: 'location') this.location,
+      @JsonKey(name: 'abandonAnimalTypeId') this.abandonAnimalTypeId,
+      @JsonKey(name: 'abandonAnimalTypeName') this.abandonAnimalTypeName});
 
   factory _$NewsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$NewsModelImplFromJson(json);
 
   @override
-  @JsonKey(name: 'author')
-  final String? author;
+  @JsonKey(name: 'newsId')
+  final int? newsId;
   @override
-  @JsonKey(name: 'title')
-  final String? title;
+  @JsonKey(name: 'newsTitle')
+  final String? newsTitle;
   @override
-  @JsonKey(name: 'description')
-  final String? description;
+  @JsonKey(name: 'newsURL')
+  final String? newsURL;
   @override
-  @JsonKey(name: 'url')
-  final String? url;
+  @JsonKey(name: 'newsTypeName')
+  final String? newsTypeName;
   @override
-  @JsonKey(name: 'urlToImage')
-  final String? urlToImage;
+  @JsonKey(name: 'newsTypeId')
+  final int? newsTypeId;
   @override
-  @JsonKey(name: 'publishedAt')
-  final String? publishedAt;
+  @JsonKey(name: 'publicDate')
+  final String? publicDate;
   @override
-  @JsonKey(name: 'content')
-  final String? content;
+  @JsonKey(name: 'publicByShopId')
+  final int? publicByShopId;
+  @override
+  @JsonKey(name: 'newsData')
+  final String? newsData;
+  @override
+  @JsonKey(name: 'location')
+  final String? location;
+  @override
+  @JsonKey(name: 'abandonAnimalTypeId')
+  final int? abandonAnimalTypeId;
+  @override
+  @JsonKey(name: 'abandonAnimalTypeName')
+  final String? abandonAnimalTypeName;
 
   @override
   String toString() {
-    return 'NewsModel(author: $author, title: $title, description: $description, url: $url, urlToImage: $urlToImage, publishedAt: $publishedAt, content: $content)';
+    return 'NewsModel(newsId: $newsId, newsTitle: $newsTitle, newsURL: $newsURL, newsTypeName: $newsTypeName, newsTypeId: $newsTypeId, publicDate: $publicDate, publicByShopId: $publicByShopId, newsData: $newsData, location: $location, abandonAnimalTypeId: $abandonAnimalTypeId, abandonAnimalTypeName: $abandonAnimalTypeName)';
   }
 
   @override
@@ -228,22 +300,43 @@ class _$NewsModelImpl implements _NewsModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NewsModelImpl &&
-            (identical(other.author, author) || other.author == author) &&
-            (identical(other.title, title) || other.title == title) &&
-            (identical(other.description, description) ||
-                other.description == description) &&
-            (identical(other.url, url) || other.url == url) &&
-            (identical(other.urlToImage, urlToImage) ||
-                other.urlToImage == urlToImage) &&
-            (identical(other.publishedAt, publishedAt) ||
-                other.publishedAt == publishedAt) &&
-            (identical(other.content, content) || other.content == content));
+            (identical(other.newsId, newsId) || other.newsId == newsId) &&
+            (identical(other.newsTitle, newsTitle) ||
+                other.newsTitle == newsTitle) &&
+            (identical(other.newsURL, newsURL) || other.newsURL == newsURL) &&
+            (identical(other.newsTypeName, newsTypeName) ||
+                other.newsTypeName == newsTypeName) &&
+            (identical(other.newsTypeId, newsTypeId) ||
+                other.newsTypeId == newsTypeId) &&
+            (identical(other.publicDate, publicDate) ||
+                other.publicDate == publicDate) &&
+            (identical(other.publicByShopId, publicByShopId) ||
+                other.publicByShopId == publicByShopId) &&
+            (identical(other.newsData, newsData) ||
+                other.newsData == newsData) &&
+            (identical(other.location, location) ||
+                other.location == location) &&
+            (identical(other.abandonAnimalTypeId, abandonAnimalTypeId) ||
+                other.abandonAnimalTypeId == abandonAnimalTypeId) &&
+            (identical(other.abandonAnimalTypeName, abandonAnimalTypeName) ||
+                other.abandonAnimalTypeName == abandonAnimalTypeName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, author, title, description, url,
-      urlToImage, publishedAt, content);
+  int get hashCode => Object.hash(
+      runtimeType,
+      newsId,
+      newsTitle,
+      newsURL,
+      newsTypeName,
+      newsTypeId,
+      publicDate,
+      publicByShopId,
+      newsData,
+      location,
+      abandonAnimalTypeId,
+      abandonAnimalTypeName);
 
   @JsonKey(ignore: true)
   @override
@@ -261,38 +354,55 @@ class _$NewsModelImpl implements _NewsModel {
 
 abstract class _NewsModel implements NewsModel {
   const factory _NewsModel(
-      {@JsonKey(name: 'author') final String? author,
-      @JsonKey(name: 'title') final String? title,
-      @JsonKey(name: 'description') final String? description,
-      @JsonKey(name: 'url') final String? url,
-      @JsonKey(name: 'urlToImage') final String? urlToImage,
-      @JsonKey(name: 'publishedAt') final String? publishedAt,
-      @JsonKey(name: 'content') final String? content}) = _$NewsModelImpl;
+      {@JsonKey(name: 'newsId') final int? newsId,
+      @JsonKey(name: 'newsTitle') final String? newsTitle,
+      @JsonKey(name: 'newsURL') final String? newsURL,
+      @JsonKey(name: 'newsTypeName') final String? newsTypeName,
+      @JsonKey(name: 'newsTypeId') final int? newsTypeId,
+      @JsonKey(name: 'publicDate') final String? publicDate,
+      @JsonKey(name: 'publicByShopId') final int? publicByShopId,
+      @JsonKey(name: 'newsData') final String? newsData,
+      @JsonKey(name: 'location') final String? location,
+      @JsonKey(name: 'abandonAnimalTypeId') final int? abandonAnimalTypeId,
+      @JsonKey(name: 'abandonAnimalTypeName')
+      final String? abandonAnimalTypeName}) = _$NewsModelImpl;
 
   factory _NewsModel.fromJson(Map<String, dynamic> json) =
       _$NewsModelImpl.fromJson;
 
   @override
-  @JsonKey(name: 'author')
-  String? get author;
+  @JsonKey(name: 'newsId')
+  int? get newsId;
   @override
-  @JsonKey(name: 'title')
-  String? get title;
+  @JsonKey(name: 'newsTitle')
+  String? get newsTitle;
   @override
-  @JsonKey(name: 'description')
-  String? get description;
+  @JsonKey(name: 'newsURL')
+  String? get newsURL;
   @override
-  @JsonKey(name: 'url')
-  String? get url;
+  @JsonKey(name: 'newsTypeName')
+  String? get newsTypeName;
   @override
-  @JsonKey(name: 'urlToImage')
-  String? get urlToImage;
+  @JsonKey(name: 'newsTypeId')
+  int? get newsTypeId;
   @override
-  @JsonKey(name: 'publishedAt')
-  String? get publishedAt;
+  @JsonKey(name: 'publicDate')
+  String? get publicDate;
   @override
-  @JsonKey(name: 'content')
-  String? get content;
+  @JsonKey(name: 'publicByShopId')
+  int? get publicByShopId;
+  @override
+  @JsonKey(name: 'newsData')
+  String? get newsData;
+  @override
+  @JsonKey(name: 'location')
+  String? get location;
+  @override
+  @JsonKey(name: 'abandonAnimalTypeId')
+  int? get abandonAnimalTypeId;
+  @override
+  @JsonKey(name: 'abandonAnimalTypeName')
+  String? get abandonAnimalTypeName;
   @override
   @JsonKey(ignore: true)
   _$$NewsModelImplCopyWith<_$NewsModelImpl> get copyWith =>

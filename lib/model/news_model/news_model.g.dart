@@ -8,22 +8,30 @@ part of 'news_model.dart';
 
 _$NewsModelImpl _$$NewsModelImplFromJson(Map<String, dynamic> json) =>
     _$NewsModelImpl(
-      author: json['author'] as String?,
-      title: json['title'] as String?,
-      description: json['description'] as String?,
-      url: json['url'] as String?,
-      urlToImage: json['urlToImage'] as String?,
-      publishedAt: json['publishedAt'] as String?,
-      content: json['content'] as String?,
+      newsId: (json['newsId'] as num?)?.toInt(),
+      newsTitle: json['newsTitle'] as String?,
+      newsURL: json['newsURL'] as String?,
+      newsTypeName: json['newsTypeName'] as String?,
+      newsTypeId: (json['newsTypeId'] as num?)?.toInt(),
+      publicDate: json['publicDate'] as String?,
+      publicByShopId: (json['publicByShopId'] as num?)?.toInt(),
+      newsData: json['newsData'] as String?,
+      location: json['location'] as String?,
+      abandonAnimalTypeId: (json['abandonAnimalTypeId'] as num?)?.toInt(),
+      abandonAnimalTypeName: json['abandonAnimalTypeName'] as String?,
     );
 
 Map<String, dynamic> _$$NewsModelImplToJson(_$NewsModelImpl instance) =>
     <String, dynamic>{
-      'author': instance.author,
-      'title': instance.title,
-      'description': instance.description,
-      'url': instance.url,
-      'urlToImage': instance.urlToImage,
-      'publishedAt': instance.publishedAt,
-      'content': instance.content,
+      'newsId': instance.newsId,
+      'newsTitle': instance.newsTitle,
+      'newsURL': instance.newsURL,
+      'newsTypeName': instance.newsTypeName,
+      'newsTypeId': instance.newsTypeId,
+      'publicDate': instance.publicDate,
+      'publicByShopId': instance.publicByShopId,
+      'newsData': instance.newsData,
+      'location': instance.location,
+      'abandonAnimalTypeId': instance.abandonAnimalTypeId,
+      'abandonAnimalTypeName': instance.abandonAnimalTypeName,
     };

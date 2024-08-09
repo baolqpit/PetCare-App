@@ -7,13 +7,19 @@ part 'news_model.g.dart';
 class NewsModel with _$NewsModel {
   @JsonSerializable(fieldRename: FieldRename.snake, explicitToJson: true)
   const factory NewsModel({
-    @JsonKey(name: 'author') String? author,
-    @JsonKey(name: 'title') String? title,
-    @JsonKey(name: 'description') String? description,
-    @JsonKey(name: 'url') String? url,
-    @JsonKey(name: 'urlToImage') String? urlToImage,
-    @JsonKey(name: 'publishedAt') String? publishedAt,
-    @JsonKey(name: 'content') String? content,
+    @JsonKey(name: 'newsId') int? newsId,
+    @JsonKey(name: 'newsTitle') String? newsTitle,
+    @JsonKey(name: 'newsURL') String? newsURL,
+    @JsonKey(name: 'newsTypeName') String? newsTypeName,
+    @JsonKey(name: 'newsTypeId') int? newsTypeId,
+    @JsonKey(name: 'publicDate') String? publicDate,
+    @JsonKey(name: 'publicByShopId') int? publicByShopId,
+    @JsonKey(name: 'newsData') String? newsData,
+    @JsonKey(name: 'location') String? location,
+    @JsonKey(name: 'abandonAnimalTypeId') int? abandonAnimalTypeId,
+    @JsonKey(name: 'abandonAnimalTypeName') String? abandonAnimalTypeName,
+
+
   }) = _NewsModel;
 
   factory NewsModel.fromJson(Map<String, dynamic> json) =>
