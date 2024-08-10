@@ -5,6 +5,7 @@ import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/news_controller.dart';
 import 'package:petcare_app_management/controllers/pet_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
+import 'package:petcare_app_management/screens/homepage_screens/create_news_screen.dart';
 import 'package:petcare_app_management/screens/homepage_screens/list_pet_to_adopt.dart';
 import 'package:petcare_app_management/screens/homepage_screens/pet_type_list.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
@@ -54,12 +55,29 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 vertical: Dimens.padding_vertical),
             child: Column(
               children: <Widget>[
-                _buildSearchBar(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Expanded(child: _buildSearchBar()),
+                    Dimens.width10,
+                    Ink(
+                      decoration: const ShapeDecoration(
+                        color: AppColor.primary,
+                        shape: CircleBorder(),
+                      ),
+                      child: IconButton(
+                        icon: const Icon(Icons.create),
+                        color: Colors.white,
+                        onPressed: () => Get.to(() => const CreateNewsScreen()),
+                      ),
+                    ),
+                  ],
+                ),
                 Dimens.height20,
                 const PetTypeList(),
                 Dimens.height20,
                 Expanded(
-                    child: SingleChildScrollView( controller: scrollController,scrollDirection: Axis.vertical, child: ListPetToAdopt()))
+                    child: SingleChildScrollView( controller: scrollController,scrollDirection: Axis.vertical, child: ListPetToAdopt())),
                 // HotNews()
                 // UserPetsContainer()
               ],
