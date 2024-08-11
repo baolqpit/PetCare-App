@@ -9,8 +9,6 @@ import 'package:petcare_app_management/helper/shared_preferences_helper.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Functions/functions.dart';
-import 'package:petcare_app_management/share/Widgets/apptext.dart';
-import 'package:petcare_app_management/share/Widgets/loading_screen.dart';
 import 'package:petcare_app_management/share/screen_and_menu.dart';
 
 import 'setting_screens/setting_screen.dart';
@@ -36,6 +34,7 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
       await SharedPreferencesHelper().getUserAccount();
       await userController.getUserByEmail(email: userController.emailController.text);
       await newsController.getNews();
+      await newsController.getAdoptRequest();
       mainController.initialSetUp();
     });
     super.initState();
@@ -84,10 +83,5 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
         appController.currentAppPageIndex.value = index;
       },
     ));
-  }
-
-  Future<void> fetchData() async {
-    await SharedPreferencesHelper().getUserAccount();
-    await userController.getUserByEmail(email: userController.emailController.text);
   }
 }

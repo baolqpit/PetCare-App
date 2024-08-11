@@ -77,7 +77,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 const PetTypeList(),
                 Dimens.height20,
                 Expanded(
-                    child: SingleChildScrollView( controller: scrollController,scrollDirection: Axis.vertical, child: ListPetToAdopt())),
+                    child: SingleChildScrollView( controller: scrollController,scrollDirection: Axis.vertical, child: const ListPetToAdopt())),
                 // HotNews()
                 // UserPetsContainer()
               ],

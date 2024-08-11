@@ -10,7 +10,7 @@ import 'package:multi_select_flutter/multi_select_flutter.dart';
 import 'package:petcare_app_management/constants/Constants.dart';
 import 'package:petcare_app_management/controllers/news_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
-import 'package:petcare_app_management/model/news_model/news_model.dart';
+import 'package:petcare_app_management/model/news_model/news_model/news_model.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
@@ -37,6 +37,10 @@ class _CreateNewsScreenState extends State<CreateNewsScreen> {
   void dispose() {
     // TODO: implement dispose
     scrollController.dispose();
+    newsTitleController.clear();
+    newsContentController.clear();
+    locationController.clear();
+    petTypeGroupId.value = 1;
     super.dispose();
   }
 
