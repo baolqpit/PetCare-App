@@ -1,3 +1,5 @@
+import 'package:get/get_rx/src/rx_types/rx_types.dart';
+
 class Constants {
   static const List<String> LIST_BUTTONS_FUNCTION = [
     "Sale",
@@ -34,4 +36,12 @@ class Constants {
       'url': "https://static.vecteezy.com/system/resources/previews/023/170/625/original/cute-kawaii-snake-chibi-mascot-cartoon-style-vector.jpg",
     },
   ];
+
+  static RxList<dynamic> LIST_PET_ABOUT_ATTRIBUTES = RxList([
+    {'label': 'Train', 'isSelected': false},
+    {'label': 'Vaccinated', 'isSelected': false},
+    {'label': 'Male', 'isSelected': false},
+    {'label': 'Female', 'isSelected': false},
+    {'label': 'Spayed', 'isSelected': false},
+  ]);
 }

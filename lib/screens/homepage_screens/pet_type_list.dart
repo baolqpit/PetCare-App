@@ -20,7 +20,7 @@ class _PetTypeListState extends State<PetTypeList> {
       child: Row(
         children: Constants.LIST_PET_TYPE
             .map((petType) => Padding(
-              padding: EdgeInsets.only(right: Dimens.sizeValue10),
+              padding: const EdgeInsets.only(right: Dimens.sizeValue10),
               child: Stack(
                     children: <Widget>[
                       _buildBoxShadow(),
