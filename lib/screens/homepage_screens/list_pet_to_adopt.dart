@@ -65,10 +65,10 @@ class _ListPetToAdoptState extends State<ListPetToAdopt> {
                                   ),
                                   !newsController
                                           .getBoolValueToDisplayAdoptButton(
-                                              newsId: news.newsId!)
+                                              newsId: news.newsId!).value
                                       ? ElevatedButton(
                                           onPressed: () async {
-                                            // await newsController.createAdoptRequest(newsId: news.newsId!);
+                                            await newsController.createAdoptRequest(newsId: news.newsId!);
                                           },
                                           style: ElevatedButton.styleFrom(
                                               backgroundColor: AppColor.black),
@@ -132,6 +132,4 @@ class _ListPetToAdoptState extends State<ListPetToAdopt> {
                 .toList(),
           ));
   }
-
-  getNewsToAdopt() {}
 }
