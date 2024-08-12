@@ -6,6 +6,7 @@ import 'package:petcare_app_management/controllers/news_controller.dart';
 import 'package:petcare_app_management/controllers/pet_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/shared_preferences_helper.dart';
+import 'package:petcare_app_management/screens/homepage_screens/history/adopt_history_screen.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Functions/functions.dart';
@@ -32,31 +33,48 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
     // TODO: implement initState
     onWidgetBuildDone(() async {
       await SharedPreferencesHelper().getUserAccount();
-      await userController.getUserByEmail(email: userController.emailController.text);
+      await userController.getUserByEmail(
+          email: userController.emailController.text);
       await newsController.getNews();
       await newsController.getAdoptRequest();
       mainController.initialSetUp();
     });
     super.initState();
-
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: _buildAppBar(),
-      body: _buildAppBodyStructure(),
-      bottomNavigationBar: _buildAppBottomBar(),
-    );
+    return Obx(() => Scaffold(
+          appBar: _buildAppBar(),
+          body: _buildAppBodyStructure(),
+          bottomNavigationBar: _buildAppBottomBar(),
+          floatingActionButton: appController.currentAppPageIndex.value == 0
+              ? FloatingActionButton(
+                  onPressed: () => Get.to(() => const AdoptHistoryScreen()),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50.0)),
+                  backgroundColor: AppColor.colorContainerPink,
+                  child: const Icon(
+                    Icons.history,
+                    color: AppColor.black,
+                  ),
+                )
+              : null,
+        ));
   }
 
   _buildAppBar() {
     return AppBar(
       backgroundColor: AppColor.primary,
       actions: [
-        IconButton(onPressed: (){}, icon: Icon(Icons.notifications, color: AppColor.white,)),
         IconButton(
-            onPressed: () => Get.to(() => SettingScreen()),
+            onPressed: () {},
+            icon: const Icon(
+              Icons.notifications,
+              color: AppColor.white,
+            )),
+        IconButton(
+            onPressed: () => Get.to(() => const SettingScreen()),
             icon: const Icon(
               Icons.settings,
               color: AppColor.white,
@@ -66,22 +84,23 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
   }
 
   _buildAppBodyStructure() {
-    return Obx(() => ScreenAndMenu.listCustomerScreens.
-        elementAt(appController.currentAppPageIndex.value));
+    return Obx(() => ScreenAndMenu.listCustomerScreens
+        .elementAt(appController.currentAppPageIndex.value));
   }
 
   _buildAppBottomBar() {
     return Obx(() => BottomNavigationBar(
-      items: ScreenAndMenu.listCustomerIcons,
-      unselectedLabelStyle: const TextStyle(fontSize: Dimens.font_size_min),
-      showUnselectedLabels: true,
-      unselectedItemColor: AppColor.black,
-      selectedItemColor: AppColor.primary,
-      selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold, fontSize: Dimens.font_size_min),
-      currentIndex: appController.currentAppPageIndex.value,
-      onTap: (index) {
-        appController.currentAppPageIndex.value = index;
-      },
-    ));
+          items: ScreenAndMenu.listCustomerIcons,
+          unselectedLabelStyle: const TextStyle(fontSize: Dimens.font_size_min),
+          showUnselectedLabels: true,
+          unselectedItemColor: AppColor.black,
+          selectedItemColor: AppColor.primary,
+          selectedLabelStyle: const TextStyle(
+              fontWeight: FontWeight.bold, fontSize: Dimens.font_size_min),
+          currentIndex: appController.currentAppPageIndex.value,
+          onTap: (index) {
+            appController.currentAppPageIndex.value = index;
+          },
+        ));
   }
 }
