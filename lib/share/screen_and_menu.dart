@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
-import 'package:petcare_app_management/screens/homepage_screens/homepage_screen.dart';
+import 'package:petcare_app_management/screens/homepage_screens/main/homepage_screen.dart';
 import 'package:petcare_app_management/screens/pet_store_screens/main/pet_store_screen.dart';
 import 'package:petcare_app_management/screens/user_screen/user_info_screen.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';

@@ -79,7 +79,17 @@ class NewsController extends GetxController {
   ///GET BOOL VALUE TO DISPLAY ADOPT BUTTON
   Rx<bool> getBoolValueToDisplayAdoptButton({required int newsId}){
     AdoptRequestModel? result = listAdoptRequests.firstWhereOrNull((request) => request.newsId == newsId);
-    print(result);
     return result == null ? false.obs : true.obs;
+  }
+
+  ///UPDATE ADOPT REQUEST
+  updateAdoptRequest({required int adoptRequestId, required int requestStatusId, required String requestStatusName}) async {
+    appController.isLoading.value = true;
+    var data = {
+      'adoptRequestStatusId': requestStatusId,
+      'adoptRequestStatusName': requestStatusName
+    };
+    await NewsApi().updateAdoptRequest(data: data, adoptRequestId: adoptRequestId);
+    appController.isLoading.value = false;
   }
 }

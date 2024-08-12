@@ -6,6 +6,7 @@ class NewsApi extends BaseApi {
   final CREATE_NEWS = 'News/CreateNews';
   final CREATE_ADOPT_REQUEST = 'News/CreateAdoptRequest';
   final GET_ADOPT_REQUEST = 'News/GetAdoptRequestByUserId';
+  final UPDATE_ADOPT_REQUEST = 'News/UpdateAdoptRequest';
 
   ///GET NEWS
   getNews() {
@@ -28,5 +29,13 @@ class NewsApi extends BaseApi {
       'userId': userId
     };
     return BaseApi().getPetCareAppDataFromAPI(url: GET_ADOPT_REQUEST, queryParameters: param);
+  }
+
+  ///UPDATE ADOPT REQUESTS
+  updateAdoptRequest({required Map<String, dynamic> data, required int adoptRequestId}){
+    var param = {
+      "AdoptRequestId": adoptRequestId
+    };
+    return BaseApi().putPetCareAppDataFromApi(url: UPDATE_ADOPT_REQUEST, queryParameters: param, data: data);
   }
 }

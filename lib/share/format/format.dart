@@ -18,3 +18,7 @@ formatNumberToVND({required int number}){
 formatToBirthday({required String datetime}){
   return DateFormat('dd/MM/yyyy').format(DateTime.parse(datetime));
 }
+
+formatToDateTimeWithExactlyTime({required String datetime}){
+  return  DateFormat('MMM d, yyyy h:mm a').format(DateTime.parse(datetime));
+}

@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/news_controller.dart';
 import 'package:petcare_app_management/screens/feature_screens/no_data_found_screen.dart';
-import 'package:petcare_app_management/screens/homepage_screens/pet_detail.dart';
+import 'package:petcare_app_management/screens/homepage_screens/pet_detail/pet_detail.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Images/images.dart';
@@ -75,15 +75,18 @@ class _ListPetToAdoptState extends State<ListPetToAdopt> {
                                                 builder: (context) {
                                                   return showAlertDialog(
                                                       context: context,
-                                                      onSubmitFunction: () async {
+                                                      onSubmitFunction:
+                                                          () async {
                                                         await newsController
                                                             .createAdoptRequest(
-                                                            newsId: news
-                                                                .newsId!);
+                                                                newsId: news
+                                                                    .newsId!);
                                                         Get.back();
                                                       },
                                                       title: 'Confirm Adopt',
-                                                      widget: AppText(content: 'Make sure to adopt this pet! Your request will be sent to the owner'));
+                                                      widget: AppText(
+                                                          content:
+                                                              'Make sure to adopt this pet! Your request will be sent to the owner'));
                                                 });
                                           },
                                           style: ElevatedButton.styleFrom(
@@ -145,7 +148,7 @@ class _ListPetToAdoptState extends State<ListPetToAdopt> {
                             ],
                           ),
                         ),
-                        const Divider()
+                        const Divider(),
                       ],
                     ))
                 .toList(),
