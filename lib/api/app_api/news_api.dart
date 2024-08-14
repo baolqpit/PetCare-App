@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:petcare_app_management/api/base_api/base_api.dart';
 
 class NewsApi extends BaseApi {
@@ -5,8 +6,10 @@ class NewsApi extends BaseApi {
   final GET_LIST_NEWS = 'News/GetListNews';
   final CREATE_NEWS = 'News/CreateNews';
   final CREATE_ADOPT_REQUEST = 'News/CreateAdoptRequest';
-  final GET_ADOPT_REQUEST = 'News/GetAdoptRequestByUserId';
+  final GET_ADOPT_REQUEST_RECEIVE = 'News/GetListAdoptRequestInListUserNews';
+  final GET_ADOPT_REQUEST_SEND = 'News/GetListAdoptRequestSendByAppUser';
   final UPDATE_ADOPT_REQUEST = 'News/UpdateAdoptRequest';
+  final DELETE_NEWS = 'News/DeleteNewsByNewsId';
 
   ///GET NEWS
   getNews() {
@@ -23,12 +26,21 @@ class NewsApi extends BaseApi {
     return BaseApi().postPetCareAppDataFromAPI(url: CREATE_ADOPT_REQUEST, data: data);
   }
 
-  ///GET ADOPT REQUESTS
-  getAdoptRequests({required int userId}){
+  ///GET LIST ADOPT REQUESTS RECEIVE
+  getAdoptRequestsReceive({required int userId}){
+    var param = {
+      'shopId': userId
+    };
+    return BaseApi().getPetCareAppDataFromAPI(url: GET_ADOPT_REQUEST_RECEIVE, queryParameters: param);
+  }
+
+
+  ///GET LIST ADOPT REQUESTS RECEIVE
+  getAdoptRequestsSend({required int userId}){
     var param = {
       'userId': userId
     };
-    return BaseApi().getPetCareAppDataFromAPI(url: GET_ADOPT_REQUEST, queryParameters: param);
+    return BaseApi().getPetCareAppDataFromAPI(url: GET_ADOPT_REQUEST_SEND, queryParameters: param);
   }
 
   ///UPDATE ADOPT REQUESTS
@@ -37,5 +49,13 @@ class NewsApi extends BaseApi {
       "AdoptRequestId": adoptRequestId
     };
     return BaseApi().putPetCareAppDataFromApi(url: UPDATE_ADOPT_REQUEST, queryParameters: param, data: data);
+  }
+  
+  ///DELETE USER NEWS
+  deleteUserNews({required int newsId}){
+    var param = {
+      'newsId': newsId
+    };
+    return BaseApi().deletePetCareAppDataFromApi(url: DELETE_NEWS, queryParameters: param);
   }
 }
