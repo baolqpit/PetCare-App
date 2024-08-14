@@ -39,8 +39,8 @@ class _PetCareState extends State<PetCare> {
     return GetMaterialApp(
       initialBinding: InitialBinding(),
       theme: ThemeData(
-        fontFamily: 'Raleway',
-        textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Raleway'),
+        fontFamily: 'Satoshi',
+        textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Satoshi'),
       ),
       home:
       StreamBuilder(stream: AuthHelper().authStateChanges, builder: (context, snapshot){

@@ -92,6 +92,13 @@ flutter:
           style: italic
         - asset: lib/share/Font/Raleway/static/Raleway-Bold.ttf
           weight: 600
+    - family: Satoshi
+      fonts:
+        - asset: lib/share/Font/Satoshi/satoshi-cufonfonts/Satoshi-Regular.otf
+        - asset: lib/share/Font/Satoshi/satoshi-cufonfonts/Satoshi-Light.otf
+          style: italic
+        - asset: lib/share/Font/Satoshi/satoshi-cufonfonts/Satoshi-Bold.otf
+          weight: 600
 
   # To add assets to your application, add an assets section, like this:
 #   assets:
