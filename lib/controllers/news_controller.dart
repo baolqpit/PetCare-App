@@ -13,7 +13,9 @@ class NewsController extends GetxController {
   final AppController appController = Get.find();
   final UserController userController = Get.find();
   RxList<NewsModel> listNews = RxList<NewsModel>([]);
-  RxList<AdoptRequestModel> listAdoptRequests = RxList<AdoptRequestModel>([]);
+  RxList<AdoptRequestModel> listAdoptRequestsReceive = RxList<AdoptRequestModel>([]);
+  RxList<AdoptRequestModel> listAdoptRequestsSend = RxList<AdoptRequestModel>([]);
+
 
   ///GET NEWS
   getNews() async {
@@ -48,7 +50,7 @@ class NewsController extends GetxController {
   }
 
   ///CREATE ADOPT REQUEST
-  createAdoptRequest({required int newsId}) async {
+  createAdoptRequest({required int newsId, required int newsCreatedByUserId}) async {
     appController.isLoading.value = true;
     Map<String, dynamic> data = {
       "sendByUserId": userController.userInfo.value!.userId,
@@ -57,20 +59,31 @@ class NewsController extends GetxController {
       "sendDate": DateTime.now().toUtc().toIso8601String(),
       "adoptRequestStatusId": 0,
       "adoptRequestStatusName": "Waiting",
-      "newsId": newsId
+      "newsId": newsId,
+      "newsCreatedByUserId": newsCreatedByUserId
     };
     await NewsApi().createAdoptRequest(data: data);
-    await getAdoptRequest();
+    await getListAdoptRequestSend();
     getBoolValueToDisplayAdoptButton(newsId: newsId);
     appController.isLoading.value = false;
   }
 
-  ///GET ADOPT REQUEST
-  getAdoptRequest() async {
+  ///GET LIST ADOPT REQUEST RECEIVE
+  getListAdoptRequestReceive() async {
     appController.isLoading.value = true;
     var res = await NewsApi()
-        .getAdoptRequests(userId: userController.userInfo.value!.userId!);
-    listAdoptRequests.value = res
+        .getAdoptRequestsReceive(userId: userController.userInfo.value!.userId!);
+    listAdoptRequestsReceive.value = res
+        .map<AdoptRequestModel>((json) => AdoptRequestModel.fromJson(json))
+        .toList();
+    appController.isLoading.value = false;
+  }
+
+  ///GET LIST ADOPT REQUEST SEND
+  getListAdoptRequestSend() async {
+    appController.isLoading.value = true;
+    var res = await NewsApi().getAdoptRequestsSend(userId: userController.userInfo.value!.userId!);
+    listAdoptRequestsSend.value = res
         .map<AdoptRequestModel>((json) => AdoptRequestModel.fromJson(json))
         .toList();
     appController.isLoading.value = false;
@@ -78,7 +91,7 @@ class NewsController extends GetxController {
 
   ///GET BOOL VALUE TO DISPLAY ADOPT BUTTON
   Rx<bool> getBoolValueToDisplayAdoptButton({required int newsId}){
-    AdoptRequestModel? result = listAdoptRequests.firstWhereOrNull((request) => request.newsId == newsId);
+    AdoptRequestModel? result = listAdoptRequestsReceive.firstWhereOrNull((request) => request.newsId == newsId);
     return result == null ? false.obs : true.obs;
   }
 
@@ -90,6 +103,15 @@ class NewsController extends GetxController {
       'adoptRequestStatusName': requestStatusName
     };
     await NewsApi().updateAdoptRequest(data: data, adoptRequestId: adoptRequestId);
+    await getListAdoptRequestReceive();
+    appController.isLoading.value = false;
+  }
+
+  ///DELETE USER NEWS
+  deleteUserNews({required int newsId}) async {
+    appController.isLoading.value = true;
+    await NewsApi().deleteUserNews(newsId: newsId);
+    await getNews();
     appController.isLoading.value = false;
   }
 }

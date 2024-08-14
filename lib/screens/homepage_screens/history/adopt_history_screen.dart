@@ -7,6 +7,7 @@ import 'package:petcare_app_management/model/news_model/adopt_request_model/adop
 import 'package:petcare_app_management/model/news_model/news_model/news_model.dart';
 import 'package:petcare_app_management/screens/feature_screens/no_data_found_screen.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
+import 'package:petcare_app_management/share/Functions/functions.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
 import 'package:petcare_app_management/share/Widgets/custom_app_bar.dart';
 import 'package:petcare_app_management/share/Widgets/dialog.dart';
@@ -24,6 +25,19 @@ class AdoptHistoryScreen extends StatefulWidget {
 class _AdoptHistoryScreenState extends State<AdoptHistoryScreen> {
   final NewsController newsController = Get.find();
   @override
+  void initState() {
+    // TODO: implement initState
+    onWidgetBuildDone(() async => await newsController.getListAdoptRequestReceive());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    newsController.listAdoptRequestsReceive.clear();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(title: 'History', showReturnButton: true),
@@ -31,11 +45,11 @@ class _AdoptHistoryScreenState extends State<AdoptHistoryScreen> {
             padding: const EdgeInsets.symmetric(
                 horizontal: Dimens.padding_horizontal,
                 vertical: Dimens.padding_vertical),
-            child: newsController.listAdoptRequests.isEmpty
+            child: newsController.listAdoptRequestsReceive.isEmpty
                 ? const Center(child: NoDataFoundScreen())
                 : SingleChildScrollView(
                     child: Column(
-                      children: newsController.listAdoptRequests
+                      children: newsController.listAdoptRequestsReceive
                           .map((request) => Padding(
                                 padding: const EdgeInsets.only(
                                     bottom: Dimens.padding_horizontal),

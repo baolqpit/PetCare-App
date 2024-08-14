@@ -36,7 +36,7 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
       await userController.getUserByEmail(
           email: userController.emailController.text);
       await newsController.getNews();
-      await newsController.getAdoptRequest();
+      await newsController.getListAdoptRequestSend();
       mainController.initialSetUp();
     });
     super.initState();

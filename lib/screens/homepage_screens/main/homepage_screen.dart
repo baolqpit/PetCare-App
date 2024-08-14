@@ -32,6 +32,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
     // TODO: implement initState
     onWidgetBuildDone(() async {
       await newsController.getNews();
+      await newsController.getListAdoptRequestSend();
     });
     super.initState();
   }
@@ -40,6 +41,8 @@ class _HomepageScreenState extends State<HomepageScreen> {
   void dispose() {
     // TODO: implement dispose
     newsController.listNews.clear();
+    newsController.listAdoptRequestsReceive.clear();
+    newsController.listAdoptRequestsSend.clear();
     petController.listPets.clear();
     scrollController.dispose();
     super.dispose();
