@@ -18,17 +18,23 @@ class HistoryPageViewScreen extends StatefulWidget {
 
 class _HistoryPageViewScreenState extends State<HistoryPageViewScreen>
     with TickerProviderStateMixin {
+  ScrollController scrollController = ScrollController();
   final NewsController newsController = Get.find();
   late TabController tabController;
   @override
   void initState() {
     // TODO: implement initState
-    onWidgetBuildDone(() async {
-      await newsController.getListAdoptRequestSend();
-      await newsController.getListAdoptRequestReceive();
-    });
     tabController = TabController(length: 2, vsync: this);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    tabController.dispose();
+    newsController.currentHistoryIndex.value = 0;
+    scrollController.dispose();
+    super.dispose();
   }
 
   @override
@@ -47,6 +53,9 @@ class _HistoryPageViewScreenState extends State<HistoryPageViewScreen>
 
   _buildTabBar() {
     return TabBar(
+        onTap: (index) {
+          newsController.currentHistoryIndex.value = index;
+        },
         controller: tabController,
         indicatorColor: AppColor.primary,
         tabs: [
@@ -61,21 +70,37 @@ class _HistoryPageViewScreenState extends State<HistoryPageViewScreen>
 
   _buildPageView() {
     return Expanded(
-      child: TabBarView(children: <Widget>[
-        _buildListRequest(listRequest: newsController.listAdoptRequestsReceive),
-        _buildListRequest(listRequest: newsController.listAdoptRequestsSend)
-      ]),
+      child: TabBarView(
+        controller: tabController,
+        children: <Widget>[
+          Obx(() => _buildListRequest(
+              listRequest: newsController.listAdoptRequestsReceive)),
+          Obx(() => _buildListRequest(
+              listRequest: newsController.listAdoptRequestsSend)),
+        ],
+      ),
     );
   }
 
-  _buildListRequest({required RxList<AdoptRequestModel> listRequest}){
-    return Obx(() => listRequest.isEmpty ? const NoDataFoundScreen() : Column(
-      children: listRequest.map((request) => Stack(
-        children: <Widget>[
-          _buildBoxShadow(),
-          _buildRequestInfo(request: request)
-        ],
-      )).toList()));
+  _buildListRequest({required List<AdoptRequestModel> listRequest}) {
+    return listRequest.isEmpty
+        ? const NoDataFoundScreen()
+        : SingleChildScrollView(
+      controller: scrollController,
+          child: Column(
+              children: listRequest
+                  .map((request) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: Dimens.padding_8),
+                        child: Stack(
+                          children: <Widget>[
+                            _buildBoxShadow(),
+                            _buildRequestInfo(request: request),
+                          ],
+                        ),
+                      ))
+                  .toList(),
+            ),
+        );
   }
 
   _buildBoxShadow() {
@@ -95,7 +120,7 @@ class _HistoryPageViewScreenState extends State<HistoryPageViewScreen>
     );
   }
 
-  _buildRequestInfo({required AdoptRequestModel request}){
+  _buildRequestInfo({required AdoptRequestModel request}) {
     return RequestInfoScreen(request: request);
   }
 }

@@ -28,6 +28,10 @@ class _AdoptHistoryScreenState extends State<AdoptHistoryScreen> {
   @override
   void initState() {
     // TODO: implement initState
+    onWidgetBuildDone(() async {
+      await newsController.getListAdoptRequestSend();
+      await newsController.getListAdoptRequestReceive();
+    });
     super.initState();
   }
 

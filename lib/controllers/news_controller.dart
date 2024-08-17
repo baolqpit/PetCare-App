@@ -13,6 +13,7 @@ class NewsController extends GetxController {
   final AppController appController = Get.find();
   final UserController userController = Get.find();
   RxList<NewsModel> listNews = RxList<NewsModel>([]);
+  Rx<int> currentHistoryIndex = Rx<int>(0);
   RxList<AdoptRequestModel> listAdoptRequestsReceive = RxList<AdoptRequestModel>([]);
   RxList<AdoptRequestModel> listAdoptRequestsSend = RxList<AdoptRequestModel>([]);
 
@@ -71,24 +72,23 @@ class NewsController extends GetxController {
   ///GET LIST ADOPT REQUEST RECEIVE
   getListAdoptRequestReceive() async {
     appController.isLoading.value = true;
-    var res = await NewsApi()
-        .getAdoptRequestsReceive(userId: userController.userInfo.value!.userId!);
-    listAdoptRequestsReceive.value = res
-        .map<AdoptRequestModel>((json) => AdoptRequestModel.fromJson(json))
-        .toList();
+      var res = await NewsApi()
+          .getAdoptRequestsReceive(shopId: userController.userInfo.value!.userId!);
+      listAdoptRequestsReceive.value = res
+          .map<AdoptRequestModel>((json) => AdoptRequestModel.fromJson(json))
+          .toList();
     appController.isLoading.value = false;
   }
 
   ///GET LIST ADOPT REQUEST SEND
   getListAdoptRequestSend() async {
     appController.isLoading.value = true;
-    if (userController.userInfo.value != null){
          var res = await NewsApi().getAdoptRequestsSend(userId: userController.userInfo.value!.userId!);
       listAdoptRequestsSend.value = res
           .map<AdoptRequestModel>((json) => AdoptRequestModel.fromJson(json))
           .toList();
       appController.isLoading.value = false;
-    }
+      print("RUN");
   }
 
   ///GET BOOL VALUE TO DISPLAY ADOPT BUTTON

@@ -24,7 +24,6 @@ class _HomepageScreenState extends State<HomepageScreen> {
   final UserController userController = Get.find();
   final AppController appController = Get.find();
   final NewsController newsController = Get.find();
-  final PetController petController = Get.find();
   ScrollController scrollController = ScrollController();
 
   @override
@@ -32,6 +31,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
     // TODO: implement initState
     onWidgetBuildDone(() async {
       await newsController.getNews();
+      await newsController.getListAdoptRequestReceive();
       await newsController.getListAdoptRequestSend();
     });
     super.initState();
@@ -43,7 +43,6 @@ class _HomepageScreenState extends State<HomepageScreen> {
     newsController.listNews.clear();
     newsController.listAdoptRequestsReceive.clear();
     newsController.listAdoptRequestsSend.clear();
-    petController.listPets.clear();
     scrollController.dispose();
     super.dispose();
   }

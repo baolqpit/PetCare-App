@@ -43,6 +43,15 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    newsController.listNews.clear();
+    newsController.listAdoptRequestsSend.clear();
+    newsController.listAdoptRequestsReceive.clear();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
           appBar: _buildAppBar(),

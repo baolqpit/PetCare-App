@@ -27,9 +27,9 @@ class NewsApi extends BaseApi {
   }
 
   ///GET LIST ADOPT REQUESTS RECEIVE
-  getAdoptRequestsReceive({required int userId}){
+  getAdoptRequestsReceive({required int shopId}){
     var param = {
-      'shopId': userId
+      'shopId': shopId
     };
     return BaseApi().getPetCareAppDataFromAPI(url: GET_ADOPT_REQUEST_RECEIVE, queryParameters: param);
   }
