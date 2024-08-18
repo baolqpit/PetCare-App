@@ -27,19 +27,17 @@ class _ShopDetailState extends State<ShopDetail> {
       appBar: ShopAppBar(
         shopModel: widget.shopModel,
       ),
-      body: Container(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            CreateNewProduct(
-              shopModel: widget.shopModel,
-            ),
-            Expanded(
-                child: ShopProducts(
-                  shopModel: widget.shopModel,
-                )),
-          ],
-        ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          CreateNewProduct(
+            shopModel: widget.shopModel,
+          ),
+          Expanded(
+              child: ShopProducts(
+                shopModel: widget.shopModel,
+              )),
+        ],
       ),
     );
   }

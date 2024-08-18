@@ -6,6 +6,7 @@ import 'package:petcare_app_management/controllers/news_controller.dart';
 import 'package:petcare_app_management/controllers/pet_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/screens/homepage_screens/create_news/create_news_screen.dart';
+import 'package:petcare_app_management/screens/homepage_screens/history/adopt_history_screen.dart';
 import 'package:petcare_app_management/screens/homepage_screens/main/list_pet_to_adopt.dart';
 import 'package:petcare_app_management/screens/homepage_screens/main/pet_type_list.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
@@ -24,7 +25,6 @@ class _HomepageScreenState extends State<HomepageScreen> {
   final UserController userController = Get.find();
   final AppController appController = Get.find();
   final NewsController newsController = Get.find();
-  final PetController petController = Get.find();
   ScrollController scrollController = ScrollController();
 
   @override
@@ -32,6 +32,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
     // TODO: implement initState
     onWidgetBuildDone(() async {
       await newsController.getNews();
+      await newsController.getListAdoptRequestReceive();
       await newsController.getListAdoptRequestSend();
     });
     super.initState();
@@ -43,8 +44,8 @@ class _HomepageScreenState extends State<HomepageScreen> {
     newsController.listNews.clear();
     newsController.listAdoptRequestsReceive.clear();
     newsController.listAdoptRequestsSend.clear();
-    petController.listPets.clear();
     scrollController.dispose();
+    print("Clear");
     super.dispose();
   }
 
@@ -52,39 +53,60 @@ class _HomepageScreenState extends State<HomepageScreen> {
   Widget build(BuildContext context) {
     return Obx(() => appController.isLoading.value
         ? const LoadingScreen()
-        : Container(
-            padding: const EdgeInsets.symmetric(
-                horizontal: Dimens.padding_horizontal,
-                vertical: Dimens.padding_vertical),
-            child: Column(
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        : Stack(
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: Dimens.padding_horizontal,
+                    vertical: Dimens.padding_vertical),
+                child: Column(
                   children: <Widget>[
-                    Expanded(child: _buildSearchBar()),
-                    Dimens.width10,
-                    Ink(
-                      decoration: const ShapeDecoration(
-                        color: AppColor.primary,
-                        shape: CircleBorder(),
-                      ),
-                      child: IconButton(
-                        icon: const Icon(Icons.create),
-                        color: Colors.white,
-                        onPressed: () => Get.to(() => const CreateNewsScreen()),
-                      ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Expanded(child: _buildSearchBar()),
+                        Dimens.width10,
+                        Ink(
+                          decoration: const ShapeDecoration(
+                            color: AppColor.primary,
+                            shape: CircleBorder(),
+                          ),
+                          child: IconButton(
+                            icon: const Icon(Icons.create),
+                            color: Colors.white,
+                            onPressed: () =>
+                                Get.to(() => const CreateNewsScreen()),
+                          ),
+                        ),
+                      ],
                     ),
+                    Dimens.height20,
+                    const PetTypeList(),
+                    Dimens.height20,
+                    Expanded(
+                        child: SingleChildScrollView(
+                            controller: scrollController,
+                            scrollDirection: Axis.vertical,
+                            child: const ListPetToAdopt())),
                   ],
                 ),
-                Dimens.height20,
-                const PetTypeList(),
-                Dimens.height20,
-                Expanded(
-                    child: SingleChildScrollView( controller: scrollController,scrollDirection: Axis.vertical, child: const ListPetToAdopt())),
-                // HotNews()
-                // UserPetsContainer()
-              ],
-            ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: FloatingActionButton(
+                      onPressed: () => Get.to(() => const AdoptHistoryScreen()),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50.0)),
+                      backgroundColor: AppColor.colorContainerPink,
+                      child: const Icon(
+                        Icons.history,
+                        color: AppColor.black,
+                      )),
+                ),
+              ),
+            ],
           ));
   }
 
