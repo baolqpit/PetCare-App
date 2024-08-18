@@ -38,8 +38,8 @@ class _AdoptHistoryScreenState extends State<AdoptHistoryScreen> {
   @override
   void dispose() {
     // TODO: implement dispose
-    newsController.listAdoptRequestsSend.clear();
-    newsController.listAdoptRequestsReceive.clear();
+    // newsController.listAdoptRequestsSend.clear();
+    // newsController.listAdoptRequestsReceive.clear();
     super.dispose();
   }
   @override

@@ -25,7 +25,7 @@ class _ListPetToAdoptState extends State<ListPetToAdopt> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => newsController.listNews.isEmpty
-        ? const NoDataFoundScreen()
+        ? NoDataFoundScreen()
         : Column(
             children: newsController.listNews
                 .map((news) => Column(

@@ -36,6 +36,7 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
       await userController.getUserByEmail(
           email: userController.emailController.text);
       await newsController.getNews();
+      await newsController.getListAdoptRequestReceive();
       await newsController.getListAdoptRequestSend();
       mainController.initialSetUp();
     });
@@ -48,28 +49,17 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
     newsController.listNews.clear();
     newsController.listAdoptRequestsSend.clear();
     newsController.listAdoptRequestsReceive.clear();
+    appController.currentAppPageIndex.value = 0;
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
+    return Scaffold(
           appBar: _buildAppBar(),
           body: _buildAppBodyStructure(),
           bottomNavigationBar: _buildAppBottomBar(),
-          floatingActionButton: appController.currentAppPageIndex.value == 0
-              ? FloatingActionButton(
-                  onPressed: () => Get.to(() => const AdoptHistoryScreen()),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(50.0)),
-                  backgroundColor: AppColor.colorContainerPink,
-                  child: const Icon(
-                    Icons.history,
-                    color: AppColor.black,
-                  ),
-                )
-              : null,
-        ));
+        );
   }
 
   _buildAppBar() {
@@ -93,8 +83,10 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
   }
 
   _buildAppBodyStructure() {
-    return Obx(() => ScreenAndMenu.listCustomerScreens
-        .elementAt(appController.currentAppPageIndex.value));
+    return Obx(() => SafeArea(
+      child: ScreenAndMenu.listCustomerScreens
+          .elementAt(appController.currentAppPageIndex.value),
+    ));
   }
 
   _buildAppBottomBar() {
@@ -108,7 +100,10 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
               fontWeight: FontWeight.bold, fontSize: Dimens.font_size_min),
           currentIndex: appController.currentAppPageIndex.value,
           onTap: (index) {
-            appController.currentAppPageIndex.value = index;
+            if (mounted) {
+              appController.currentAppPageIndex.value = index;
+              print(appController.currentAppPageIndex.value);
+            }
           },
         ));
   }

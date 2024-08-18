@@ -105,7 +105,7 @@ class _BuildHomepageNewsButtonState extends State<BuildHomepageNewsButton> {
       1: AppColor.green,
       2: AppColor.red,
     };
-    return map[requestStatusId] ?? AppColor.primary;
+    return map[requestStatusId] ?? AppColor.primary.obs;
   }
 
   Rx<String?> getButtonName({required int requestStatusId}) {

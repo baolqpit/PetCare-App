@@ -9,6 +9,7 @@ import 'package:petcare_app_management/helper/initial_binding.dart';
 import 'package:petcare_app_management/screens/app.dart';
 import 'package:petcare_app_management/screens/introduction_screens/introduction_screen.dart';
 import 'package:petcare_app_management/screens/introduction_screens/splash_screen.dart';
+import 'package:petcare_app_management/share/Classes/get_page_routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -42,6 +43,8 @@ class _PetCareState extends State<PetCare> {
         fontFamily: 'Satoshi',
         textTheme: Theme.of(context).textTheme.apply(fontFamily: 'Satoshi'),
       ),
+      getPages: GetPageRoutes.getPages,
+      // initialRoute: GetPageRoutes.ROUTE_SPLASH,
       home:
       StreamBuilder(stream: AuthHelper().authStateChanges, builder: (context, snapshot){
         return SplashScreen(snapshot: snapshot,);
