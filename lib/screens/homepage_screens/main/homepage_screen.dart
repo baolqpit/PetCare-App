@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/news_controller.dart';
@@ -25,6 +26,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
   final UserController userController = Get.find();
   final AppController appController = Get.find();
   final NewsController newsController = Get.find();
+  TextEditingController searchKeyController = TextEditingController();
   ScrollController scrollController = ScrollController();
 
   @override
@@ -136,16 +138,20 @@ class _HomepageScreenState extends State<HomepageScreen> {
           decoration: BoxDecoration(
               color: AppColor.white,
               borderRadius: BorderRadius.circular(Dimens.sizeValue10)),
-          child: const TextField(
-            style: TextStyle(color: AppColor.grey),
+          child: TextField(
+            controller: searchKeyController,
+            style: const TextStyle(color: AppColor.grey),
             decoration: InputDecoration(
                 border: InputBorder.none,
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                     color: AppColor.grey, fontWeight: FontWeight.bold),
                 hintText: 'Search ...',
-                icon: Icon(
-                  Icons.search,
-                  color: AppColor.black,
+                icon: GestureDetector(
+                  onTap: () async => await newsController.searchNews(searchKey: searchKeyController.text) ,
+                  child: const Icon(
+                    Icons.search,
+                    color: AppColor.black,
+                  ),
                 )),
           ),
         )

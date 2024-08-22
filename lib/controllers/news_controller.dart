@@ -95,7 +95,6 @@ class NewsController extends GetxController {
           .map<AdoptRequestModel>((json) => AdoptRequestModel.fromJson(json))
           .toList();
       print("Send RUN");
-
     }
     appController.isLoading.value = false;
   }
@@ -128,6 +127,24 @@ class NewsController extends GetxController {
     appController.isLoading.value = true;
     await NewsApi().deleteUserNews(newsId: newsId);
     await getNews();
+    appController.isLoading.value = false;
+  }
+
+  ///SEARCH NEWS
+  searchNews({required String? searchKey}) async {
+    appController.isLoading.value = true;
+    print(searchKey);
+    if (searchKey == null || searchKey.isEmpty) {
+      await getNews(); // Lấy toàn bộ tin tức nếu không có từ khóa tìm kiếm
+    } else {
+      await getNews(); // Lấy toàn bộ tin tức trước khi lọc
+      listNews.value = listNews
+          .where((news) =>
+              news.newsTitle != null && news.newsTitle!.toLowerCase().contains(searchKey))
+          .toList(); // Lọc danh sách dựa trên từ khóa tìm kiếm
+    }
+
+    print(listNews);
     appController.isLoading.value = false;
   }
 }
