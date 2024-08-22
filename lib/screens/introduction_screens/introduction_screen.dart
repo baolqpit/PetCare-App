@@ -29,7 +29,7 @@ class _IntroductionScreenState extends State<IntroductionScreen> {
 
   _buildAuthenticationSelectionScreen() {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: AppColor.primary
       ),
       padding: const EdgeInsets.symmetric(
