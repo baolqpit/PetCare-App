@@ -21,6 +21,11 @@ class Images {
   static const String messenger_icon = 'lib/assets/BottomBarImages/messenger-logo-bottom.svg';
   static const String pet_icon = 'lib/assets/BottomBarImages/pet-logo-bottom.svg';
   static const String location_svg = 'lib/assets/AppLogo/location-svg.svg';
+  static const String dog_type_svg = 'lib/assets/PetImages/dog_pet_type.svg';
+  static const String cat_type_svg = 'lib/assets/PetImages/cat_pet_type.svg';
+  static const String bird_type_svg = 'lib/assets/PetImages/bird_pet_type.svg';
+  static const String fish_type_svg = 'lib/assets/PetImages/fish_pet_type.svg';
+  static const String another_type_svg = 'lib/assets/PetImages/another_pet_type.svg';
 
 
 }

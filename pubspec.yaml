@@ -82,6 +82,7 @@ flutter:
     - lib/assets/AppLogo/
     - lib/assets/BottomBarImages/
     - lib/assets/UserImages/
+    - lib/assets/PetImages/
     - lib/assets/SettingImages/
 #    - images/a_dot_ham.jpeg
   fonts:

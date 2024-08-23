@@ -18,6 +18,7 @@ class NewsController extends GetxController {
       RxList<AdoptRequestModel>([]);
   RxList<AdoptRequestModel> listAdoptRequestsSend =
       RxList<AdoptRequestModel>([]);
+  Rx<int> currentPetTypeIndex = Rx<int>(-1);
 
   ///GET NEWS
   getNews() async {
@@ -133,7 +134,7 @@ class NewsController extends GetxController {
   ///SEARCH NEWS
   searchNews({required String? searchKey}) async {
     appController.isLoading.value = true;
-    print(searchKey);
+    currentPetTypeIndex.value = -1;
     if (searchKey == null || searchKey.isEmpty) {
       await getNews(); // Lấy toàn bộ tin tức nếu không có từ khóa tìm kiếm
     } else {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/main_controller.dart';
@@ -56,10 +57,10 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar: _buildAppBar(),
-          body: _buildAppBodyStructure(),
-          bottomNavigationBar: _buildAppBottomBar(),
-        );
+      appBar: _buildAppBar(),
+      body: _buildAppBodyStructure(),
+      bottomNavigationBar: _buildAppBottomBar(),
+    );
   }
 
   _buildAppBar() {
@@ -72,21 +73,25 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
               Icons.notifications,
               color: AppColor.white,
             )),
-        IconButton(
-            onPressed: () => Get.to(() => const SettingScreen()),
-            icon: const Icon(
-              Icons.settings,
-              color: AppColor.white,
-            ))
+        // IconButton(
+        //     onPressed: () => Get.to(() => const SettingScreen()),
+        //     icon: const Icon(
+        //       Icons.settings,
+        //       color: AppColor.white,
+        //     )),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(50.0),
+            child: Image.network(
+                'https://scontent.fsgn24-2.fna.fbcdn.net/v/t39.30808-1/452873944_1831713797311947_1766447589029695027_n.jpg?stp=cp6_dst-jpg_s160x160&_nc_cat=106&ccb=1-7&_nc_sid=0ecb9b&_nc_eui2=AeHgi9I1CoomUX7tJMmn5DLHaTIGMmdGR5ppMgYyZ0ZHmuGmegh-NvtgbR7Pwc_tTcr1oDGxX47gsoD4HcmUr80E&_nc_ohc=JTIQgBNcDYwQ7kNvgEaYOvF&_nc_ht=scontent.fsgn24-2.fna&cb_e2o_trans=t&oh=00_AYBEiCZplIJWpwgQzWoTGjDOeZLah8dcPG74g6zCFb3MOg&oe=66CD26E0'))
       ],
     );
   }
 
   _buildAppBodyStructure() {
     return Obx(() => SafeArea(
-      child: ScreenAndMenu.listCustomerScreens
-          .elementAt(appController.currentAppPageIndex.value),
-    ));
+          child: ScreenAndMenu.listCustomerScreens
+              .elementAt(appController.currentAppPageIndex.value),
+        ));
   }
 
   _buildAppBottomBar() {
@@ -102,7 +107,6 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
           onTap: (index) {
             if (mounted) {
               appController.currentAppPageIndex.value = index;
-              print(appController.currentAppPageIndex.value);
             }
           },
         ));

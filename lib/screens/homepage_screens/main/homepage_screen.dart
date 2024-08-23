@@ -13,6 +13,7 @@ import 'package:petcare_app_management/screens/homepage_screens/main/pet_type_li
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Functions/functions.dart';
+import 'package:petcare_app_management/share/Widgets/apptext.dart';
 import 'package:petcare_app_management/share/Widgets/loading_screen.dart';
 
 class HomepageScreen extends StatefulWidget {
@@ -62,6 +63,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                     horizontal: Dimens.padding_horizontal,
                     vertical: Dimens.padding_vertical),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,7 +85,7 @@ class _HomepageScreenState extends State<HomepageScreen> {
                       ],
                     ),
                     Dimens.height20,
-                    const PetTypeList(),
+                    _buildPetCategories(),
                     Dimens.height20,
                     Expanded(
                         child: SingleChildScrollView(
@@ -126,6 +128,17 @@ class _HomepageScreenState extends State<HomepageScreen> {
               ),
             ]),
       ),
+    );
+  }
+
+  _buildPetCategories(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        AppText(content: 'Categories', color: AppColor.black, fontWeight: FontWeight.bold,),
+        Dimens.height10,
+        const PetTypeList()
+      ],
     );
   }
 
