@@ -8,9 +8,11 @@ import 'package:petcare_app_management/controllers/pet_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/shared_preferences_helper.dart';
 import 'package:petcare_app_management/screens/homepage_screens/history/adopt_history_screen.dart';
+import 'package:petcare_app_management/screens/user_screen/user_info_screen.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Functions/functions.dart';
+import 'package:petcare_app_management/share/Widgets/apptext.dart';
 import 'package:petcare_app_management/share/screen_and_menu.dart';
 
 import 'setting_screens/setting_screen.dart';
@@ -65,24 +67,44 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
 
   _buildAppBar() {
     return AppBar(
-      backgroundColor: AppColor.primary,
+      backgroundColor: AppColor.white,
+      leading: Padding(
+        padding: const EdgeInsets.all(Dimens.padding_8),
+        child: GestureDetector(
+          onTap: () => Get.to(() => const UserInfoScreen()),
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(50.0),
+              child: Image.network(
+                  width: 30, height: 30,
+                  'https://scontent.fsgn24-2.fna.fbcdn.net/v/t39.30808-1/452873944_1831713797311947_1766447589029695027_n.jpg?stp=cp6_dst-jpg_s160x160&_nc_cat=106&ccb=1-7&_nc_sid=0ecb9b&_nc_eui2=AeHgi9I1CoomUX7tJMmn5DLHaTIGMmdGR5ppMgYyZ0ZHmuGmegh-NvtgbR7Pwc_tTcr1oDGxX47gsoD4HcmUr80E&_nc_ohc=JTIQgBNcDYwQ7kNvgEaYOvF&_nc_ht=scontent.fsgn24-2.fna&cb_e2o_trans=t&oh=00_AYBEiCZplIJWpwgQzWoTGjDOeZLah8dcPG74g6zCFb3MOg&oe=66CD26E0')),
+        ),
+      ),
       actions: [
-        IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.notifications,
-              color: AppColor.white,
-            )),
-        // IconButton(
-        //     onPressed: () => Get.to(() => const SettingScreen()),
-        //     icon: const Icon(
-        //       Icons.settings,
-        //       color: AppColor.white,
-        //     )),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(50.0),
-            child: Image.network(
-                'https://scontent.fsgn24-2.fna.fbcdn.net/v/t39.30808-1/452873944_1831713797311947_1766447589029695027_n.jpg?stp=cp6_dst-jpg_s160x160&_nc_cat=106&ccb=1-7&_nc_sid=0ecb9b&_nc_eui2=AeHgi9I1CoomUX7tJMmn5DLHaTIGMmdGR5ppMgYyZ0ZHmuGmegh-NvtgbR7Pwc_tTcr1oDGxX47gsoD4HcmUr80E&_nc_ohc=JTIQgBNcDYwQ7kNvgEaYOvF&_nc_ht=scontent.fsgn24-2.fna&cb_e2o_trans=t&oh=00_AYBEiCZplIJWpwgQzWoTGjDOeZLah8dcPG74g6zCFb3MOg&oe=66CD26E0'))
+        Padding(
+          padding: const EdgeInsets.only(right: Dimens.padding_8),
+          child: CircleAvatar(
+            backgroundColor: AppColor.primary.withOpacity(0.5),
+            child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.notifications,
+                  color: AppColor.white,
+                )),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(right: Dimens.padding_8),
+          child: CircleAvatar(
+            backgroundColor: AppColor.primary.withOpacity(0.5),
+            child: IconButton(
+                onPressed: () {},
+                icon: const Icon(
+                  Icons.shopping_cart_outlined,
+                  color: AppColor.white,
+                )),
+          ),
+        ),
+
       ],
     );
   }
