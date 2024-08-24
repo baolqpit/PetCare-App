@@ -6,6 +6,7 @@ import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/news_controller.dart';
 import 'package:petcare_app_management/controllers/pet_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
+import 'package:petcare_app_management/model/news_model/news_model/news_model.dart';
 import 'package:petcare_app_management/screens/homepage_screens/create_news/create_news_screen.dart';
 import 'package:petcare_app_management/screens/homepage_screens/history/adopt_history_screen.dart';
 import 'package:petcare_app_management/screens/homepage_screens/main/list_pet_to_adopt.dart';
@@ -100,7 +101,12 @@ class _HomepageScreenState extends State<HomepageScreen> {
                 child: Align(
                   alignment: Alignment.bottomRight,
                   child: FloatingActionButton(
-                      onPressed: () => Get.to(() => const AdoptHistoryScreen()),
+                      onPressed: () async {
+                        await newsController.getNews();
+                        searchKeyController.clear();
+                        newsController.currentPetTypeIndex.value = -1;
+                        Get.to(() => const AdoptHistoryScreen());
+                      },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50.0)),
                       backgroundColor: AppColor.colorContainerPink,
