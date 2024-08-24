@@ -8,7 +8,7 @@ import 'package:petcare_app_management/helper/auth_helper.dart';
 import 'package:petcare_app_management/helper/initial_binding.dart';
 import 'package:petcare_app_management/screens/app.dart';
 import 'package:petcare_app_management/screens/introduction_screens/introduction_screen.dart';
-import 'package:petcare_app_management/screens/introduction_screens/splash_screen.dart';
+import 'package:petcare_app_management/screens/feature_screens/splash_screen.dart';
 import 'package:petcare_app_management/share/Classes/get_page_routes.dart';
 
 Future<void> main() async {

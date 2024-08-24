@@ -35,9 +35,9 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
   void initState() {
     // TODO: implement initState
     onWidgetBuildDone(() async {
-      await SharedPreferencesHelper().getUserAccount();
-      await userController.getUserByEmail(
-          email: userController.emailController.text);
+        // await SharedPreferencesHelper().getUserAccount();
+        // await userController.getUserByEmail(
+        //     email: userController.emailController.text);
       await newsController.getNews();
       await newsController.getListAdoptRequestReceive();
       await newsController.getListAdoptRequestSend();
@@ -67,6 +67,7 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
 
   _buildAppBar() {
     return AppBar(
+      title: AppText(content: 'Hi, ${userController.userInfo.value!.firstName} ${userController.userInfo.value!.lastName}', fontWeight: FontWeight.bold,),
       backgroundColor: AppColor.white,
       leading: Padding(
         padding: const EdgeInsets.all(Dimens.padding_8),

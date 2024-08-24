@@ -38,7 +38,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Obx(() => Scaffold(
-          appBar: CustomAppBar(title: 'Hi, ${userController.userInfo.value!.firstName} ${userController.userInfo.value!.lastName!}', showReturnButton: true),
+          appBar: CustomAppBar(title: '', showReturnButton: true),
           body: userController.userInfo.value == null
               ? LoadingScreen()
               : SingleChildScrollView(

@@ -75,26 +75,22 @@ class NewsController extends GetxController {
   ///GET LIST ADOPT REQUEST RECEIVE
   getListAdoptRequestReceive() async {
     appController.isLoading.value = true;
-    if (userController.userInfo.value != null) {
       var res = await NewsApi().getAdoptRequestsReceive(
           shopId: userController.userInfo.value!.userId!);
       listAdoptRequestsReceive.value = res
           .map<AdoptRequestModel>((json) => AdoptRequestModel.fromJson(json))
           .toList();
-    }
     appController.isLoading.value = false;
   }
 
   ///GET LIST ADOPT REQUEST SEND
   getListAdoptRequestSend() async {
     appController.isLoading.value = true;
-    if (userController.userInfo.value != null) {
       var res = await NewsApi()
           .getAdoptRequestsSend(userId: userController.userInfo.value!.userId!);
       listAdoptRequestsSend.value = res
           .map<AdoptRequestModel>((json) => AdoptRequestModel.fromJson(json))
           .toList();
-    }
     appController.isLoading.value = false;
   }
 
