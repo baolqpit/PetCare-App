@@ -81,7 +81,6 @@ class NewsController extends GetxController {
       listAdoptRequestsReceive.value = res
           .map<AdoptRequestModel>((json) => AdoptRequestModel.fromJson(json))
           .toList();
-      print("Receive RUN");
     }
     appController.isLoading.value = false;
   }
@@ -95,7 +94,6 @@ class NewsController extends GetxController {
       listAdoptRequestsSend.value = res
           .map<AdoptRequestModel>((json) => AdoptRequestModel.fromJson(json))
           .toList();
-      print("Send RUN");
     }
     appController.isLoading.value = false;
   }
@@ -136,16 +134,14 @@ class NewsController extends GetxController {
     appController.isLoading.value = true;
     currentPetTypeIndex.value = -1;
     if (searchKey == null || searchKey.isEmpty) {
-      await getNews(); // Lấy toàn bộ tin tức nếu không có từ khóa tìm kiếm
+      await getNews();
     } else {
-      await getNews(); // Lấy toàn bộ tin tức trước khi lọc
+      await getNews();
       listNews.value = listNews
           .where((news) =>
               news.newsTitle != null && news.newsTitle!.toLowerCase().contains(searchKey))
-          .toList(); // Lọc danh sách dựa trên từ khóa tìm kiếm
+          .toList();
     }
-
-    print(listNews);
     appController.isLoading.value = false;
   }
 }
