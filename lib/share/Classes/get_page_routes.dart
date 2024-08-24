@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:petcare_app_management/screens/app.dart';
 import 'package:petcare_app_management/screens/introduction_screens/auth_screens/sign_in_screen.dart';
 import 'package:petcare_app_management/screens/introduction_screens/auth_screens/sign_up_screen.dart';
-import 'package:petcare_app_management/screens/introduction_screens/splash_screen.dart';
+import 'package:petcare_app_management/screens/feature_screens/splash_screen.dart';
 
 class GetPageRoutes {
   static const ROUTE_SPLASH = '/splash';

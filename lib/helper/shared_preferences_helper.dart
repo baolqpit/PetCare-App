@@ -27,4 +27,15 @@ class SharedPreferencesHelper {
     await prefs.remove('email');
     await prefs.remove('password');
   }
+
+  ///GET USER FIRST TIME
+  Future<bool> getUserFirstTime() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstTime = prefs.getBool('isFirstTimeUser') ?? true;
+    if (isFirstTime){
+      await prefs.setBool('isFirstTimeUser', false);
+    }
+    print(isFirstTime);
+    return isFirstTime;
+  }
 }

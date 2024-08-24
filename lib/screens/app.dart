@@ -35,9 +35,9 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
   void initState() {
     // TODO: implement initState
     onWidgetBuildDone(() async {
-      await SharedPreferencesHelper().getUserAccount();
-      await userController.getUserByEmail(
-          email: userController.emailController.text);
+        // await SharedPreferencesHelper().getUserAccount();
+        // await userController.getUserByEmail(
+        //     email: userController.emailController.text);
       await newsController.getNews();
       await newsController.getListAdoptRequestReceive();
       await newsController.getListAdoptRequestSend();

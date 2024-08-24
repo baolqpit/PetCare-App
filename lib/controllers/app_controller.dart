@@ -9,7 +9,7 @@ import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/auth_helper.dart';
 import 'package:petcare_app_management/screens/app.dart';
 import 'package:petcare_app_management/screens/introduction_screens/auth_screens/otp_authentication_screen.dart';
-import 'package:petcare_app_management/screens/introduction_screens/splash_screen.dart';
+import 'package:petcare_app_management/screens/feature_screens/splash_screen.dart';
 import 'package:petcare_app_management/share/Widgets/dialog.dart';
 import 'package:petcare_app_management/share/format/format.dart';
 import 'package:shared_preferences/shared_preferences.dart';
