@@ -4,10 +4,12 @@ import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
 import 'package:petcare_app_management/helper/shared_preferences_helper.dart';
+import 'package:petcare_app_management/screens/setting_screens/setting_screen.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
 import 'package:petcare_app_management/share/Images/images.dart';
 import 'package:petcare_app_management/share/Widgets/apptext.dart';
+import 'package:petcare_app_management/share/Widgets/custom_app_bar.dart';
 import 'package:petcare_app_management/share/Widgets/loading_screen.dart';
 
 class UserInfoScreen extends StatefulWidget {
@@ -35,16 +37,19 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => userController.userInfo.value == null
-        ? LoadingScreen()
-        : SingleChildScrollView(
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                  vertical: Dimens.padding_vertical,
-                  horizontal: Dimens.padding_horizontal),
-              child: _buildPersonalContent(),
-            ),
-          ));
+    return Obx(() => Scaffold(
+          appBar: CustomAppBar(title: 'Hi, ${userController.userInfo.value!.firstName} ${userController.userInfo.value!.lastName!}', showReturnButton: true),
+          body: userController.userInfo.value == null
+              ? LoadingScreen()
+              : SingleChildScrollView(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: Dimens.padding_vertical,
+                        horizontal: Dimens.padding_horizontal),
+                    child: _buildPersonalContent(),
+                  ),
+                ),
+        ));
   }
 
   _buildPersonalContent() {
@@ -52,9 +57,7 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
       children: <Widget>[
         _buildPersonalInfoSession(),
         Dimens.height10,
-        _buildPersonalPetSession(),
-        Dimens.height10,
-        _buildPersonalActivitiesHistory(),
+        _buildSetting(),
       ],
     );
   }
@@ -79,14 +82,6 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
     return Column(
       children: <Widget>[
         ListTile(
-          leading: Icon(Icons.person),
-          title: AppText(
-            content: userController.userInfo.value!.firstName! +
-                " " +
-                userController.userInfo.value!.lastName!,
-          ),
-        ),
-        ListTile(
           leading: Icon(Icons.phone),
           title: AppText(
             content: userController.userInfo.value!.phone,
@@ -108,55 +103,28 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
     );
   }
 
-  _buildPersonalPetSession() {
+  _buildSetting() {
     return Container(
-      padding: EdgeInsets.all(Dimens.padding_horizontal),
+      padding: const EdgeInsets.all(Dimens.padding_horizontal),
       decoration: BoxDecoration(
           color: AppColor.primary, borderRadius: BorderRadius.circular(50)),
       child: ListTile(
         leading: SvgPicture.asset(
-          Images.personal_pet,
+          Images.setting_svg,
           width: 50,
           height: 50,
         ),
         title: AppText(
-          content: 'Your Pets',
+          content: 'Setting',
           color: AppColor.white,
           fontWeight: FontWeight.bold,
         ),
         trailing: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_forward_sharp,
             color: AppColor.white,
           ),
-          onPressed: () {},
-        ),
-      ),
-    );
-  }
-
-  _buildPersonalActivitiesHistory() {
-    return Container(
-      padding: EdgeInsets.all(Dimens.padding_horizontal),
-      decoration: BoxDecoration(
-          color: AppColor.primary, borderRadius: BorderRadius.circular(50)),
-      child: ListTile(
-        leading: SvgPicture.asset(
-          Images.activities_history_svg,
-          width: 50,
-          height: 50,
-        ),
-        title: AppText(
-          content: 'Activities History',
-          color: AppColor.white,
-          fontWeight: FontWeight.bold,
-        ),
-        trailing: IconButton(
-          icon: Icon(
-            Icons.arrow_forward_sharp,
-            color: AppColor.white,
-          ),
-          onPressed: () {},
+          onPressed: () => Get.to(() => SettingScreen()),
         ),
       ),
     );

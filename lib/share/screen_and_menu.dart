@@ -41,13 +41,6 @@ class ScreenAndMenu {
           width: 30,
           height: 30,
         )),
-    BottomNavigationBarItem(
-        label: 'Personal',
-        icon: SvgPicture.asset(
-          Images.personal_svg,
-          width: 30,
-          height: 30,
-        )),
   ];
 
   static List<Widget> listCustomerScreens = [
@@ -59,7 +52,6 @@ class ScreenAndMenu {
       child: AppText(content: "CHAT"),
     ),
     PetStoreScreen(),
-    UserInfoScreen(),
   ];
 
   static List<Widget> listAdminScreens = [HomepageScreen(), PetStoreScreen()];

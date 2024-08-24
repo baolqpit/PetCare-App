@@ -109,10 +109,10 @@ class _HomepageScreenState extends State<HomepageScreen> {
                       },
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(50.0)),
-                      backgroundColor: AppColor.colorContainerPink,
+                      backgroundColor: AppColor.primary,
                       child: const Icon(
                         Icons.history,
-                        color: AppColor.black,
+                        color: AppColor.white,
                       )),
                 ),
               ),
