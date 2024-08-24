@@ -21,20 +21,28 @@ class _HistoryPageViewScreenState extends State<HistoryPageViewScreen>
   ScrollController scrollController = ScrollController();
   final NewsController newsController = Get.find();
   late TabController tabController;
+
   @override
   void initState() {
-    // TODO: implement initState
-    tabController = TabController(length: 2, vsync: this);
     super.initState();
+    tabController = TabController(length: 2, vsync: this, initialIndex: newsController.currentHistoryIndex.value);
+    tabController.addListener(_handleTabChange);
   }
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    tabController.removeListener(_handleTabChange);
     tabController.dispose();
     newsController.currentHistoryIndex.value = 0;
     scrollController.dispose();
     super.dispose();
+  }
+
+   _handleTabChange() {
+    if (tabController.indexIsChanging) {
+      newsController.currentHistoryIndex.value = tabController.index;
+      print(newsController.currentHistoryIndex.value);
+    }
   }
 
   @override

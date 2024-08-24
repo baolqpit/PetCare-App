@@ -23,17 +23,27 @@ class _ButtonActionHistoryState extends State<ButtonActionHistory> {
   }
 
   _buildActionButtons({required AdoptRequestModel request}) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        _buildAcceptButton(request: request),
-        Dimens.width5,
-        _buildRejectButton(request: request)
-      ],
-    );
+    return widget.adoptRequestModel.adoptRequestStatusId == 0
+        ? Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              _buildAcceptButton(request: request),
+              Dimens.width5,
+              _buildRejectButton(request: request)
+            ],
+          )
+        : AppText(
+            content: widget.adoptRequestModel.adoptRequestStatusId == 1
+                ? "Accept"
+                : "Reject",
+            fontWeight: FontWeight.w900,
+            color: widget.adoptRequestModel.adoptRequestStatusId == 1
+                ? AppColor.green
+                : AppColor.red,
+          );
   }
 
-  _buildAcceptButton({required AdoptRequestModel request}){
+  _buildAcceptButton({required AdoptRequestModel request}) {
     return ElevatedButton(
       onPressed: () {
         showDialog(
@@ -46,17 +56,15 @@ class _ButtonActionHistoryState extends State<ButtonActionHistory> {
                     await newsController.updateAdoptRequest(
                         adoptRequestId: request.adoptRequestId!,
                         requestStatusId: 1,
-                        requestStatusName:
-                        "Accept");
+                        requestStatusName: "Accept");
                     Get.back();
                   },
                   widget: AppText(
                       content:
-                      'Are you sure to accept this request? Your post will be remove from news!'));
+                          'Are you sure to accept this request? Your post will be remove from news!'));
             });
       },
-      style:
-      ElevatedButton.styleFrom(backgroundColor: AppColor.submitColor),
+      style: ElevatedButton.styleFrom(backgroundColor: AppColor.submitColor),
       child: AppText(
         content: 'Accept',
         color: AppColor.white,
@@ -65,7 +73,7 @@ class _ButtonActionHistoryState extends State<ButtonActionHistory> {
     );
   }
 
-  _buildRejectButton({required AdoptRequestModel request}){
+  _buildRejectButton({required AdoptRequestModel request}) {
     return ElevatedButton(
       onPressed: () {
         showDialog(
@@ -78,13 +86,12 @@ class _ButtonActionHistoryState extends State<ButtonActionHistory> {
                     await newsController.updateAdoptRequest(
                         adoptRequestId: request.adoptRequestId!,
                         requestStatusId: 2,
-                        requestStatusName:
-                        "Reject");
+                        requestStatusName: "Reject");
                     Get.back();
                   },
                   widget: AppText(
                       content:
-                      'Are you sure to reject this request? User who sent request will not be seen this news!'));
+                          'Are you sure to reject this request? User who sent request will not be seen this news!'));
             });
       },
       style: ElevatedButton.styleFrom(backgroundColor: AppColor.red),
