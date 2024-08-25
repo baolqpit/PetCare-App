@@ -35,7 +35,7 @@ class SharedPreferencesHelper {
     if (isFirstTime){
       await prefs.setBool('isFirstTimeUser', false);
     }
-    print(isFirstTime);
+    print("Is First Time: ${isFirstTime}");
     return isFirstTime;
   }
 }
