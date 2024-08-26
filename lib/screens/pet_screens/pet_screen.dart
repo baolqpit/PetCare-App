@@ -170,7 +170,7 @@ class _PetScreenState extends State<PetScreen> {
     return Container(
       padding: const EdgeInsets.all(Dimens.padding_8),
       decoration: BoxDecoration(
-          color: AppColor.primary.withOpacity(0.5),
+          color: AppColor.primary,
           borderRadius: BorderRadius.circular(Dimens.circular10)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
