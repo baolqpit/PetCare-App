@@ -27,5 +27,6 @@ class Images {
   static const String fish_type_svg = 'lib/assets/PetImages/fish_pet_type.svg';
   static const String another_type_svg = 'lib/assets/PetImages/another_pet_type.svg';
   static const String setting_svg = 'lib/assets/SettingImages/setting.svg';
+  static const String pet_palm = 'lib/assets/PetImages/pet_palm.svg';
 
 }

@@ -67,7 +67,7 @@ class _PetCareAppScreenState extends State<PetCareAppScreen> {
 
   _buildAppBar() {
     return AppBar(
-      title: AppText(content: 'Hi, ${userController.userInfo.value!.firstName} ${userController.userInfo.value!.lastName}', fontWeight: FontWeight.bold,),
+      // title: AppText(content: 'Hi, ${userController.userInfo.value!.firstName} ${userController.userInfo.value!.lastName}', fontWeight: FontWeight.bold,),
       backgroundColor: AppColor.white,
       leading: Padding(
         padding: const EdgeInsets.all(Dimens.padding_8),
