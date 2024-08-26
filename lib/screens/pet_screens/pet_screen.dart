@@ -137,7 +137,7 @@ class _PetScreenState extends State<PetScreen> {
           horizontal: Dimens.padding_horizontal,
           vertical: Dimens.padding_vertical),
       decoration: const BoxDecoration(
-          color: AppColor.black,
+          color: AppColor.colorContainerPink,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(Dimens.circular12),
               topRight: Radius.circular(Dimens.circular12),
@@ -170,7 +170,7 @@ class _PetScreenState extends State<PetScreen> {
     return Container(
       padding: const EdgeInsets.all(Dimens.padding_8),
       decoration: BoxDecoration(
-          color: AppColor.colorTextCyan.withOpacity(0.5),
+          color: AppColor.primary.withOpacity(0.5),
           borderRadius: BorderRadius.circular(Dimens.circular10)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -194,7 +194,7 @@ class _PetScreenState extends State<PetScreen> {
               Dimens.width10,
               AppText(
                 content: title,
-                color: AppColor.grey,
+                color: AppColor.white,
               )
             ],
           ),
