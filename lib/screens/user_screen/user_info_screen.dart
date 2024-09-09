@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:petcare_app_management/controllers/app_controller.dart';
 import 'package:petcare_app_management/controllers/user_controller.dart';
-import 'package:petcare_app_management/helper/shared_preferences_helper.dart';
+import 'package:petcare_app_management/screens/pet_screens/create_pet_screen.dart';
 import 'package:petcare_app_management/screens/setting_screens/setting_screen.dart';
 import 'package:petcare_app_management/share/Colors/app_color.dart';
 import 'package:petcare_app_management/share/Dimens/dimens.dart';
@@ -58,6 +58,8 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
         _buildPersonalInfoSession(),
         Dimens.height10,
         _buildSetting(),
+        Dimens.height10,
+        _buildCreatePetProfile()
       ],
     );
   }
@@ -124,7 +126,34 @@ class _UserInfoScreenState extends State<UserInfoScreen> {
             Icons.arrow_forward_sharp,
             color: AppColor.white,
           ),
-          onPressed: () => Get.to(() => SettingScreen()),
+          onPressed: () => Get.to(() => const SettingScreen()),
+        ),
+      ),
+    );
+  }
+
+  _buildCreatePetProfile() {
+    return Container(
+      padding: const EdgeInsets.all(Dimens.padding_horizontal),
+      decoration: BoxDecoration(
+          color: AppColor.primary, borderRadius: BorderRadius.circular(50)),
+      child: ListTile(
+        leading: SvgPicture.asset(
+          Images.pet_palm,
+          width: 50,
+          height: 50,
+        ),
+        title: AppText(
+          content: 'Create Pet Profile',
+          color: AppColor.white,
+          fontWeight: FontWeight.bold,
+        ),
+        trailing: IconButton(
+          icon: const Icon(
+            Icons.arrow_forward_sharp,
+            color: AppColor.white,
+          ),
+          onPressed: () => Get.to(() => const CreatePetScreen()),
         ),
       ),
     );

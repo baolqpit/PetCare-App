@@ -110,11 +110,11 @@ class _PetScreenState extends State<PetScreen> {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(Dimens.circular10),
-          child: Image.network(
+          child: Image.asset(
               width: 100,
               height: 100,
               fit: BoxFit.cover,
-              'https://scontent.fsgn24-1.fna.fbcdn.net/v/t39.30808-6/326721111_698833901734548_9001580760964871690_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_eui2=AeFL0r6AUXubU9hGuy2vqixZZAnGK5_JXbxkCcYrn8ldvMydc2yNh_84kWZur3hcsUYkQRK8bQLuzWCDreMvLTcI&_nc_ohc=fP6t-xV_Fw4Q7kNvgHX4iyG&_nc_ht=scontent.fsgn24-1.fna&cb_e2o_trans=t&oh=00_AYAe06ISpeNtqRg4yr9dqJ2YqieQUGHkqFK7GeldIsqk1w&oe=66D1178E'),
+              Images.no_data_found_jpeg),
         ),
         AppText(
           content: pet.petName,
